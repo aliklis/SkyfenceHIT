@@ -14,14 +14,13 @@ public class XMLToRequest {
 	private XMLToRequest() {
 	}
 
-	public static ApplicationRequest parseXML() {
+	public static ApplicationRequest parseXML(String fileName) {
 		ApplicationRequest.Builder reqBuilder = null;
 		ApplicationRequest req = null;
 		
 		try {
-		
 		// preparing the XML file for reading
-		File fXmlFile = new File("test.xml");
+		File fXmlFile = new File(fileName);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(fXmlFile);

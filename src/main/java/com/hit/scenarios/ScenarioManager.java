@@ -19,7 +19,8 @@ public class ScenarioManager {
 		ApplicationRequest req;
 		IApplication app;
 		
-		req = XMLToRequest.parseXML();
+		// here we will need to creatre a function that runs on folder of scenarios and then iterate them
+		req = XMLToRequest.parseXML("c:\\scenarios\\scenario2.xml");
 		
 		// request will create either a driver with tor
 		// or a regular login (that might include proxy if proxy != null)
