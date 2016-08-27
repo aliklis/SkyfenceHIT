@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<request>
+	<application>office365</application>
+	<action>login</action>
+	<parameters>
+		<numOfRuns>1</numOfRuns>
+		<username>hitsim@veridinet.com</username>
+		<password>hitsky1%</password>
+	</parameters>
+</request>
