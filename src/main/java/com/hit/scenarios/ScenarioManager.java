@@ -21,12 +21,23 @@ public class ScenarioManager {
 		
 		req = XMLToRequest.parseXML();
 		
-		// try login to one drive
-		driver = StaticDriver.getDriver(false, null);
+		// request will create either a driver with tor
+		// or a regular login (that might include proxy if proxy != null)
+		// but if tor is set to true - will not check for proxy address
+		if(req.getUseTor() == true) {
+			driver = StaticDriver.getDriverWithTor(false);
+		}
+		else {
+			driver = StaticDriver.getDriver(false, req.getProxyAddr());
+		}
+		
 		app = ApplicationFactory.GetApplication(req.getApplication());
 		app.setDriver(driver);
 		app.doAction(req);
 		driver.quit();
+		if(req.getUseTor() == true) {
+			StaticDriver.endTorSession();
+		}
 
 	}
 }

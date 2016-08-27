@@ -6,5 +6,6 @@
 		<numOfRuns>1</numOfRuns>
 		<username>hitsim@veridinet.com</username>
 		<password>hitsky1%</password>
+		<useTor>true</useTor>
 	</parameters>
 </request>

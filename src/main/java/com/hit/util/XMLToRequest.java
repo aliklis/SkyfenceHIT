@@ -53,15 +53,15 @@ public class XMLToRequest {
 				
 				Element eElement = (Element) nNode;
 				
-				if(eElement.getElementsByTagName("username") != null){
+				if(eElement.getElementsByTagName("username").getLength() != 0){
 					reqBuilder.username
 					(eElement.getElementsByTagName("username").item(0).getTextContent());
 				}
-				if(eElement.getElementsByTagName("password") != null) {
+				if(eElement.getElementsByTagName("password").getLength() != 0) {
 					reqBuilder.password
 					(eElement.getElementsByTagName("password").item(0).getTextContent());
 				}
-				if(eElement.getElementsByTagName("numOfRuns") != null) {
+				if(eElement.getElementsByTagName("numOfRuns").getLength() != 0) {
 					try{
 						reqBuilder.numberOfRuns
 						(Integer.parseInt(eElement.getElementsByTagName("numOfRuns").item(0).getTextContent()));
@@ -69,6 +69,14 @@ public class XMLToRequest {
 					catch(NumberFormatException e) {
 						LogMain.Log("Must enter a valid integer for number of runs", 2, "XMLToRequest.parseXML()");
 					}
+				}
+				if(eElement.getElementsByTagName("useTor").getLength() != 0) {
+					reqBuilder.useTor
+					(Boolean.valueOf(eElement.getElementsByTagName("useTor").item(0).getTextContent()));
+				}
+				if(eElement.getElementsByTagName("proxyAddr").getLength() != 0) {
+					reqBuilder.proxyAddr
+					(eElement.getElementsByTagName("proxyAddr").item(0).getTextContent());
 				}
 			}
 		}
