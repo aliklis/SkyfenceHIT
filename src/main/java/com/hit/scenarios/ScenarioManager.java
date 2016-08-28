@@ -6,7 +6,6 @@ import com.hit.applications.ApplicationFactory;
 import com.hit.applications.ApplicationRequest;
 import com.hit.applications.IApplication;
 import com.hit.util.DriverUtils;
-import com.hit.util.XMLToRequest;
 
 public class ScenarioManager {
 	
@@ -17,17 +16,15 @@ public class ScenarioManager {
 	 * these req objects will be sent to the scenario manager to get the right application
 	 * and send the action to this application
 	 */
-	public static void run() {
+	public static void run(ApplicationRequest req) {
 		WebDriver driver;
-		ApplicationRequest req;
 		IApplication app;
 		
-		// here we will need to creatre a function that runs on folder of scenarios and then iterate them
-		req = XMLToRequest.parseXML("c:\\scenarios\\scenario2.xml");
-		
-		// request will create either a driver with tor
-		// or a regular login (that might include proxy if proxy != null)
-		// but if tor is set to true - will not check for proxy address
+		/***
+		 * request will create either a driver with tor
+		 * or a regular login (that might include proxy if proxy != null)
+		 * but if tor is set to true - will not check for proxy address
+		 */
 		if(req.getUseTor() == true) {
 			driver = DriverUtils.getDriverWithTor(false);
 		}
@@ -39,8 +36,8 @@ public class ScenarioManager {
 		app.setDriver(driver);
 		app.doAction(req);
 		
-		ApplicationRequest req2 = new ApplicationRequest.Builder(req.getApplication(), "logout").build();
-		app.doAction(req2);
+		//ApplicationRequest req2 = new ApplicationRequest.Builder(req.getApplication(), "logout").build();
+		//app.doAction(req2);
 		
 		driver.quit();
 		if(req.getUseTor() == true) {

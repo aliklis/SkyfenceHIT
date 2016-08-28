@@ -35,7 +35,7 @@ public class TestScenario1 {
 			//login.run();
 		//}
 		//test1();
-		ScenarioManager.run();
+		//ScenarioManager.run();
 	}
 	public static void test1() {
 		WebDriver driver = DriverUtils.getDriverWithTor(true);
