@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<request>
+	<application>Box</application>
+	<action>LOGIN</action>
+	<parameters>
+		<numOfRuns>2</numOfRuns>
+		<username>skyfencehit@gmail.com</username>
+		<password>Baa</password>
+		<useTor>false</useTor>
+	</parameters>
+</request>

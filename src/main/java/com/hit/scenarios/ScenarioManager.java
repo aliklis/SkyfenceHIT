@@ -26,19 +26,20 @@ public class ScenarioManager {
 		 * but if tor is set to true - will not check for proxy address
 		 */
 		if(req.getUseTor() == true) {
-			driver = DriverUtils.getDriverWithTor(false);
+			driver = DriverUtils.getDriverWithTor(req.getUseIncognito());
 		}
 		else {
-			driver = DriverUtils.getDriver(false, req.getProxyAddr());
+			driver = DriverUtils.getDriver(req.getUseIncognito(), req.getProxyAddr());
 		}
 		
 		app = ApplicationFactory.GetApplication(req.getApplication());
 		app.setDriver(driver);
-		app.doAction(req);
-		
-		//ApplicationRequest req2 = new ApplicationRequest.Builder(req.getApplication(), "logout").build();
-		//app.doAction(req2);
-		
+
+		int numOfRuns = req.getNumberOfRuns();
+		for (int i = 0; i < numOfRuns; i++) {
+			app.doAction(req);
+		}
+
 		driver.quit();
 		if(req.getUseTor() == true) {
 			DriverUtils.endTorSession();

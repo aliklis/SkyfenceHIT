@@ -19,13 +19,15 @@ public class BoxApplicationImpl extends AbstractApplication {
 		
 		switch (req.getAction().toUpperCase()) {
 		case "LOGIN":
-			return login();
+			return login(true);
 		default:
 			throw new UnsupportedOperationException("the requested action is not available");
 		}
 	}
 	
-	private boolean login() {
+	private boolean login(boolean logoutAtEnd) {
+		if(loggedIn)
+			return true;
 		String boxLoginURL = GetProperties.getProp("boxLoginURL");
 		String boxUserTextbox = GetProperties.getProp("boxUserTextbox");
 		String boxPasswordTextbox = GetProperties.getProp("boxPasswordTextbox");
@@ -48,7 +50,18 @@ public class BoxApplicationImpl extends AbstractApplication {
 		} catch (Exception ex) {
 
 		}
-		//driver.quit();
+		setLoggedIn(true);
+		if (logoutAtEnd)
+			logout();
+		return true;
+	}
+	
+	private boolean logout() {
+		if (!loggedIn)
+			return true;
+		driver.get("https://app.box.com/logout");
+		driver.manage().deleteAllCookies();
+		setLoggedIn(false);
 		return true;
 	}
 

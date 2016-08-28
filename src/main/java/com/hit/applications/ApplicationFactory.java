@@ -2,13 +2,14 @@ package com.hit.applications;
 
 public class ApplicationFactory {
 
-	private ApplicationFactory(){}
-	
+	private ApplicationFactory() {
+	}
+
 	public static IApplication GetApplication(String appName) {
-		if(appName == null){
+		if (appName == null) {
 			return null;
 		}
-		
+
 		switch (appName.toUpperCase()) {
 		case "GOOGLE":
 			return new GoogleApplicationImpl();

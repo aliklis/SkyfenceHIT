@@ -20,7 +20,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		
 		switch (req.getAction().toUpperCase()) {
 		case "LOGIN":
-			return login();
+			return login(true);
 		case "LOGINONEDRIVE":
 			return loginOneDrive();
 		case "MULTIPLEACTIONS":
@@ -33,7 +33,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		
 	}
 	
-	private boolean login() {
+	private boolean login(boolean logoutAtEnd) {
 		String office365LoginURL = GetProperties.getProp("office365LoginURL");
 		String office365UserTextbox = GetProperties.getProp("office365UserTextbox");
 		String office365PasswordTextbox = GetProperties.getProp("office365PasswordTextbox"); 
@@ -58,11 +58,13 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		}
 		
 		setLoggedIn(true);
+		if(logoutAtEnd)
+			logout();
 		return true;
 	}
 	
 	private boolean loginOneDrive() {
-		boolean officeLogin = login();
+		boolean officeLogin = login(false);
 		if(officeLogin != true)
 			return false;
 		// if got here - expects to already be in login state in office365
@@ -84,9 +86,9 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	 * @return
 	 */
 	private boolean MultipleActions(){
-		if(login()){
+		if(login(false)){
 			SendFeedBack();
-			DriverUtils.sleep(3);
+			DriverUtils.sleep(5);
 			OpenWordTemplate();
 		}
 		return true;
@@ -147,8 +149,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 	
 	
-	
-	//3)
+	//
 	private boolean logout(){
 		if (loggedIn) {
 			// click on element by className
@@ -158,6 +159,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			}
 			// click on logout button
 			DriverUtils.clickOnElementByID(driver,"O365_SubLink_ShellSignout");
+			driver.manage().deleteAllCookies();
 		}
 		setLoggedIn(false);
 		return true;

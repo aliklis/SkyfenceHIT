@@ -7,6 +7,7 @@ public class ApplicationRequest {
 	private final String action;
 	private final int numberOfRuns;
 	private final boolean useTor;
+	private final boolean useIncognito;
 	private final String proxyAddr;
 	
 	public static class Builder {
@@ -19,6 +20,7 @@ public class ApplicationRequest {
 		private String password = null;
 		private int numberOfRuns = 1;
 		private boolean useTor = false;
+		private boolean useIncognito = false;
 		private String proxyAddr = null;
 		
 		public Builder(String application, String action) {
@@ -46,6 +48,11 @@ public class ApplicationRequest {
 			return this;
 		}
 		
+		public Builder useIncognito(boolean val) {
+			useIncognito = val;
+			return this;
+		}
+		
 		public Builder proxyAddr(String val) {
 			proxyAddr = val;
 			return this;
@@ -63,9 +70,14 @@ public class ApplicationRequest {
 		this.action = builder.action;
 		this.application = builder.application;
 		this.useTor = builder.useTor;
+		this.useIncognito = builder.useIncognito;
 		this.proxyAddr = builder.proxyAddr;
 	}
 	
+	public boolean getUseIncognito() {
+		return useIncognito;
+	}
+
 	public String getUsername() {
 		return username;
 	}

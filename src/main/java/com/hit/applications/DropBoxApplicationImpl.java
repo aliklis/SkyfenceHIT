@@ -19,12 +19,14 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 		
 		switch (req.getAction().toUpperCase()) {
 		case "LOGIN":
-			return login();
+			return login(true);
 		default:
 			throw new UnsupportedOperationException("the requested action is not available");
 		}
 	}
-	private boolean login() {
+	private boolean login(boolean logoutAtEnd) {
+		if(loggedIn)
+			return true;
 		String dropboxLoginURL = GetProperties.getProp("dropboxLoginURL");
 		String dropboxUserTextbox = GetProperties.getProp("dropboxUserTextbox");
 		String dropboxPasswordTextbox = GetProperties.getProp("dropboxPasswordTextbox");
@@ -53,8 +55,19 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 		catch(Exception ex){
 			
 		}
-		//driver.quit();
 		
+		setLoggedIn(true);
+		if (logoutAtEnd)
+			logout();
+		return true;
+	}
+	
+	private boolean logout() {
+		if (!loggedIn)
+			return true;
+		driver.get("https://www.dropbox.com/logout");
+		driver.manage().deleteAllCookies();
+		setLoggedIn(false);
 		return true;
 	}
 

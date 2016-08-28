@@ -73,6 +73,10 @@ public class XMLToRequest {
 					reqBuilder.useTor
 					(Boolean.valueOf(eElement.getElementsByTagName("useTor").item(0).getTextContent()));
 				}
+				if(eElement.getElementsByTagName("useIncognito").getLength() != 0) {
+					reqBuilder.useIncognito
+					(Boolean.valueOf(eElement.getElementsByTagName("useIncognito").item(0).getTextContent()));
+				}
 				if(eElement.getElementsByTagName("proxyAddr").getLength() != 0) {
 					reqBuilder.proxyAddr
 					(eElement.getElementsByTagName("proxyAddr").item(0).getTextContent());

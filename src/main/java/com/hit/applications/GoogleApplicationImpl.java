@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import com.hit.util.GetProperties;
 
 public class GoogleApplicationImpl extends AbstractApplication {
-	
+
 	public boolean doAction(ApplicationRequest req) throws NullPointerException, UnsupportedOperationException {
 		if (req == null) {
 			throw new NullPointerException("the application request object is not valid");
@@ -15,16 +15,18 @@ public class GoogleApplicationImpl extends AbstractApplication {
 			throw new NullPointerException("the driver object is not valid");
 		}
 		this.req = req;
-		
+
 		switch (req.getAction().toUpperCase()) {
 		case "LOGIN":
-			return login();
+			return login(true);
 		default:
 			throw new UnsupportedOperationException("the requested action is not available");
 		}
 	}
 
-	private boolean login() {
+	private boolean login(boolean logoutAtEnd) {
+		if (loggedIn)
+			return true;
 		String googleLoginURL = GetProperties.getProp("googleLoginURL");
 		String googleUserTextbox = GetProperties.getProp("googleUserTextbox");
 		String googlePasswordTextbox = GetProperties.getProp("googlePasswordTextbox");
@@ -46,6 +48,18 @@ public class GoogleApplicationImpl extends AbstractApplication {
 
 		}
 
+		setLoggedIn(true);
+		if (logoutAtEnd)
+			logout();
+		return true;
+	}
+
+	private boolean logout() {
+		if (!loggedIn)
+			return true;
+		driver.get("https://accounts.google.com/Logout");
+		driver.manage().deleteAllCookies();
+		setLoggedIn(false);
 		return true;
 	}
 }
