@@ -7,4 +7,6 @@ public interface IApplication {
 	// runs an action and returns a generic response
 	public boolean doAction(ApplicationRequest req);
 	public void setDriver(WebDriver driver);
+	public boolean isLoggedIn();
+	public void setLoggedIn(boolean loggedIn);
 }

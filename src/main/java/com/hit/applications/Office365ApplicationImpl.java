@@ -27,9 +27,12 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			return loginOneDrive();
 		case "MULTIPLEACTIONS":
 			return MultipleActions();	
+		case "LOGOUT":
+			logout();
 		default:
 			throw new UnsupportedOperationException("the requested action is not available");
 		}
+		
 	}
 	
 	private boolean login() {
@@ -55,6 +58,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		} catch (Exception ex) {
 
 		}
+		
+		setLoggedIn(true);
 		return true;
 	}
 	
@@ -98,28 +103,21 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	 */
 	private void OpenWordTemplate(){
 		
+		//go to last opened window in the web
 		getLastOpenedWindow();
 		
-		List<WebElement> aList = driver.findElements(By.tagName("a"));	
-		for (WebElement a : aList){
-			String link = a.getAttribute("ng-href");
-			if(link != null){
-				//check if the a tag is on word
-				if(link.equals("https://office.live.com/start/Word.aspx?auth=2")){
-					a.click();
-					break;
-				}
-			}
-		}
+		//click on an element by tagname
+		clickOnElementByTagNameAndAttribute("a", "ng-href", "https://office.live.com/start/Word.aspx?auth=2");
 		
 		sleep(2);
+		
+		//go to last opened window in the web
 		getLastOpenedWindow();
 			
 		//click on feedback from help menu
-		WebElement wordTemplate = driver.findElement(By.id("template_TM00002003"));	
-		if(wordTemplate != null){
-			wordTemplate.click();
-		}
+		clickOnElementByID("template_TM00002003");
+		
+
 		
 	}
 	
@@ -129,41 +127,43 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	 * @throws InterruptedException 
 	 */
 	private void SendFeedBack(){
-		//click on the help menu
-		WebElement helpButton = driver.findElement(By.id("O365_MainLink_Help"));	
-		if(helpButton != null){
-			helpButton.click();
-		}
-		//click on feedback from help menu
-		WebElement feedBackButton = driver.findElement(By.id("O365_SubLink_ShellFeedback"));	
-		if(feedBackButton != null){
-			feedBackButton.click();
-		}
 		
+		//click on the help menu
+		clickOnElementByID("O365_MainLink_Help");
+		
+		//click on feedback from help menu
+		clickOnElementByID("O365_SubLink_ShellFeedback");
+		
+		//go to last opened window in the web
 		getLastOpenedWindow();
 		
 		//insert comment in feedback
-		WebElement textAreaFeedBack = driver.findElement(By.id("txtFeedbackComment"));	
-		if(textAreaFeedBack != null){
-			textAreaFeedBack.sendKeys("nice service, thank you!!!");;
-		}
+		writeToHTMLElement("txtFeedbackComment","nice service, thank you!!!");
+	
 		//send feedback
-		WebElement textAreaFeedBackSubmit = driver.findElement(By.id("btnFeedbackSubmit"));	
-		if(textAreaFeedBackSubmit != null){
-			textAreaFeedBackSubmit.click();
-		}
-		
+		clickOnElementByID("btnFeedbackSubmit");
 		//sleep for a second, let the feedback to be sent
 		sleep(1);
 		//close feedBack windows
-		WebElement textAreaFeedBackClose = driver.findElement(By.id("btnFeedbackClose"));	
-		if(textAreaFeedBackClose != null){
-			textAreaFeedBackClose.click();
-		}
+		clickOnElementByID("btnFeedbackClose");
 						
 	}
 	
 	
+	
+	//3)
+	private void logout(){
+		if (loggedIn) {
+			// click on element by className
+			WebElement element = driver.findElement(By.className("o365cs-me-tile-nophoto-username-container"));
+			if (element != null) {
+				element.click();
+			}
+			// click on logout button
+			clickOnElementByID("O365_SubLink_ShellSignout");
+		}
+		setLoggedIn(false);
+	}
 	
 	
 	/***
@@ -186,6 +186,50 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+
+	/***
+	 * click on an element in the web
+	 * @param name
+	 */
+	private void clickOnElementByID(String name){
+		WebElement element = driver.findElement(By.id(name));	
+		if(element != null){
+			element.click();
+		}
+	}
+	
+	/***
+	 * write to an element(form/text/input) in the web
+	 * @param name
+	 * @param text
+	 */
+	private void writeToHTMLElement(String name, String text){
+		
+		WebElement element = driver.findElement(By.id(name));	
+		if(element != null){
+			element.sendKeys(text);
+		}
+	}
+
+	/***
+	 * click on an element by tagname with specified attribute and specified value
+	 * @param tagName
+	 * @param attributeName
+	 * @param attributeValue
+	 */
+	private void clickOnElementByTagNameAndAttribute(String tagName, String attributeName, String attributeValue){
+		List<WebElement> elementList = driver.findElements(By.tagName(tagName));	
+		for (WebElement element : elementList){
+			String myElement = element.getAttribute("ng-href");
+			if(myElement != null){
+				//check if the a tag is on word
+				if(myElement.equals(attributeValue)){
+					element.click();
+					break;
+				}
+			}
 		}
 	}
 }
