@@ -38,7 +38,7 @@ public class TestScenario1 {
 		ScenarioManager.run();
 	}
 	public static void test1() {
-		WebDriver driver = StaticDriver.getDriverWithTor(true);
+		WebDriver driver = DriverUtils.getDriverWithTor(true);
 		driver.get("http://www.walla.co.il");
       try {
 			Thread.sleep(3000);
@@ -47,6 +47,6 @@ public class TestScenario1 {
 			e.printStackTrace();
 		}       
 		driver.quit();
-		StaticDriver.endTorSession();
+		DriverUtils.endTorSession();
 	}
 }
