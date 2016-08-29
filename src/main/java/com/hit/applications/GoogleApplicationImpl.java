@@ -25,7 +25,7 @@ public class GoogleApplicationImpl extends AbstractApplication {
 	}
 
 	private boolean login(boolean logoutAtEnd) {
-		if (loggedIn)
+		if (this.loggedIn)
 			return true;
 		String googleLoginURL = GetProperties.getProp("googleLoginURL");
 		String googleUserTextbox = GetProperties.getProp("googleUserTextbox");
@@ -48,18 +48,18 @@ public class GoogleApplicationImpl extends AbstractApplication {
 
 		}
 
-		setLoggedIn(true);
+		this.loggedIn = true;
 		if (logoutAtEnd)
 			logout();
 		return true;
 	}
 
 	private boolean logout() {
-		if (!loggedIn)
+		if (!this.loggedIn)
 			return true;
 		driver.get("https://accounts.google.com/Logout");
 		driver.manage().deleteAllCookies();
-		setLoggedIn(false);
+		this.loggedIn = false;
 		return true;
 	}
 }

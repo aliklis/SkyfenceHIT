@@ -26,7 +26,7 @@ public class BoxApplicationImpl extends AbstractApplication {
 	}
 	
 	private boolean login(boolean logoutAtEnd) {
-		if(loggedIn)
+		if(this.loggedIn)
 			return true;
 		String boxLoginURL = GetProperties.getProp("boxLoginURL");
 		String boxUserTextbox = GetProperties.getProp("boxUserTextbox");
@@ -50,18 +50,18 @@ public class BoxApplicationImpl extends AbstractApplication {
 		} catch (Exception ex) {
 
 		}
-		setLoggedIn(true);
+		this.loggedIn = true;
 		if (logoutAtEnd)
 			logout();
 		return true;
 	}
 	
 	private boolean logout() {
-		if (!loggedIn)
+		if (!this.loggedIn)
 			return true;
 		driver.get("https://app.box.com/logout");
 		driver.manage().deleteAllCookies();
-		setLoggedIn(false);
+		this.loggedIn = false;
 		return true;
 	}
 

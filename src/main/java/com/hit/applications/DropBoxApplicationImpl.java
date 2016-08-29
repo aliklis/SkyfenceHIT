@@ -25,7 +25,7 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 		}
 	}
 	private boolean login(boolean logoutAtEnd) {
-		if(loggedIn)
+		if(this.loggedIn)
 			return true;
 		String dropboxLoginURL = GetProperties.getProp("dropboxLoginURL");
 		String dropboxUserTextbox = GetProperties.getProp("dropboxUserTextbox");
@@ -56,18 +56,18 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 			
 		}
 		
-		setLoggedIn(true);
+		this.loggedIn = true;
 		if (logoutAtEnd)
 			logout();
 		return true;
 	}
 	
 	private boolean logout() {
-		if (!loggedIn)
+		if (!this.loggedIn)
 			return true;
 		driver.get("https://www.dropbox.com/logout");
 		driver.manage().deleteAllCookies();
-		setLoggedIn(false);
+		this.loggedIn = false;
 		return true;
 	}
 

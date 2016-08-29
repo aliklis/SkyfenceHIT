@@ -11,11 +11,4 @@ public abstract class AbstractApplication implements IApplication {
 	public void setDriver(WebDriver driver) {
 		this.driver = driver;
 	}
-	
-	public boolean isLoggedIn() {
-		return loggedIn;
-	}
-	public void setLoggedIn(boolean loggedIn) {
-		this.loggedIn = loggedIn;
-	}
 }

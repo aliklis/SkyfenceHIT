@@ -57,7 +57,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 		}
 		
-		setLoggedIn(true);
+		this.loggedIn = true;
 		if(logoutAtEnd)
 			logout();
 		return true;
@@ -151,7 +151,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	
 	//
 	private boolean logout(){
-		if (loggedIn) {
+		if (this.loggedIn) {
 			// click on element by className
 			WebElement element = driver.findElement(By.className("o365cs-me-tile-nophoto-username-container"));
 			if (element != null) {
@@ -161,7 +161,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			DriverUtils.clickOnElementByID(driver,"O365_SubLink_ShellSignout");
 			driver.manage().deleteAllCookies();
 		}
-		setLoggedIn(false);
+		this.loggedIn = false;
 		return true;
 	}
 	
