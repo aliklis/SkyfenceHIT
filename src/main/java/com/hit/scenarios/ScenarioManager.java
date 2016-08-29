@@ -25,25 +25,43 @@ public class ScenarioManager {
 		 * or a regular login (that might include proxy if proxy != null)
 		 * but if tor is set to true - will not check for proxy address
 		 */
-		if(req.getUseTor() == true) {
+		
+		if (req.getUseTor() == true) {
 			driver = DriverUtils.getDriverWithTor(req.getUseIncognito());
-		}
-		else {
+		} else {
 			driver = DriverUtils.getDriver(req.getUseIncognito(), req.getProxyAddr());
 		}
-		
-		app = ApplicationFactory.GetApplication(req.getApplication());
-		app.setDriver(driver);
-
-		int numOfRuns = req.getNumberOfRuns();
-		for (int i = 0; i < numOfRuns; i++) {
-			app.doAction(req);
+		try {
+			switch (req.getApplication().toUpperCase()) {
+			case "GOOGLE":
+				app = ApplicationFactory.GetGoogleApplication(driver);
+				break;
+			case "OFFICE365":
+				app = ApplicationFactory.GetOffice365Application(driver);
+				break;
+			case "DROPBOX":
+				app = ApplicationFactory.GetDropBoxApplication(driver);
+				break;
+			case "BOX":
+				app = ApplicationFactory.GetBoxApplication(driver);
+				break;
+			default:
+				throw new NullPointerException("Please enter a valid application");
+			}
+			int numOfRuns = req.getNumberOfRuns();
+			for (int i = 0; i < numOfRuns; i++) {
+				app.doAction(req);
+			}
+		} catch (Exception ex) {
+			throw ex;
+		} finally {
+			driver.quit();
+			if (req.getUseTor() == true) {
+				DriverUtils.endTorSession();
+			}
 		}
 
-		driver.quit();
-		if(req.getUseTor() == true) {
-			DriverUtils.endTorSession();
-		}
+
 		
 
 

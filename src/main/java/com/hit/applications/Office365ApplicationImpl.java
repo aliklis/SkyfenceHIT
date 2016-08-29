@@ -1,6 +1,7 @@
 package com.hit.applications;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.hit.util.GetProperties;
@@ -8,6 +9,9 @@ import com.hit.util.DriverUtils;
 
 public class Office365ApplicationImpl extends AbstractApplication {
 
+	public Office365ApplicationImpl(WebDriver driver) {
+		super(driver);
+	}
 	@Override
 	public boolean doAction(ApplicationRequest req){
 		if (req == null) {

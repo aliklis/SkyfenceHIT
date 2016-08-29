@@ -1,11 +1,16 @@
 package com.hit.applications;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.hit.util.GetProperties;
 
 public class GoogleApplicationImpl extends AbstractApplication {
+
+	public GoogleApplicationImpl(WebDriver driver) {
+		super(driver);
+	}
 
 	public boolean doAction(ApplicationRequest req) throws NullPointerException, UnsupportedOperationException {
 		if (req == null) {
