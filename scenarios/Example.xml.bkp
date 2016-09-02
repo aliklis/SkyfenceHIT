@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<request>
+	<application>Box</application>
+	<action>LOGIN</action>
+	<numOfRuns>2</numOfRuns>
+	<useTor>false</useTor>
+	<useIncognito>false</useIncognito>
+	<users>
+		<user>
+			<username>tom</username>
+			<password>ken</password>
+		</user>
+		<user>
+			<username>nisim</username>
+			<password>brem</password>
+		</user>
+		<user>
+			<username>dave</username>
+			<password>fr</password>
+		</user>
+		<user>
+			<username>eran</username>
+			<password>naim</password>
+		</user>		
+		<user>
+			<username>yuval</username>
+			<password>hello</password>
+		</user>
+	</users>
+	<proxies>
+		<proxy>127.0.0.1:8080</proxy>
+		<proxy>127.56.0.68:8080</proxy>
+		<proxy>187.74.20.1:8080</proxy>
+	</proxies>
+</request>

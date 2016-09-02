@@ -135,7 +135,7 @@ public class DriverUtils {
 			String myElement = element.getAttribute(attributeName);
 			if(myElement != null){
 				//check if the a tag is on word
-				if(myElement.equals(attributeValue)){
+				if(myElement.contains(attributeValue)){
 					element.click();
 					break;
 				}
