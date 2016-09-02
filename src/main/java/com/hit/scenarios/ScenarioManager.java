@@ -1,11 +1,15 @@
 package com.hit.scenarios;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 
 import com.hit.applications.ApplicationFactory;
 import com.hit.applications.ApplicationRequest;
 import com.hit.applications.IApplication;
 import com.hit.util.DriverUtils;
+import com.hit.util.Request;
+import com.hit.util.User;
 
 public class ScenarioManager {
 	
@@ -16,9 +20,10 @@ public class ScenarioManager {
 	 * these req objects will be sent to the scenario manager to get the right application
 	 * and send the action to this application
 	 */
-	public static void run(ApplicationRequest req) {
+	public static void run(Request request, String Proxy) {
 		WebDriver driver;
 		IApplication app;
+		ApplicationRequest applicationRequest = new ApplicationRequest(request.getAction());
 		
 		/***
 		 * request will create either a driver with tor
@@ -26,13 +31,13 @@ public class ScenarioManager {
 		 * but if tor is set to true - will not check for proxy address
 		 */
 		
-		if (req.getUseTor() == true) {
-			driver = DriverUtils.getDriverWithTor(req.getUseIncognito());
+		if (request.isUseTor() == true) {
+			driver = DriverUtils.getDriverWithTor(request.isUseIncognito());
 		} else {
-			driver = DriverUtils.getDriver(req.getUseIncognito(), req.getProxyAddr());
+			driver = DriverUtils.getDriver(request.isUseIncognito(), Proxy);
 		}
 		try {
-			switch (req.getApplication().toUpperCase()) {
+			switch (request.getApplication().toUpperCase()) {
 			case "GOOGLE":
 				app = ApplicationFactory.GetGoogleApplication(driver);
 				break;
@@ -48,15 +53,22 @@ public class ScenarioManager {
 			default:
 				throw new NullPointerException("Please enter a valid application");
 			}
-			int numOfRuns = req.getNumberOfRuns();
-			for (int i = 0; i < numOfRuns; i++) {
-				app.doAction(req);
+
+			int numberOfRuns = request.getNumOfRuns();
+			List<User> usersList = request.getUsers();
+			//iterate the action as the number of run
+			for (int i = 0; i < numberOfRuns; i++) {
+				for(User currUser : usersList){
+					applicationRequest.setUser(currUser);
+					app.doAction(applicationRequest);
+				}
+				
 			}
 		} catch (Exception ex) {
 			throw ex;
 		} finally {
 			driver.quit();
-			if (req.getUseTor() == true) {
+			if (request.isUseTor() == true) {
 				DriverUtils.endTorSession();
 			}
 		}

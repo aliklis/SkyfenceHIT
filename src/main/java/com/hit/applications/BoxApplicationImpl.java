@@ -12,16 +12,16 @@ public class BoxApplicationImpl extends AbstractApplication {
 		super(driver);
 	}
 	@Override
-	public boolean doAction(ApplicationRequest req) throws NullPointerException, UnsupportedOperationException {
-		if (req == null) {
+	public boolean doAction(ApplicationRequest applicationRequest) throws NullPointerException, UnsupportedOperationException {
+		if (applicationRequest == null) {
 			throw new NullPointerException("the application request object is not valid");
 		}
 		if (driver == null) {
 			throw new NullPointerException("the driver object is not valid");
 		}
-		this.req = req;
+		this.applicationRequest = applicationRequest;
 		
-		switch (req.getAction().toUpperCase()) {
+		switch (applicationRequest.getAction()) {
 		case "LOGIN":
 			return login(true);
 		default:
@@ -40,13 +40,13 @@ public class BoxApplicationImpl extends AbstractApplication {
 		driver.get(boxLoginURL);
 		// submit user name
 		WebElement username = driver.findElement(By.name(boxUserTextbox));
-		username.sendKeys(req.getUsername());
+		username.sendKeys(applicationRequest.getUser().getUsername());
 		if(boxDoubleSubmit){
 			username.submit();
 		}
 		// submit password
 		WebElement password = driver.findElement(By.name(boxPasswordTextbox));
-		password.sendKeys(req.getPassword());
+		password.sendKeys(applicationRequest.getUser().getPassword());
 		password.submit();
 		
 		try {

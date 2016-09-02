@@ -11,23 +11,26 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 	public DropBoxApplicationImpl(WebDriver driver) {
 		super(driver);
 	}
+	
 	@Override
-	public boolean doAction(ApplicationRequest req) throws NullPointerException, UnsupportedOperationException {
-		if (req == null) {
+	public boolean doAction(ApplicationRequest applicationRequest) throws NullPointerException, UnsupportedOperationException {
+		if (applicationRequest == null) {
 			throw new NullPointerException("the application request object is not valid");
 		}
 		if (driver == null) {
 			throw new NullPointerException("the driver object is not valid");
 		}
-		this.req = req;
+		this.applicationRequest = applicationRequest;
 		
-		switch (req.getAction().toUpperCase()) {
+		switch (applicationRequest.getAction()) {
 		case "LOGIN":
 			return login(true);
 		default:
 			throw new UnsupportedOperationException("the requested action is not available");
 		}
 	}
+	
+	
 	private boolean login(boolean logoutAtEnd) {
 		if(this.loggedIn)
 			return true;
@@ -41,7 +44,7 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 		//By byXpathUN = By.xpath("//input[(@name='login_email') and (@type = 'email')]");
 		By byXpathUN = By.xpath("//input[(@name='"+dropboxUserTextbox+"') and (@type = 'email')]");
 		WebElement username = driver.findElement(byXpathUN);
-		username.sendKeys(req.getUsername());
+		username.sendKeys(applicationRequest.getUser().getUsername());
 		
 		if(dropboxDoubleSubmit){
 			username.submit();
@@ -50,7 +53,7 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 		By byXpathPW = By.xpath("//input[(@name='"+dropboxPasswordTextbox+"') and (@type = 'password')]");
 		WebElement password = driver.findElement(byXpathPW);
 		// submit password
-		password.sendKeys(req.getPassword());
+		password.sendKeys(applicationRequest.getUser().getPassword());
 		password.submit();
 		
 		try{

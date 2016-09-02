@@ -8,7 +8,7 @@ public abstract class AbstractApplication implements IApplication {
 	}
 	
 	protected WebDriver driver;
-	protected ApplicationRequest req;
+	protected ApplicationRequest applicationRequest;
 	protected boolean loggedIn;
 
 	public void setDriver(WebDriver driver) {

@@ -13,16 +13,16 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		super(driver);
 	}
 	@Override
-	public boolean doAction(ApplicationRequest req){
-		if (req == null) {
+	public boolean doAction(ApplicationRequest applicationRequest){
+		if (applicationRequest == null) {
 			throw new NullPointerException("the application request object is not valid");
 		}
 		if (driver == null) {
 			throw new NullPointerException("the driver object is not valid");
 		}
-		this.req = req;
+		this.applicationRequest = applicationRequest;
 		
-		switch (req.getAction().toUpperCase()) {
+		switch (applicationRequest.getAction()) {
 		case "LOGIN":
 			return login(true);
 		case "LOGINONEDRIVE":
@@ -46,13 +46,13 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		driver.get(office365LoginURL);
 		// submit user name
 		WebElement username = driver.findElement(By.name(office365UserTextbox));
-		username.sendKeys(req.getUsername());
+		username.sendKeys(applicationRequest.getUser().getUsername());
 		if(office365DoubleSubmit){
 			username.submit();
 		}
 		// submit password
 		WebElement password = driver.findElement(By.name(office365PasswordTextbox));
-		password.sendKeys(req.getPassword());
+		password.sendKeys(applicationRequest.getUser().getPassword());
 		password.submit();
 		
 		try {
@@ -98,8 +98,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 	
-	
-	//1)
 	/***
 	 * click on the word icon
 	 * @throws InterruptedException 
@@ -124,7 +122,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		
 	}
 	
-	//2)
 	/***
 	 * send feedback
 	 * @throws InterruptedException 
@@ -151,9 +148,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		DriverUtils.clickOnElementByID(driver, "btnFeedbackClose");
 						
 	}
-	
-	
-	//
+		
 	private boolean logout(){
 		if (this.loggedIn) {
 			// click on element by className

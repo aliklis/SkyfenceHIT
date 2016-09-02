@@ -12,16 +12,16 @@ public class GoogleApplicationImpl extends AbstractApplication {
 		super(driver);
 	}
 
-	public boolean doAction(ApplicationRequest req) throws NullPointerException, UnsupportedOperationException {
-		if (req == null) {
+	public boolean doAction(ApplicationRequest applicationRequest) throws NullPointerException, UnsupportedOperationException {
+		if (applicationRequest == null) {
 			throw new NullPointerException("the application request object is not valid");
 		}
 		if (driver == null) {
 			throw new NullPointerException("the driver object is not valid");
 		}
-		this.req = req;
+		this.applicationRequest = applicationRequest;
 
-		switch (req.getAction().toUpperCase()) {
+		switch (applicationRequest.getAction()) {
 		case "LOGIN":
 			return login(true);
 		default:
@@ -39,13 +39,13 @@ public class GoogleApplicationImpl extends AbstractApplication {
 		driver.get(googleLoginURL);
 
 		WebElement usernameElem = driver.findElement(By.name(googleUserTextbox));
-		usernameElem.sendKeys(req.getUsername());
+		usernameElem.sendKeys(applicationRequest.getUser().getUsername());
 		if (googleDoubleSubmit) {
 			usernameElem.submit();
 		}
 		// submit password
 		WebElement passwordElem = driver.findElement(By.name(googlePasswordTextbox));
-		passwordElem.sendKeys(req.getPassword());
+		passwordElem.sendKeys(applicationRequest.getUser().getPassword());
 		passwordElem.submit();
 		try {
 			Thread.sleep(2000);
