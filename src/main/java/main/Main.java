@@ -8,12 +8,21 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import org.apache.log4j.Logger;
+
 import com.hit.scenarios.ScenarioManager;
 import com.hit.util.*;
 
 public class Main {
-
+	private static Logger logger = Logger.getLogger(Main.class);
+	
+	/***
+	 * main function
+	 * @param args
+	 */
 	public static void main(String[] args) {
+		logger.info("starting...");
+		try{
 		String directory = null;
 		List<Request> requestList = null;
 
@@ -22,7 +31,7 @@ public class Main {
 		} else {
 			directory = GetProperties.getProp("defaultXmlDir");
 		}
-
+        
 		requestList = getRequestList(directory);
 
 		if (requestList != null) {
@@ -41,6 +50,10 @@ public class Main {
 
 			}
 		}
+		}catch(Exception e){
+			logger.error("finished with errors");
+		}
+		logger.info("finished successfully :-); :-) :-)");
 	}
 
 	/***
@@ -51,6 +64,7 @@ public class Main {
 	 * @return List<Request>
 	 */
 	public static List<Request> getRequestList(String directory) {
+		logger.info("Get scenarios xml files");
 		List<Request> requestList = new ArrayList<Request>();
 		File dir = new File(directory);
 		if (dir.exists() && dir.isDirectory()) {
@@ -63,13 +77,16 @@ public class Main {
 							Request request = getXMLRequest(child.getPath());
 							requestList.add(request);
 						} catch (JAXBException e) {
+							logger.error("Getting scenario files",e);
 							return null;
 						}
 					}
 				}
+				logger.info("finished getting scenario xml files");
 				return requestList;
 			}
 		}
+        
 		return null;
 	}
 

@@ -1,5 +1,6 @@
 package com.hit.applications;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,20 +9,34 @@ import com.hit.util.GetProperties;
 import com.hit.util.DriverUtils;
 
 public class Office365ApplicationImpl extends AbstractApplication {
-
+	private static Logger logger = Logger.getLogger(Office365ApplicationImpl.class);
+	
+	/***
+	 * ctor
+	 * @param driver
+	 */
 	public Office365ApplicationImpl(WebDriver driver) {
 		super(driver);
 	}
+	
+	/***
+	 * override method from IApplication
+	 */
 	@Override
 	public boolean doAction(ApplicationRequest applicationRequest){
+		logger.info("Application: Office365");
+		
 		if (applicationRequest == null) {
+			logger.error("the application request object is not valid");
 			throw new NullPointerException("the application request object is not valid");
 		}
 		if (driver == null) {
+			logger.error("the driver object is not valid");
 			throw new NullPointerException("the driver object is not valid");
 		}
-		this.applicationRequest = applicationRequest;
 		
+		this.applicationRequest = applicationRequest;
+		logger.info("Action:" + applicationRequest.getAction());
 		switch (applicationRequest.getAction()) {
 		case "LOGIN":
 			return login(true);
@@ -32,33 +47,43 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		case "LOGOUT":
 			return logout();
 		default:
+			logger.error("the requested action is not available");
 			throw new UnsupportedOperationException("the requested action is not available");
 		}
 		
 	}
 	
+	/***
+	 * login to office365
+	 * @param logoutAtEnd
+	 * @return
+	 */
 	private boolean login(boolean logoutAtEnd) {
-		String office365LoginURL = GetProperties.getProp("office365LoginURL");
-		String office365UserTextbox = GetProperties.getProp("office365UserTextbox");
-		String office365PasswordTextbox = GetProperties.getProp("office365PasswordTextbox"); 
-		boolean office365DoubleSubmit = Boolean.parseBoolean(GetProperties.getProp("office365DoubleSubmit"));
-		
-		driver.get(office365LoginURL);
-		// submit user name
-		WebElement username = driver.findElement(By.name(office365UserTextbox));
-		username.sendKeys(applicationRequest.getUser().getUsername());
-		if(office365DoubleSubmit){
-			username.submit();
+		logger.info("logging to office365");
+		try{
+			String office365LoginURL = GetProperties.getProp("office365LoginURL");
+			String office365UserTextbox = GetProperties.getProp("office365UserTextbox");
+			String office365PasswordTextbox = GetProperties.getProp("office365PasswordTextbox"); 
+			boolean office365DoubleSubmit = Boolean.parseBoolean(GetProperties.getProp("office365DoubleSubmit"));
+			
+			driver.get(office365LoginURL);
+			// submit user name
+			WebElement username = driver.findElement(By.name(office365UserTextbox));
+			username.sendKeys(applicationRequest.getUser().getUsername());
+			if(office365DoubleSubmit){
+				username.submit();
+			}
+			// submit password
+			WebElement password = driver.findElement(By.name(office365PasswordTextbox));
+			password.sendKeys(applicationRequest.getUser().getPassword());
+			password.submit();
+		}catch(Exception e){
+			logger.error("could not log in to office 365", e);
 		}
-		// submit password
-		WebElement password = driver.findElement(By.name(office365PasswordTextbox));
-		password.sendKeys(applicationRequest.getUser().getPassword());
-		password.submit();
-		
 		try {
 			Thread.sleep(2000);
 		} catch (Exception ex) {
-
+			
 		}
 		
 		this.loggedIn = true;
@@ -67,16 +92,24 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 	
+	/***
+	 * login to oneDrive
+	 * @return
+	 */
 	private boolean loginOneDrive() {
+		logger.info("logging to OneDrive");
 		boolean officeLogin = login(false);
 		if(officeLogin != true)
 			return false;
-		// if got here - expects to already be in login state in office365
-		driver.get("https://portal.office.com/Home");
-		WebElement OneDriveForwardURLElem = driver.findElement(By.id("ShellDocuments_link"));
-		String URL = OneDriveForwardURLElem.getAttribute("href");
-		driver.get(URL);
-
+		try{
+			// if got here - expects to already be in login state in office365
+			driver.get("https://portal.office.com/Home");
+			WebElement OneDriveForwardURLElem = driver.findElement(By.id("ShellDocuments_link"));
+			String URL = OneDriveForwardURLElem.getAttribute("href");
+			driver.get(URL);
+		}catch(Exception e){
+			logger.error("could not log into login oneDrive", e);
+		}
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) { 
@@ -103,7 +136,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	 * @throws InterruptedException 
 	 */
 	private void OpenWordTemplate(){
-		
 		//go to last opened window in the web
 		DriverUtils.getLastOpenedWindow(driver);
 		
@@ -148,17 +180,26 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		DriverUtils.clickOnElementByID(driver, "btnFeedbackClose");
 						
 	}
-		
+	
+	/***
+	 * logout
+	 * @return
+	 */
 	private boolean logout(){
+		logger.info("logging out from office365");
 		if (this.loggedIn) {
-			// click on element by className
-			WebElement element = driver.findElement(By.className("o365cs-me-tile-nophoto-username-container"));
-			if (element != null) {
-				element.click();
+			try{
+				// click on element by className
+				WebElement element = driver.findElement(By.className("o365cs-me-tile-nophoto-username-container"));
+				if (element != null) {
+					element.click();
+				}
+				// click on logout button
+				DriverUtils.clickOnElementByID(driver,"O365_SubLink_ShellSignout");
+				driver.manage().deleteAllCookies();
+			}catch(Exception e){
+				logger.error("could not log out from office365", e);
 			}
-			// click on logout button
-			DriverUtils.clickOnElementByID(driver,"O365_SubLink_ShellSignout");
-			driver.manage().deleteAllCookies();
 		}
 		this.loggedIn = false;
 		return true;

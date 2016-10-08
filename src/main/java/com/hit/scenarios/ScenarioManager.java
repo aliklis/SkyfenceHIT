@@ -2,6 +2,7 @@ package com.hit.scenarios;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.hit.applications.ApplicationFactory;
@@ -12,7 +13,7 @@ import com.hit.util.Request;
 import com.hit.util.User;
 
 public class ScenarioManager {
-	
+	private static Logger logger = Logger.getLogger(ScenarioManager.class);
 	/***
 	 * 	this class will read an xml file and parse it to a request
 	 * currently hard coded
@@ -36,6 +37,8 @@ public class ScenarioManager {
 		} else {
 			driver = DriverUtils.getDriver(request.isUseIncognito(), Proxy);
 		}
+		logger.info("inCognito:" + request.isUseIncognito());
+		logger.info("Number of runs:" + request.getNumOfRuns());
 		try {
 			switch (request.getApplication().toUpperCase()) {
 			case "GOOGLE":
@@ -65,6 +68,7 @@ public class ScenarioManager {
 				
 			}
 		} catch (Exception ex) {
+			logger.error("running", ex);
 			throw ex;
 		} finally {
 			driver.quit();

@@ -6,13 +6,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 public final class TorBrowser {
+	private static Logger logger = Logger.getLogger(TorBrowser.class);
 	
+	/***
+	 * ctor
+	 */
 	private TorBrowser(){}
 	
+	/***
+	 * start tor browser
+	 */
 	static void Start(){
 		File torProfileDir = new File(
 				GetProperties.getProp("torProfileDir"));
@@ -23,19 +31,19 @@ public final class TorBrowser {
 		try {
 		    binary.startProfile(torProfile, torProfileDir, "");
 		} catch (IOException e) {
-			//TODO : throw/log an exception
-		    e.printStackTrace();
+			logger.error("failed starting tor",e);
 		}
 		// sleep for 10 seconds while tor browser is starting
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("In command Thread.sleep",e);
 		}
 	}
 	
-	
+	/***
+	 * stop tor browser
+	 */
 	static void Stop(){
 	    Runtime rt = Runtime.getRuntime();
 
@@ -45,10 +53,15 @@ public final class TorBrowser {
 	            Thread.sleep(100);
 	        }
 	    } catch (Exception e) {
-	        e.printStackTrace();
+	    	logger.error("stoping browser",e);
 	    }
 	}
 	
+	/***
+	 * run processes
+	 * @param process
+	 * @return
+	 */
 	private static boolean processIsRunning(String process) {
 	    boolean processIsRunning = false;
 	    String line;
@@ -67,7 +80,7 @@ public final class TorBrowser {
 	        }
 	        input.close();
 	    } catch (IOException e) {
-	        e.printStackTrace();
+	    	logger.error("running process",e);
 	    }
 	    return processIsRunning;
 	}
