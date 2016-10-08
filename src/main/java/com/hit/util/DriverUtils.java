@@ -172,9 +172,15 @@ public class DriverUtils {
 	 */
 	public static void clickOnElementByTagNameAndAttribute(WebDriver driver, String tagName, String attributeName, String attributeValue){
 		try{
-			List<WebElement> elementList = driver.findElements(By.tagName(tagName));	
+			List<WebElement> elementList = driver.findElements(By.tagName(tagName));
+			String myElement = null;
 			for (WebElement element : elementList){
-				String myElement = element.getAttribute(attributeName);
+				try{
+					myElement = element.getAttribute(attributeName);
+					System.out.println(myElement);
+				}catch(Exception e){
+					continue;
+				}
 				if(myElement != null){
 					//check if the a tag is on word
 					if(myElement.contains(attributeValue)){

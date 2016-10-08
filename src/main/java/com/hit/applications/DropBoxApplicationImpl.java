@@ -5,6 +5,9 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -110,52 +113,79 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 		if(login(false)){
 			try{
 				logger.info("uploading file");
-				int uploadTimes = Integer.parseInt(GetProperties.getProp("uploadTimes"));
-				//click on upload button
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_upload_16");
-				DriverUtils.getLastOpenedWindow(driver);
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--primary");
+				//get directory of images
+				String imagesDir = GetProperties.getProp("uploadImageDir");
+				//get list of all the image names
+				List<String> imageNameList = getListImageNames(imagesDir);
+				//check if there are images in the folder
+				if(imageNameList.size() > 0){
+					//click on upload button
+					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_upload_16");
+					DriverUtils.getLastOpenedWindow(driver);
+					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--primary");
+					
+					String firstImage = imageNameList.get(0);
+					
+					//stimulate copy to clipboard
+					StringSelection strSelection = new StringSelection(firstImage);
+					Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
+					
+					//create robot that perform human actions
+					Robot robot = null;
+					try {
+						robot = new Robot();
+					} catch (AWTException e) {
+						logger.error("Initialization robot", e);
+					}
+					
 	
-				//stimulate copy to clipboard
-				StringSelection str = new StringSelection("ArikChampion.png");
-				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);
-				
-				//create robot that perform human actions
-				Robot robot = null;
-				try {
-					robot = new Robot();
-				} catch (AWTException e) {
-					logger.error("Initialization robot", e);
-				}
-				
-				//run actions of robot
-				try {
-					doRobot(robot);
-				} catch (InterruptedException e) {
-					logger.error("robot action", e);
-				}
-				
-				for (int i = 1; i < uploadTimes; i++) {
-					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--secondary");
+					//run actions of robot
 					try {
 						doRobot(robot);
 					} catch (InterruptedException e) {
 						logger.error("robot action", e);
 					}
+					
+					//run on all the images from the folder and upload them one by one
+					for (int i = 1; i < imageNameList.size(); i++) {
+						//click on "add more files" button
+						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--secondary");
+						//set the copy value as the next image name in the order
+						strSelection = new StringSelection(imageNameList.get(i));
+						Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
+						
+						try {
+							//paste the value in the dialog box and press enter
+							doRobot(robot);
+						} catch (InterruptedException e) {
+							logger.error("robot action", e);
+						}
+					}
+					
+					//wait until all the files as been upload and logout
+					boolean finishedUploading = false;
+					while(!finishedUploading){
+						List<WebElement> elementList = driver.findElements(By.tagName("button"));	
+						for (WebElement element : elementList){
+							String myElement = element.getAttribute("class");
+							if(myElement != null){
+								//check if the a tag is on word
+								if(myElement.contains("c-btn--primary")){
+									element.click();
+									finishedUploading=true;
+									break;
+								}
+							}
+						}
+					}
+				}else{
+					logger.warn("no images in the folder: " + imagesDir);
 				}
 			}catch(Exception e){
 				logger.error("uploading image", e);
 			}
 		}
 		
-		try{
-			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--primary");
-		}catch(Exception e){
-			System.out.println(e);
-		}
-		
-
-
 		return true;
 	}
 	
@@ -225,6 +255,31 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 		}
 		this.loggedIn = false;
 		return true;
+	}
+
+	/***
+	 * go to dir of images and get all the there names
+	 * @return
+	 */
+	private List<String> getListImageNames(String imagesDir){
+		try{
+			
+			List<String> imageNameList = new ArrayList<String>(); 
+			File dir = new File(imagesDir);
+			if (dir.exists() && dir.isDirectory()) {
+				File[] directoryListing = dir.listFiles();
+				if (directoryListing != null) {
+					for (File child : directoryListing) {
+						String filename = child.getName();
+						imageNameList.add(imagesDir + filename);
+					}
+				}
+			}
+			return imageNameList;
+		}catch(Exception e){
+			logger.error("getting list of image names", e);
+		}
+		return null;
 	}
 
 }

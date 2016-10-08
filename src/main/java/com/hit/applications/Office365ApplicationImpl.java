@@ -1,5 +1,7 @@
 package com.hit.applications;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -44,6 +46,10 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			return loginOneDrive();
 		case "MULTIPLEACTIONS":
 			return MultipleActions();	
+		case "UPLOAD":
+			return upload();
+		case "DOWNLOAD":
+			return download();
 		case "LOGOUT":
 			return logout();
 		default:
@@ -205,5 +211,40 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 	
+	private boolean download(){
+		return true;
+	}
 	
+	
+	/*I AM HERE*/
+	private boolean upload(){
+		//logger.info("upload file");
+		if(login(false)){
+			try{
+				//open oneDrive
+				driver.get("https://veridinet-my.sharepoint.com/_layouts/15/MySite.aspx?MySiteRedirect=AllDocuments");
+				DriverUtils.sleep(10);
+				
+				//click on upload button in navigation bar
+				List<WebElement> elementList = driver.findElements(By.tagName("span"));	
+				for (WebElement element : elementList){					
+					if(element.getText().toUpperCase().equals("UPLOAD")){
+						element.click();
+						break;
+					}
+				}
+				DriverUtils.sleep(1);
+				//click on file upload
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "aria-label", "Files");
+				
+				DriverUtils.sleep(2);
+				
+				
+			}catch(Exception e){
+				logger.error("could not upload file");
+			}
+		}
+		return true;
+	}
+		
 }

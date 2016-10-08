@@ -23,33 +23,33 @@ public class Main {
 	public static void main(String[] args) {
 		logger.info("starting...");
 		try{
-		String directory = null;
-		List<Request> requestList = null;
-
-		if (args.length > 0) {
-			directory = args[0];
-		} else {
-			directory = GetProperties.getProp("defaultXmlDir");
-		}
-        
-		requestList = getRequestList(directory);
-
-		if (requestList != null) {
-			for (Request currRequest : requestList) {
-				//if not using proxy set proxy null
-				if(currRequest.getProxies() == null){
-					ScenarioManager.run(currRequest, null);
-				}
-				//run on list of proxies
-				else{
-					List<String> proxyList = currRequest.getProxies();
-					for (String proxy : proxyList) {
-						ScenarioManager.run(currRequest, proxy);
-					}
-				}
-
+			String directory = null;
+			List<Request> requestList = null;
+	
+			if (args.length > 0) {
+				directory = args[0];
+			} else {
+				directory = GetProperties.getProp("defaultXmlDir");
 			}
-		}
+	        
+			requestList = getRequestList(directory);
+	
+			if (requestList != null) {
+				for (Request currRequest : requestList) {
+					//if not using proxy set proxy null
+					if(currRequest.getProxies() == null){
+						ScenarioManager.run(currRequest, null);
+					}
+					//run on list of proxies
+					else{
+						List<String> proxyList = currRequest.getProxies();
+						for (String proxy : proxyList) {
+							ScenarioManager.run(currRequest, proxy);
+						}
+					}
+	
+				}
+			}
 		}catch(Exception e){
 			logger.error("finished with errors");
 		}
