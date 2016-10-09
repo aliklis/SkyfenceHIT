@@ -123,11 +123,11 @@ public class DriverUtils {
 	
 	/***
 	 * sleep
-	 * @param seconds
+	 * @param milliseconds
 	 */
-	public static void sleep(int seconds){
+	public static void sleep(int milliseconds){
 		try {
-			TimeUnit.SECONDS.sleep(seconds);
+			TimeUnit.MILLISECONDS.sleep(milliseconds);
 		} catch (InterruptedException e) {
 			logger.error("sleeping", e);		
 		}
@@ -170,22 +170,29 @@ public class DriverUtils {
 	 * @param attributeName
 	 * @param attributeValue
 	 */
-	public static void clickOnElementByTagNameAndAttribute(WebDriver driver, String tagName, String attributeName, String attributeValue){
+	public static void clickOnElementByTagNameAndAttribute(WebDriver driver, String tagName, String attributeName, String attributeValue, String text){
 		try{
 			List<WebElement> elementList = driver.findElements(By.tagName(tagName));
 			String myElement = null;
 			for (WebElement element : elementList){
 				try{
 					myElement = element.getAttribute(attributeName);
-					System.out.println(myElement);
 				}catch(Exception e){
 					continue;
 				}
 				if(myElement != null){
 					//check if the a tag is on word
 					if(myElement.contains(attributeValue)){
-						element.click();
-						break;
+						if(text != null){
+							if(element.getText().equals(text)){
+								element.click();
+								break;
+							}
+						}else{
+							element.click();
+							break;
+						}
+						
 					}
 				}
 			}

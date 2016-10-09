@@ -120,9 +120,9 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 				//check if there are images in the folder
 				if(imageNameList.size() > 0){
 					//click on upload button
-					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_upload_16");
+					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_upload_16", null);
 					DriverUtils.getLastOpenedWindow(driver);
-					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--primary");
+					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--primary", null);
 					
 					String firstImage = imageNameList.get(0);
 					
@@ -149,7 +149,7 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 					//run on all the images from the folder and upload them one by one
 					for (int i = 1; i < imageNameList.size(); i++) {
 						//click on "add more files" button
-						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--secondary");
+						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--secondary", null);
 						//set the copy value as the next image name in the order
 						strSelection = new StringSelection(imageNameList.get(i));
 						Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
@@ -220,7 +220,7 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 				logger.info("downloading file");
 				int downloadTimes = Integer.parseInt(GetProperties.getProp("downloadTimes"));
 				//click on the first file in the list
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "li", "class", "o-grid--no-gutter");
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "li", "class", "o-grid--no-gutter", null);
 				for (int i = 0; i < downloadTimes; i++) {
 					try {
 						Thread.sleep(3000);
@@ -228,7 +228,7 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 						e.printStackTrace();
 					}
 					//click on the download button
-					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_download");
+					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_download", null);
 				}
 			}catch(Exception e){
 				logger.info("could not upload file", e);
