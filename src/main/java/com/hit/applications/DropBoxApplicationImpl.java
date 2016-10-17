@@ -141,7 +141,7 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 	
 					//run actions of robot
 					try {
-						doRobot(robot);
+						DriverUtils.doRobot(robot);
 					} catch (InterruptedException e) {
 						logger.error("robot action", e);
 					}

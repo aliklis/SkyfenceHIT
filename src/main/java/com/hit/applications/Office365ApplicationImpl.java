@@ -1,11 +1,17 @@
 package com.hit.applications;
 
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.io.File;
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -59,6 +65,12 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			return delete("folder");
 		case "RENAME_FILE":
 			return rename();
+		case "CREATE_FOLDER":
+			return createFolder();
+		case "MOVE_FILES_TO_FOLDER":
+			return moveXFilesToFolder();
+		case "EMPTY_RECYCLE_BIN":
+			return emptyRecycleBin();
 		case "LOGOUT":
 			return logout();
 		default:
@@ -164,7 +176,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		DriverUtils.getLastOpenedWindow(driver);
 
 		// click on an element by tagname
-		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "a", "ng-href","https://office.live.com/start/Word.aspx?auth=2", null);
+		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "a", "ng-href",
+				"https://office.live.com/start/Word.aspx?auth=2", null);
 
 		DriverUtils.sleep(2000);
 
@@ -229,41 +242,10 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		this.loggedIn = false;
 		return true;
 	}
-	
-	private boolean rename(){
-		if (login(false)) {
-			try {
-				logger.info("rename file");
-				// open oneDrive
-				goToOneDrive();
-				//click on file row
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
-				DriverUtils.sleep(500);
-				//click on delete icon in top bar
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Rename");				
-				DriverUtils.sleep(500);
-				//write the renamed name to the file
-				WebElement renameTextBox = driver.findElement(By.id("ItemNameEditor-input"));
-				//generate random string for renaming
-				SecureRandom random = new SecureRandom();
-				String newName = new BigInteger(130, random).toString(32);
-				//clear the oldName from the textbox
-				renameTextBox.clear();
-				//write the new name
-				renameTextBox.sendKeys(newName);
-				DriverUtils.sleep(300);
-				//click on rename button in dialog box
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save");
-			} catch (Exception e) {
-				logger.error("could not rename file");
-				return false;
-			}
-		}
-		return true;
-	}
-	
+
 	/***
 	 * download file from the list( the first one)
+	 * 
 	 * @return
 	 */
 	private boolean download() {
@@ -272,10 +254,10 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				logger.info("download file");
 				// open oneDrive
 				goToOneDrive();
-				//click on file row
+				// click on file row
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
 				DriverUtils.sleep(500);
-				//click on delete icon in top bar
+				// click on delete icon in top bar
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Download");
 				DriverUtils.sleep(2000);
 			} catch (Exception e) {
@@ -286,40 +268,78 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
-	/* I AM HERE - NOT WORKING */
+	/***
+	 * upload files
+	 * @return
+	 */
 	private boolean upload() {
 		if (login(false)) {
 			try {
 				logger.info("upload file");
 				// open oneDrive
 				goToOneDrive();
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Upload");
-				DriverUtils.sleep(250);
-				//DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Files");
-				List<WebElement> elementList = driver.findElements(By.tagName("div"));
-				String myElement = null;
-				String myElement2 = null;
-				for (WebElement element : elementList){
-					try{
-						myElement = element.getAttribute("class");
-						myElement2 = element.getAttribute("aria-label");
-						
-					}catch(Exception e){
-						continue;
-					}
-					if(myElement != null && myElement2 != null){
-						//check if the a tag is on word
-						if(myElement.contains("od-ContextualMenu-itemContainer") && myElement2.contains("Files")){
-							if(element.getText().equals("Files")){
-								element.click();
-								break;
+
+				//get directory of images
+				String filesDir = GetProperties.getProp("uploadFilesDir");
+				//get list of all the image names
+				List<String> fileNamesList = getListFilesNames(filesDir);
+				//check if there are images in the folder
+				if(fileNamesList.size() > 0){
+					for (int i = 0; i < fileNamesList.size(); i++) {
+						// Click On new button label on top navigation
+						List<WebElement> elementList = driver.findElements(By.tagName("span"));
+						String myElement = null;
+						Point coordinates = null;
+						for (WebElement element : elementList) {
+							try {
+								myElement = element.getAttribute("class");
+							} catch (Exception e) {
+								continue;
+							}	
+							if (myElement != null) {
+								// check if the a tag is on word
+								if (myElement.contains("commandText")) {
+									if (element.getText().equals("Upload")) {
+										element.click();
+										// get coordinates of the element
+										coordinates = element.getLocation();
+										break;
+									}
+								}
 							}
-							
 						}
-					}
-				}
+						// move mouse to the coordinates
+						Robot robot = new Robot();
+						robot.mouseMove(coordinates.getX(), coordinates.getY() + 120);
+						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Files");
 				
-				DriverUtils.sleep(2000);
+
+//					//click on upload button
+//					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_upload_16", null);
+//					DriverUtils.getLastOpenedWindow(driver);
+//					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--primary", null);
+					
+					
+						StringSelection strSelection;
+						//run on all the images from the folder and upload them one by one
+					
+						//set the copy value as the next image name in the order
+						strSelection = new StringSelection(fileNamesList.get(i));
+						Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
+						
+						try {
+							//paste the value in the dialog box and press enter
+							DriverUtils.doRobot(robot);
+						} catch (InterruptedException e) {
+							logger.error("robot action", e);
+						}
+						robot.mouseMove(150, 150);
+						DriverUtils.sleep(300);
+					}
+					
+				}else{
+					logger.warn("no files in the folder: " + filesDir);
+				}
 			} catch (Exception e) {
 				logger.error("could not upload file");
 				return false;
@@ -330,6 +350,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 	/***
 	 * delete action, can delete or file or folder
+	 * 
 	 * @param type
 	 * @return
 	 */
@@ -338,9 +359,9 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			try {
 				// open oneDrive
 				goToOneDrive();
-				if(type.equals("file")){
+				if (type.equals("file")) {
 					deleteFile();
-				}else if(type.equals("folder")){
+				} else if (type.equals("folder")) {
 					deleteFolder();
 				}
 			} catch (Exception e) {
@@ -354,43 +375,275 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	/***
 	 * delete file (the first in the list)
 	 */
-	private void deleteFile(){
+	private void deleteFile() {
 		logger.info("delete file");
-		//click on file row
+		// click on file row
 		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
 		clickDelete();
 
 	}
-	
+
 	/***
 	 * delete folder (the first in the list)
 	 */
-	private void deleteFolder(){
+	private void deleteFolder() {
 		logger.info("delete folder");
-		//click on file row
+		// click on file row
 		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Folder", null);
 		clickDelete();
 
 	}
-	
+
+	/***
+	 * rename a file
+	 * 
+	 * @return
+	 */
+	private boolean rename() {
+		if (login(false)) {
+			try {
+
+				logger.info("rename file");
+				// open oneDrive
+				goToOneDrive();
+
+				// click on file row
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
+				DriverUtils.sleep(500);
+				// click on delete icon in top bar
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Rename");
+				DriverUtils.sleep(500);
+				// write the renamed name to the file
+				WebElement renameTextBox = driver.findElement(By.id("ItemNameEditor-input"));
+				// generate random string for renaming
+				SecureRandom random = new SecureRandom();
+				String newName = new BigInteger(130, random).toString(32);
+				// clear the oldName from the textbox
+				renameTextBox.clear();
+				// write the new name
+				renameTextBox.sendKeys(newName);
+				DriverUtils.sleep(300);
+				// click on rename button in dialog box
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save");
+			} catch (Exception e) {
+				logger.error("could not rename file");
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/***
+	 * create folder
+	 * 
+	 * @return
+	 */
+	private boolean createFolder() {
+		if (login(false)) {
+			try {
+
+				logger.info("create folder");
+				// open oneDrive
+				goToOneDrive();
+				
+				
+				// Click On new button label on top navigation
+				List<WebElement> elementList = driver.findElements(By.tagName("span"));
+				String myElement = null;
+				Point coordinates = null;
+				for (WebElement element : elementList) {
+					try {
+						myElement = element.getAttribute("class");
+					} catch (Exception e) {
+						continue;
+					}
+					if (myElement != null) {
+						// check if the a tag is on word
+						if (myElement.contains("commandText")) {
+							if (element.getText().equals("New")) {
+								element.click();
+								// get coordinates of the element
+								coordinates = element.getLocation();
+								break;
+							}
+						}
+					}
+				}
+				
+				
+				// move mouse to the coordinates
+				Robot robot = new Robot();
+				robot.mouseMove(coordinates.getX(), coordinates.getY() + 120);
+				DriverUtils.sleep(50);
+				// choose folder
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Folder");
+				DriverUtils.sleep(1000);
+				// enter the name of the new folder
+				WebElement createFolderTextBox = driver.findElement(By.className("od-FolderBuilder-nameInput"));
+				SecureRandom random = new SecureRandom();
+				String folderName = new BigInteger(130, random).toString(32);
+				createFolderTextBox.sendKeys(folderName);
+				DriverUtils.sleep(300);
+				// click on the create button
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Create");
+
+			} catch (Exception e) {
+				logger.error("could not create folder");
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/***
+	 * move x files to folder
+	 * @return
+	 */
+	private boolean moveXFilesToFolder() {
+		if (login(false)) {
+			try {
+
+				logger.info("move files to folder");
+				// open oneDrive
+				goToOneDrive();
+				//get number of files to move to folder from config file
+				int numberOfFileToMove = Integer.parseInt(GetProperties.getProp("numberOfFilesToMove"));
+				//move each file 
+				for (int i = 0; i < numberOfFileToMove; i++) {
+					// click on file row
+					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
+					DriverUtils.sleep(500);
+					// click on delete icon in top bar
+					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Move to");
+					DriverUtils.sleep(500);
+					
+				
+					//choose folder from the list
+					List<WebElement> elementList = driver.findElements(By.tagName("span"));
+					String myElement = null;
+					//click on the second element
+					int count = 0;
+					for (WebElement element : elementList) {
+						try {
+							myElement = element.getAttribute("class");
+						} catch (Exception e) {
+							continue;
+						}
+						if (myElement != null) {
+							// check if the a tag is on word
+							if (myElement.contains("od-FolderTree-folderName")) {
+								if(count > 0){
+									element.click();
+									break;
+								}
+								count++;
+							}
+						}
+					}
+				
+					
+					DriverUtils.sleep(500);
+					//click on the move button
+					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Move");
+					DriverUtils.sleep(3000);
+				}
+
+			} catch (Exception e) {
+				logger.error("could not move files to folder");
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/***
+	 * empty recycle bin
+	 * 
+	 * @return
+	 */
+	private boolean emptyRecycleBin() {
+		if (login(false)) {
+			try {
+
+				logger.info("empty recycle bin");
+				// open oneDrive
+				goToOneDrive();
+
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "LeftNav-linkText",
+						"Recycle bin");
+				DriverUtils.sleep(1000);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "CommandBarItem-commandText",
+						"Empty recycle bin");
+				DriverUtils.sleep(1000);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Delete");
+			} catch (Exception e) {
+				logger.error("could not empty recycle bin");
+				return false;
+			}
+		}
+		return true;
+	}
+
 	/***
 	 * press on delete icon and then on delete dialog box
 	 */
-	private void clickDelete(){
+	private void clickDelete() {
 		DriverUtils.sleep(1000);
-		//click on delete icon in top bar
+		// click on delete icon in top bar
 		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Delete");
 		DriverUtils.sleep(1000);
-		//click on delete button in dialog box
+		// click on delete button in dialog box
 		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Delete");
 	}
-	
+
+	/**
+	 * if there a div of discover it will take it off(in the future you may
+	 * disable this function)
+	 */
+	private void closeDiscoverDiv() {
+		try {
+			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "od-TeachingBubble-closeButton",
+					null);
+		} catch (Exception e) {
+		}
+	}
+
+
 	/***
 	 * redirect to oneDrive
 	 */
-	private void goToOneDrive() {
+	private void goToOneDrive() 
+	{
 		// open oneDrive
 		driver.get("https://veridinet-my.sharepoint.com/_layouts/15/MySite.aspx?MySiteRedirect=AllDocuments");
 		DriverUtils.sleep(8000);
+		closeDiscoverDiv();
 	}
+	
+	/***
+	 * get file list
+	 * @param filesDir
+	 * @return
+	 */
+	private List<String> getListFilesNames(String filesDir){
+		try{
+			
+			List<String> fileNamesList = new ArrayList<String>(); 
+			File dir = new File(filesDir);
+			if (dir.exists() && dir.isDirectory()) {
+				File[] directoryListing = dir.listFiles();
+				if (directoryListing != null) {
+					for (File child : directoryListing) {
+						String filename = child.getName();
+						fileNamesList.add(filesDir + filename);
+					}
+				}
+			}
+			return fileNamesList;
+		}catch(Exception e){
+			logger.error("getting list of files names", e);
+		}
+		return null;
+	}
+	
 }

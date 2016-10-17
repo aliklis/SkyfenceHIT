@@ -1,5 +1,7 @@
 package com.hit.util;
 
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -199,6 +201,27 @@ public class DriverUtils {
 		}catch(Exception e){
 			logger.error("Driver: " + driver +" tagName: " + tagName + " attributeName: " + attributeName + " attributeValue: " + attributeValue, e);
 		}
+	}
+	
+	
+	/***
+	 * trigger robot action
+	 * @param robot
+	 * @throws InterruptedException
+	 */
+	public static void doRobot(Robot robot) throws InterruptedException{
+		
+		Thread.sleep(2000);
+
+		//PASTE, ENTER
+		robot.keyPress(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_V);
+		robot.keyRelease(KeyEvent.VK_V);
+		robot.keyRelease(KeyEvent.VK_CONTROL);
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		
+		Thread.sleep(3000);
 	}
 	
 }
