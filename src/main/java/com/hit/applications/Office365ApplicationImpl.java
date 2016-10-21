@@ -3,6 +3,7 @@ package com.hit.applications;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
+import java.awt.event.InputEvent;
 import java.io.File;
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -71,6 +72,10 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			return moveXFilesToFolder();
 		case "EMPTY_RECYCLE_BIN":
 			return emptyRecycleBin();
+		case "SHARE_FILE":
+			return shareFile();
+		case "SHARE_FOLDER":
+			return shareFolder();
 		case "LOGOUT":
 			return logout();
 		default:
@@ -261,7 +266,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Download");
 				DriverUtils.sleep(2000);
 			} catch (Exception e) {
-				logger.error("could not upload file");
+				logger.error("could not upload file", e);
 				return false;
 			}
 		}
@@ -312,17 +317,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 						Robot robot = new Robot();
 						robot.mouseMove(coordinates.getX(), coordinates.getY() + 120);
 						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Files");
-				
-
-//					//click on upload button
-//					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_upload_16", null);
-//					DriverUtils.getLastOpenedWindow(driver);
-//					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--primary", null);
 					
-					
-						StringSelection strSelection;
-						//run on all the images from the folder and upload them one by one
-					
+						StringSelection strSelection;					
 						//set the copy value as the next image name in the order
 						strSelection = new StringSelection(fileNamesList.get(i));
 						Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
@@ -341,7 +337,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					logger.warn("no files in the folder: " + filesDir);
 				}
 			} catch (Exception e) {
-				logger.error("could not upload file");
+				logger.error("could not upload file", e);
 				return false;
 			}
 		}
@@ -426,7 +422,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				// click on rename button in dialog box
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save");
 			} catch (Exception e) {
-				logger.error("could not rename file");
+				logger.error("could not rename file",e);
 				return false;
 			}
 		}
@@ -488,7 +484,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Create");
 
 			} catch (Exception e) {
-				logger.error("could not create folder");
+				logger.error("could not create folder", e);
 				return false;
 			}
 		}
@@ -549,7 +545,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				}
 
 			} catch (Exception e) {
-				logger.error("could not move files to folder");
+				logger.error("could not move files to folder", e);
 				return false;
 			}
 		}
@@ -577,13 +573,88 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.sleep(1000);
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Delete");
 			} catch (Exception e) {
-				logger.error("could not empty recycle bin");
+				logger.error("could not empty recycle bin", e);
 				return false;
 			}
 		}
 		return true;
 	}
 
+	/***
+	 * share a file 
+	 * @return
+	 */
+	private boolean shareFile(){
+		if (login(false)) {
+			try {
+
+				logger.info("share file");
+				// open oneDrive
+				goToOneDrive();
+
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
+				DriverUtils.sleep(300);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Share");
+				DriverUtils.sleep(300);
+				DriverUtils.writeToHTMLElement(driver, "PeoplePicker-textBox", "alan@veridinet.com");
+				DriverUtils.sleep(500);
+				
+				// move mouse to center of screen
+				Robot robot = new Robot();
+				robot.mouseMove((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
+				//click in the middle to enter the suggests mail
+				robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+				DriverUtils.sleep(500);
+				//share the folder
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share");
+				DriverUtils.sleep(1000);
+				
+			} catch (Exception e) {
+				logger.error("could not share the file", e);
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	/***
+	 * share a folder
+	 * @return
+	 */
+	private boolean shareFolder(){
+		if (login(false)) {
+			try {
+
+				logger.info("share folder");
+				// open oneDrive
+				goToOneDrive();
+
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Folder", null);
+				DriverUtils.sleep(300);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Share");
+				DriverUtils.sleep(300);
+				DriverUtils.writeToHTMLElement(driver, "PeoplePicker-textBox", "alan@veridinet.com");
+				DriverUtils.sleep(500);
+				
+				//move mouse to center of screen
+				Robot robot = new Robot();
+				robot.mouseMove((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
+				//click in the middle to enter the suggests mail
+				robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+				DriverUtils.sleep(500);
+				//share the folder
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share");
+				
+				DriverUtils.sleep(1000);
+				
+			} catch (Exception e) {
+				logger.error("could not share the folder", e);
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	/***
 	 * press on delete icon and then on delete dialog box
 	 */
@@ -605,9 +676,9 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "od-TeachingBubble-closeButton",
 					null);
 		} catch (Exception e) {
+			logger.error("In Closing discover div, maybe its not there anymore", e);
 		}
 	}
-
 
 	/***
 	 * redirect to oneDrive
