@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<request>
+	<application>DropBox</application>
+	<action>UPLOAD</action>
+	<numOfRuns>1</numOfRuns>
+	<useTor>false</useTor>
+	<useIncognito>false</useIncognito>
+	<users>
+		<user>
+			<username>skyfencehit@gmail.com</username>
+			<password>Bb123456Bb</password>
+		</user>
+	</users>
+</request>

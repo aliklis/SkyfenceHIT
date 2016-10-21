@@ -56,8 +56,10 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			return loginOneDrive();
 		case "MULTIPLEACTIONS":
 			return MultipleActions();
-		case "UPLOAD":
-			return upload();
+		case "UPLOAD_FILE":
+			return uploadFile();
+		case "UPLOAD_FOLDER":
+			return uploadFolder();
 		case "DOWNLOAD":
 			return download();
 		case "DELETE_FILE":
@@ -275,21 +277,22 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 	/***
 	 * upload files
+	 * 
 	 * @return
 	 */
-	private boolean upload() {
+	private boolean uploadFile() {
 		if (login(false)) {
 			try {
 				logger.info("upload file");
 				// open oneDrive
 				goToOneDrive();
 
-				//get directory of images
+				// get directory of images
 				String filesDir = GetProperties.getProp("uploadFilesDir");
-				//get list of all the image names
+				// get list of all the image names
 				List<String> fileNamesList = getListFilesNames(filesDir);
-				//check if there are images in the folder
-				if(fileNamesList.size() > 0){
+				// check if there are images in the folder
+				if (fileNamesList.size() > 0) {
 					for (int i = 0; i < fileNamesList.size(); i++) {
 						// Click On new button label on top navigation
 						List<WebElement> elementList = driver.findElements(By.tagName("span"));
@@ -300,7 +303,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 								myElement = element.getAttribute("class");
 							} catch (Exception e) {
 								continue;
-							}	
+							}
 							if (myElement != null) {
 								// check if the a tag is on word
 								if (myElement.contains("commandText")) {
@@ -316,15 +319,17 @@ public class Office365ApplicationImpl extends AbstractApplication {
 						// move mouse to the coordinates
 						Robot robot = new Robot();
 						robot.mouseMove(coordinates.getX(), coordinates.getY() + 120);
-						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Files");
-					
-						StringSelection strSelection;					
-						//set the copy value as the next image name in the order
+						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText",
+								"Files");
+
+						StringSelection strSelection;
+						// set the copy value as the next image name in the
+						// order
 						strSelection = new StringSelection(fileNamesList.get(i));
 						Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
-						
+
 						try {
-							//paste the value in the dialog box and press enter
+							// paste the value in the dialog box and press enter
 							DriverUtils.doRobot(robot);
 						} catch (InterruptedException e) {
 							logger.error("robot action", e);
@@ -332,12 +337,72 @@ public class Office365ApplicationImpl extends AbstractApplication {
 						robot.mouseMove(150, 150);
 						DriverUtils.sleep(300);
 					}
-					
-				}else{
+
+				} else {
 					logger.warn("no files in the folder: " + filesDir);
 				}
 			} catch (Exception e) {
 				logger.error("could not upload file", e);
+				return false;
+			}
+		}
+		return true;
+	}
+
+	//NOT WORKING!
+	/***
+	 * upload folder
+	 * @return
+	 */
+	private boolean uploadFolder() {
+		if (login(false)) {
+			try {
+				logger.info("upload folder");
+				// open oneDrive
+				goToOneDrive();
+
+				// get directory of images
+				String filesDir = GetProperties.getProp("uploadFilesDir");
+				// Click On new button label on top navigation
+				List<WebElement> elementList = driver.findElements(By.tagName("span"));
+				String myElement = null;
+				Point coordinates = null;
+				for (WebElement element : elementList) {
+					try {
+						myElement = element.getAttribute("class");
+					} catch (Exception e) {
+						continue;
+					}
+					if (myElement != null) {
+						// check if the a tag is on word
+						if (myElement.contains("commandText")) {
+							if (element.getText().equals("Upload")) {
+								element.click();
+								// get coordinates of the element
+								coordinates = element.getLocation();
+								break;
+							}
+						}
+					}
+				}
+				// move mouse to the coordinates
+				Robot robot = new Robot();
+				robot.mouseMove(coordinates.getX(), coordinates.getY() + 160);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "class", "commandText", "Folder");
+
+				StringSelection strSelection;
+				// set the copy value as the next image name in the order
+				strSelection = new StringSelection(filesDir);
+				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
+
+				try {
+					// paste the value in the dialog box and press enter
+					DriverUtils.doRobot(robot);
+				} catch (InterruptedException e) {
+					logger.error("robot action", e);
+				}
+			} catch (Exception e) {
+				logger.error("could not upload folder", e);
 				return false;
 			}
 		}
@@ -422,7 +487,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				// click on rename button in dialog box
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save");
 			} catch (Exception e) {
-				logger.error("could not rename file",e);
+				logger.error("could not rename file", e);
 				return false;
 			}
 		}
@@ -441,8 +506,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				logger.info("create folder");
 				// open oneDrive
 				goToOneDrive();
-				
-				
+
 				// Click On new button label on top navigation
 				List<WebElement> elementList = driver.findElements(By.tagName("span"));
 				String myElement = null;
@@ -465,8 +529,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 						}
 					}
 				}
-				
-				
+
 				// move mouse to the coordinates
 				Robot robot = new Robot();
 				robot.mouseMove(coordinates.getX(), coordinates.getY() + 120);
@@ -493,6 +556,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 	/***
 	 * move x files to folder
+	 * 
 	 * @return
 	 */
 	private boolean moveXFilesToFolder() {
@@ -502,9 +566,9 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				logger.info("move files to folder");
 				// open oneDrive
 				goToOneDrive();
-				//get number of files to move to folder from config file
+				// get number of files to move to folder from config file
 				int numberOfFileToMove = Integer.parseInt(GetProperties.getProp("numberOfFilesToMove"));
-				//move each file 
+				// move each file
 				for (int i = 0; i < numberOfFileToMove; i++) {
 					// click on file row
 					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
@@ -512,12 +576,11 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					// click on delete icon in top bar
 					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Move to");
 					DriverUtils.sleep(500);
-					
-				
-					//choose folder from the list
+
+					// choose folder from the list
 					List<WebElement> elementList = driver.findElements(By.tagName("span"));
 					String myElement = null;
-					//click on the second element
+					// click on the second element
 					int count = 0;
 					for (WebElement element : elementList) {
 						try {
@@ -528,7 +591,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 						if (myElement != null) {
 							// check if the a tag is on word
 							if (myElement.contains("od-FolderTree-folderName")) {
-								if(count > 0){
+								if (count > 0) {
 									element.click();
 									break;
 								}
@@ -536,10 +599,9 @@ public class Office365ApplicationImpl extends AbstractApplication {
 							}
 						}
 					}
-				
-					
+
 					DriverUtils.sleep(500);
-					//click on the move button
+					// click on the move button
 					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Move");
 					DriverUtils.sleep(3000);
 				}
@@ -581,10 +643,11 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * share a file 
+	 * share a file
+	 * 
 	 * @return
 	 */
-	private boolean shareFile(){
+	private boolean shareFile() {
 		if (login(false)) {
 			try {
 
@@ -598,17 +661,18 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.sleep(300);
 				DriverUtils.writeToHTMLElement(driver, "PeoplePicker-textBox", "alan@veridinet.com");
 				DriverUtils.sleep(500);
-				
+
 				// move mouse to center of screen
 				Robot robot = new Robot();
-				robot.mouseMove((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
-				//click in the middle to enter the suggests mail
+				robot.mouseMove((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
+						(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
+				// click in the middle to enter the suggests mail
 				robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 				DriverUtils.sleep(500);
-				//share the folder
+				// share the folder
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share");
 				DriverUtils.sleep(1000);
-				
+
 			} catch (Exception e) {
 				logger.error("could not share the file", e);
 				return false;
@@ -616,12 +680,13 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		}
 		return true;
 	}
-	
+
 	/***
 	 * share a folder
+	 * 
 	 * @return
 	 */
-	private boolean shareFolder(){
+	private boolean shareFolder() {
 		if (login(false)) {
 			try {
 
@@ -635,18 +700,19 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.sleep(300);
 				DriverUtils.writeToHTMLElement(driver, "PeoplePicker-textBox", "alan@veridinet.com");
 				DriverUtils.sleep(500);
-				
-				//move mouse to center of screen
+
+				// move mouse to center of screen
 				Robot robot = new Robot();
-				robot.mouseMove((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
-				//click in the middle to enter the suggests mail
+				robot.mouseMove((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
+						(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
+				// click in the middle to enter the suggests mail
 				robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 				DriverUtils.sleep(500);
-				//share the folder
+				// share the folder
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share");
-				
+
 				DriverUtils.sleep(1000);
-				
+
 			} catch (Exception e) {
 				logger.error("could not share the folder", e);
 				return false;
@@ -654,7 +720,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		}
 		return true;
 	}
-	
+
 	/***
 	 * press on delete icon and then on delete dialog box
 	 */
@@ -683,23 +749,23 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	/***
 	 * redirect to oneDrive
 	 */
-	private void goToOneDrive() 
-	{
+	private void goToOneDrive() {
 		// open oneDrive
 		driver.get("https://veridinet-my.sharepoint.com/_layouts/15/MySite.aspx?MySiteRedirect=AllDocuments");
 		DriverUtils.sleep(8000);
 		closeDiscoverDiv();
 	}
-	
+
 	/***
 	 * get file list
+	 * 
 	 * @param filesDir
 	 * @return
 	 */
-	private List<String> getListFilesNames(String filesDir){
-		try{
-			
-			List<String> fileNamesList = new ArrayList<String>(); 
+	private List<String> getListFilesNames(String filesDir) {
+		try {
+
+			List<String> fileNamesList = new ArrayList<String>();
 			File dir = new File(filesDir);
 			if (dir.exists() && dir.isDirectory()) {
 				File[] directoryListing = dir.listFiles();
@@ -711,10 +777,10 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				}
 			}
 			return fileNamesList;
-		}catch(Exception e){
+		} catch (Exception e) {
 			logger.error("getting list of files names", e);
 		}
 		return null;
 	}
-	
+
 }
