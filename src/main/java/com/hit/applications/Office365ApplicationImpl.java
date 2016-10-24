@@ -58,8 +58,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			return MultipleActions();
 		case "UPLOAD_FILE":
 			return uploadFile();
-		case "UPLOAD_FOLDER":
-			return uploadFolder();
+//		case "UPLOAD_FOLDER":
+//			return uploadFolder();
 		case "DOWNLOAD":
 			return download();
 		case "DELETE_FILE":
@@ -78,13 +78,19 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			return shareFile();
 		case "SHARE_FOLDER":
 			return shareFolder();
+		case "EXPORT_CONTACTS":
+			return exportContacts();
+		case "OPEN_MAIL_BOX":
+			return openMailBox();
+		case "OFFLINE_SETTINGS":
+			return offlineSettings();
 		case "LOGOUT":
 			return logout();
 		default:
 			logger.error("the requested action is not available");
 			throw new UnsupportedOperationException("the requested action is not available");
 		}
-
+		
 	}
 
 	/***
@@ -266,7 +272,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.sleep(500);
 				// click on delete icon in top bar
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Download");
-				DriverUtils.sleep(2000);
 			} catch (Exception e) {
 				logger.error("could not upload file", e);
 				return false;
@@ -319,8 +324,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 						// move mouse to the coordinates
 						Robot robot = new Robot();
 						robot.mouseMove(coordinates.getX(), coordinates.getY() + 120);
-						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText",
-								"Files");
+						
+						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText","Files");
 
 						StringSelection strSelection;
 						// set the copy value as the next image name in the
@@ -641,7 +646,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		}
 		return true;
 	}
-
+	
 	/***
 	 * share a file
 	 * 
@@ -670,8 +675,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 				DriverUtils.sleep(500);
 				// share the folder
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share");
-				DriverUtils.sleep(1000);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share");				
 
 			} catch (Exception e) {
 				logger.error("could not share the file", e);
@@ -711,7 +715,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				// share the folder
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share");
 
-				DriverUtils.sleep(1000);
 
 			} catch (Exception e) {
 				logger.error("could not share the folder", e);
@@ -722,6 +725,154 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
+	 * export contacts
+	 * @return
+	 */
+	private boolean exportContacts(){
+		if (login(false)) {
+			try {
+
+				logger.info("export contacts");
+				// open people
+				driver.get("https://outlook.office.com/owa/?realm=veridinet.com&exsvurl=1&ll-cc=1033&modurl=2&path=/people");
+				DriverUtils.sleep(5000);
+				
+				//run on all the divs
+				List<WebElement> elementList = driver.findElements(By.tagName("div"));
+				String myElement = null;
+				String myElement2 = null;
+				int counter = 0;
+				for (WebElement element : elementList){
+					try{
+						//get class and style attributes
+						myElement = element.getAttribute("class");
+						myElement2 = element.getAttribute("style");
+					}catch(Exception e){
+						continue;
+					}
+					if(myElement != null && myElement2 != null){
+						//check if the class is _ph_u5 and the style contains inline;
+						if(myElement.contains("_ph_u5") && myElement2.contains("inline;")){
+							//if its the seconds element with the properties i click it
+							if(counter == 2){
+								//click the Manage text in top toolbar
+								element.click();
+								break;
+							}
+							counter++;
+						}
+					}
+				}
+				
+				//click on the Export contacts
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Export contacts","Export contacts");
+				DriverUtils.sleep(3000);
+				//click on the button to export the contacts
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "o365buttonLabel _fce_r","Export");
+				//wait for the file to finish download
+				DriverUtils.sleep(5000);
+			} catch (Exception e) {
+				logger.error("could not export contacts", e);
+				return false;
+			}
+		}
+		return true;
+	}
+		
+	/***
+	 * open mail box
+	 * @return
+	 */
+	private boolean openMailBox(){
+		if (login(false)) {
+			try {
+
+				logger.info("open mail box");
+				// open people
+				driver.get("https://outlook.office.com/owa/?realm=veridinet.com&exsvurl=1&ll-cc=1033&modurl=2&path=/people");
+				DriverUtils.sleep(5000);
+							
+				//click on the icon in the top right corner
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "class", "ms-Icon--person", null);
+				DriverUtils.sleep(3000);
+				
+				//click on the "Open another mailbox..." option
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Open another mailbox...","Open another mailbox...");
+				
+				// get the user to open the mail box
+				String mailBox = GetProperties.getProp("mailbox");
+				// write the user mail box to the textbox
+				WebElement element = driver.findElement(By.xpath("//form[@class='_fp_3']/input[@role='textbox']"));
+				Point elementPoint = element.getLocation();
+				element.sendKeys(mailBox);
+				DriverUtils.sleep(2000);
+
+				// move mouse to the coordinates and click
+				Robot robot = new Robot();
+				robot.mouseMove(elementPoint.getX(), elementPoint.getY() + 50);
+				robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+				DriverUtils.sleep(2000);
+				
+				//try to press on open button, if the user exist its gone open else nothing will happen
+				driver.findElement(By.xpath("//button[@class='o365button']")).click();
+				
+			} catch (Exception e) {
+				logger.error("could not open mail box", e);
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	/***
+	 * turn offline settings
+	 * @return
+	 */
+	private boolean offlineSettings(){
+		if (login(false)) {
+			try {
+
+				logger.info("offline settings");
+				// open people
+				driver.get("https://outlook.office.com/owa/?realm=veridinet.com&exsvurl=1&ll-cc=1033&modurl=2&path=/people");
+				DriverUtils.sleep(8000);
+				
+				//click on the setting button
+				driver.findElement(By.id("O365_MainLink_Settings")).click();
+				DriverUtils.sleep(2000);
+				
+				//click on the offline setting button
+				driver.findElement(By.id("offlinesettings_People")).click();
+				DriverUtils.sleep(2000);
+				
+				//check the Turn on offline access checkbox
+				driver.findElement(By.xpath("//div[contains(@class,'_opc_N')]")).click();
+				driver.findElement(By.xpath("//div[@class='_opc_S']/div/button[@type='button']")).click();
+				DriverUtils.sleep(3000);
+				
+				//get the elements i need to click
+				WebElement element = driver.findElement(By.xpath("//div[@class='conductorContent']/div[contains(@class,'_op_w3')]/div[@class='_op_x3']/div[@class='_opc_m']/div[@class='_opc_o']/button[@autoid='_opc_1']"));
+				WebElement element2 = driver.findElement(By.xpath("//div[@class='conductorContent']/div[contains(@class,'_op_w3')]/div[@class='_op_x3']/div[@class='_opc_m']/div[@class='_opc_o']/button[@autoid='_opc_2']"));
+				//click YES
+				element.click();
+				//click:
+				//1) NEXT
+				//2) NEXT
+				//3) OK
+				for (int i = 0; i < 3; i++) {
+					DriverUtils.sleep(300);
+					element2.click();
+				}
+				
+			} catch (Exception e) {
+				logger.error("could not change offline settings", e);
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	/***
 	 * press on delete icon and then on delete dialog box
 	 */
 	private void clickDelete() {
@@ -731,6 +882,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		DriverUtils.sleep(1000);
 		// click on delete button in dialog box
 		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Delete");
+		DriverUtils.sleep(5000);
 	}
 
 	/**
@@ -757,7 +909,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * get file list
+	 * get file list for uploading
 	 * 
 	 * @param filesDir
 	 * @return

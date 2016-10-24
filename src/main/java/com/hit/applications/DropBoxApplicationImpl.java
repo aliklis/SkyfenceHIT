@@ -222,14 +222,11 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 				//click on the first file in the list
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "li", "class", "o-grid--no-gutter", null);
 				for (int i = 0; i < downloadTimes; i++) {
-					try {
-						Thread.sleep(3000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+					DriverUtils.sleep(3000);
 					//click on the download button
 					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_download", null);
 				}
+				DriverUtils.sleep(7000);
 			}catch(Exception e){
 				logger.info("could not upload file", e);
 			}
