@@ -68,6 +68,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			return delete("folder");
 		case "RENAME_FILE":
 			return rename();
+		case "RENAME_ALL":
+			return renameAll();
 		case "CREATE_FOLDER":
 			return createFolder();
 		case "MOVE_FILES_TO_FOLDER":
@@ -476,7 +478,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				// click on file row
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
 				DriverUtils.sleep(500);
-				// click on delete icon in top bar
+				// click on rename icon in top bar
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Rename");
 				DriverUtils.sleep(500);
 				// write the renamed name to the file
@@ -489,7 +491,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				// write the new name
 				renameTextBox.sendKeys(newName);
 				DriverUtils.sleep(300);
-				// click on rename button in dialog box
+				// click on the save button in dialog box
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save");
 			} catch (Exception e) {
 				logger.error("could not rename file", e);
@@ -499,6 +501,63 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
+	//NOT WORKING
+	/***
+	 * rename all files in the list
+	 * 
+	 * @return
+	 */
+	private boolean renameAll() {
+		if (login(false)) {
+			try {
+
+				logger.info("rename all files");
+				// open oneDrive
+				goToOneDrive();
+				
+				//Click on file to rename it
+				List<WebElement> elementList = driver.findElements(By.tagName("span"));
+				String myElement = null;
+				for (WebElement element : elementList){
+					try{
+						myElement = element.getAttribute("aria-label");
+					}catch(Exception e){}
+					if(myElement != null){
+						//check if the a tag is on word
+						if(myElement.contains("Microsoft") || myElement.contains("Image")){
+
+							//clicking on the file
+							element.click();
+							DriverUtils.sleep(500);
+							// click on delete icon in top bar
+							DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Rename");
+							DriverUtils.sleep(500);
+							// write the renamed name to the file
+							WebElement renameTextBox = driver.findElement(By.id("ItemNameEditor-input"));
+							// generate random string for renaming
+							SecureRandom random = new SecureRandom();
+							String newName = new BigInteger(130, random).toString(32);
+							// clear the oldName from the textbox
+							renameTextBox.clear();
+							// write the new name
+							renameTextBox.sendKeys(newName);
+							DriverUtils.sleep(300);
+							// click on the save button
+							DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save");
+							DriverUtils.sleep(5000);
+						}
+					}
+				}
+
+			} catch (Exception e) {
+				logger.error("could not rename all files", e);
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
 	/***
 	 * create folder
 	 * 

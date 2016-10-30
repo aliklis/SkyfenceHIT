@@ -86,7 +86,9 @@ public class DriverUtils {
 			if (incognito) {
 				options.addArguments("-incognito");
 			}
+			
 			options.addArguments("--start-maximized");
+			
 			cap.setCapability(ChromeOptions.CAPABILITY, options);
 			driver = new ChromeDriver(cap);
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
