@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -501,6 +503,10 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
+	
+	
+	
+	
 	//NOT WORKING
 	/***
 	 * rename all files in the list
@@ -515,47 +521,76 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				// open oneDrive
 				goToOneDrive();
 				
-				//Click on file to rename it
-				List<WebElement> elementList = driver.findElements(By.tagName("span"));
+				//zoom out, not working because he don't know where to click(probably it get the x and y of elements in 100%
+//				JavascriptExecutor js = (JavascriptExecutor) driver;
+//				js.executeScript("document.body.style.zoom='60%'");
+				
+				List<String> fileNames = new ArrayList<String>();
+				
+				//get list of all file names
+				List<WebElement> elementList = driver.findElements(By.tagName("div"));
 				String myElement = null;
 				for (WebElement element : elementList){
 					try{
 						myElement = element.getAttribute("aria-label");
-					}catch(Exception e){}
+					}catch(Exception e){
+						continue;
+					}
 					if(myElement != null){
 						//check if the a tag is on word
-						if(myElement.contains("Microsoft") || myElement.contains("Image")){
+						if((myElement.contains("Microsoft") || myElement.contains("Image")) && myElement.contains("Modified")){
+							fileNames.add(myElement.toString().split(",")[0]);
+						}
+					}
+				}
+				
+				//Click on file to rename it
+				for (String file : fileNames) {
+					List<WebElement> myElementList = driver.findElements(By.tagName("div"));
+					for (WebElement element : myElementList){
+						try{
+							myElement = element.getAttribute("aria-label");
+						}catch(Exception e){
+							continue;
+						}
+						if(myElement != null){
+							//check if the a tag is on word
+							if(myElement.contains(file)){
 
-							//clicking on the file
-							element.click();
-							DriverUtils.sleep(500);
-							// click on delete icon in top bar
-							DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Rename");
-							DriverUtils.sleep(500);
-							// write the renamed name to the file
-							WebElement renameTextBox = driver.findElement(By.id("ItemNameEditor-input"));
-							// generate random string for renaming
-							SecureRandom random = new SecureRandom();
-							String newName = new BigInteger(130, random).toString(32);
-							// clear the oldName from the textbox
-							renameTextBox.clear();
-							// write the new name
-							renameTextBox.sendKeys(newName);
-							DriverUtils.sleep(300);
-							// click on the save button
-							DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save");
-							DriverUtils.sleep(5000);
+								//clicking on the file
+								element.click();
+								DriverUtils.sleep(200);
+								// click on rename icon in top bar
+								DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Rename");
+								// write the renamed name to the file
+								WebElement renameTextBox = driver.findElement(By.id("ItemNameEditor-input"));
+								// generate random string for renaming
+								SecureRandom random = new SecureRandom();
+								String newName = new BigInteger(130, random).toString(32);
+								// clear the oldName from the textbox
+								renameTextBox.clear();
+								// write the new name
+								renameTextBox.sendKeys(newName);
+								DriverUtils.sleep(300);
+								// click on the save button
+								DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save");
+							}
 						}
 					}
 				}
 
+				
 			} catch (Exception e) {
 				logger.error("could not rename all files", e);
 				return false;
 			}
 		}
+		
 		return true;
 	}
+	
+	
+	
 	
 	
 	/***
