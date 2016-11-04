@@ -263,6 +263,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
+	//david
 	/***
 	 * download file from the list( the first one)
 	 * 
@@ -287,6 +288,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
+	//david
 	/***
 	 * download all the files from the list
 	 * 
@@ -335,6 +337,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 	}
 
+	//david
 	/***
 	 * download a random file from the list
 	 * 
@@ -508,6 +511,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 	}
 
+	//david
 	/***
 	 * rename a file
 	 * 
@@ -547,6 +551,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
+	//david
 	/***
 	 * rename all files
 	 * @return
@@ -634,6 +639,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
+	//david
 	/***
 	 * rename a random file
 	 * @return
@@ -782,7 +788,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		}
 		return true;
 	}
-
+	
+	//david
 	/***
 	 * move x files to folder
 	 * 
@@ -795,44 +802,98 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				logger.info("move files to folder");
 				// open oneDrive
 				goToOneDrive();
+				
+				
+				List<String> fileNames = new ArrayList<String>();
+
+				// get list of all file names
+				List<WebElement> elementList = driver.findElements(By.tagName("span"));
+				String myElement = null;
+				for (WebElement element : elementList) {
+					try {
+						myElement = element.getAttribute("class");
+					} catch (Exception e) {
+						continue;
+					}
+					if (myElement != null) {
+						// check if the a tag is on word
+						if (myElement.contains("DetailsRow-cell name")){
+							WebElement aElement = element.findElements(By.tagName("a")).get(0);
+							String myElementAttribute = null;
+							try{
+								myElementAttribute = aElement.getAttribute("aria-label");
+							} catch (Exception e) {
+								continue;
+							}
+							if (myElementAttribute != null) {
+								// check if the a tag is on word
+								if (!myElementAttribute.contains("Folder")){
+									fileNames.add(aElement.getText());
+								}
+							}
+						}
+					}
+				}
+				
+				
+				
+				int numberOfFiles = 0;
 				// get number of files to move to folder from config file
 				int numberOfFileToMove = Integer.parseInt(GetProperties.getProp("numberOfFilesToMove"));
+				//if the input of files to move bigger then the files you can move i take until the number of files, else i take the x files
+				if(numberOfFileToMove < fileNames.size()){
+					numberOfFiles = numberOfFileToMove;
+				}
+				else{
+					numberOfFiles = fileNames.size();
+				}
 				// move each file
-				for (int i = 0; i < numberOfFileToMove; i++) {
-					// click on file row
-					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
-					DriverUtils.sleep(500);
-					// click on move to icon in top bar
-					open3Dots("Move to");
-					DriverUtils.sleep(500);
-
-					// choose folder from the list
-					List<WebElement> elementList = driver.findElements(By.tagName("span"));
-					String myElement = null;
-					// click on the second element
-					int count = 0;
-					for (WebElement element : elementList) {
+				for (int i = 0; i < numberOfFiles; i++) {
+					List<WebElement> myElementList = driver.findElements(By.tagName("div"));
+					for (WebElement element : myElementList) {
 						try {
-							myElement = element.getAttribute("class");
+							myElement = element.getAttribute("aria-label");
 						} catch (Exception e) {
 							continue;
 						}
 						if (myElement != null) {
 							// check if the a tag is on word
-							if (myElement.contains("od-FolderSelect-itemTitle")) {
-								if (count > 0) {
-									element.click();
-									break;
+							if (myElement.contains(fileNames.get(i))) {
+								element.click();
+								DriverUtils.sleep(300);
+								closeTeachingBubbleDiv();
+								// click on move to icon in top bar
+								open3Dots("Move to");
+								DriverUtils.sleep(2000);
+			
+								// choose folder from the list
+								List<WebElement> myElementList2 = driver.findElements(By.tagName("span"));
+								String myElement2 = null;
+								// click on the second element
+								for (WebElement element2 : myElementList2) {
+									try {
+										myElement2 = element2.getAttribute("class");
+									} catch (Exception e) {
+										continue;
+									}
+									if (myElement2 != null) {
+										// check if the a tag is on word
+										if (myElement2.contains("od-FolderSelect-folderIcon")) {
+												element2.click();
+												DriverUtils.sleep(1000);
+												// click on the move button
+												DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Move here");
+												DriverUtils.sleep(3000);
+												break;
+											}
+										}
+									}
+
 								}
-								count++;
+			
+
 							}
 						}
-					}
-
-					DriverUtils.sleep(500);
-					// click on the move button
-					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Move here");
-					DriverUtils.sleep(3000);
 				}
 
 			} catch (Exception e) {
@@ -871,6 +932,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
+	//david
 	/***
 	 * share a file
 	 * 
@@ -909,6 +971,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
+	//david
 	/***
 	 * share a folder
 	 * 
@@ -1108,6 +1171,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
+	//david
 	/***
 	 * press on delete icon and then on delete dialog box
 	 */
@@ -1125,7 +1189,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	 * if there a div of discover it will take it off(in the future you may
 	 * disable this function)
 	 */
-	private void closeDiscoverDiv() {
+	private void closeTeachingBubbleDiv() {
 		try {
 			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "od-TeachingBubble-closeButton",
 					null);
@@ -1133,7 +1197,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			logger.error("In Closing discover div, maybe its not there anymore", e);
 		}
 	}
-
+	
 	/***
 	 * redirect to oneDrive
 	 */
@@ -1141,7 +1205,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		// open oneDrive
 		driver.get("https://veridinet-my.sharepoint.com/_layouts/15/MySite.aspx?MySiteRedirect=AllDocuments");
 		DriverUtils.sleep(8000);
-		closeDiscoverDiv();
+		closeTeachingBubbleDiv();
 	}
 
 	/***
@@ -1171,6 +1235,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return null;
 	}
 
+	//david
 	/***
 	 * open the three dots if the action not find at the toolbar
 	 */
