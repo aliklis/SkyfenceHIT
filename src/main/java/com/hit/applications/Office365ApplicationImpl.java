@@ -13,8 +13,6 @@ import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -55,16 +53,16 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		switch (applicationRequest.getAction()) {
 		case "LOGIN":
 			return login(true);
-		case "LOGINONEDRIVE":
+		case "LOGIN_ONE_DRIVE":
 			return loginOneDrive();
-		case "MULTIPLEACTIONS":
+		case "MULTIPLE_ACTIONS":
 			return MultipleActions();
 		case "UPLOAD_FILE":
 			return uploadFile();
-		case "DOWNLOAD":
-			return download();
-		case "DOWNLOAD_RANDOM":
-			return downloadRandom();
+		case "DOWNLOAD_FILE":
+			return downloadFile();
+		case "DOWNLOAD_RANDOM_FILE":
+			return downloadRandomFile();
 		case "DOWNLOAD_ALL":
 			return downloadAll();
 		case "DELETE_FILE":
@@ -72,7 +70,9 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		case "DELETE_FOLDER":
 			return delete("folder");
 		case "RENAME_FILE":
-			return rename();
+			return renameFile();
+		case "RENAME_RANDOM_FILE":
+			return renameRadnomFile();
 		case "RENAME_ALL":
 			return renameAll();
 		case "CREATE_FOLDER":
@@ -268,7 +268,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	 * 
 	 * @return
 	 */
-	private boolean download() {
+	private boolean downloadFile() {
 		if (login(false)) {
 			try {
 				logger.info("download file");
@@ -277,8 +277,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				// click on file row
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
 				DriverUtils.sleep(500);
-				// click on delete icon in top bar
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Download");
+				// click on download icon in top bar
+				open3Dots("Download");
 			} catch (Exception e) {
 				logger.error("could not upload file", e);
 				return false;
@@ -316,9 +316,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 								// clicking on the file
 								element.click();
 								DriverUtils.sleep(200);
-								// click on rename icon in top bar
-								DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText",
-										"Download");
+								// click on download icon in top bar
+								open3Dots("Download");
 								DriverUtils.sleep(2000);
 							} catch (Exception e) {
 								continue;
@@ -341,7 +340,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	 * 
 	 * @return
 	 */
-	private boolean downloadRandom() {
+	private boolean downloadRandomFile() {
 		if (login(false)) {
 			try {
 
@@ -372,7 +371,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				elementFiles.get(n).click();
 				DriverUtils.sleep(200);
 				// click on download icon in top bar
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Download");
+				open3Dots("Download");
 			} catch (Exception e) {
 				logger.error("could not download a random file", e);
 				return false;
@@ -514,28 +513,19 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	 * 
 	 * @return
 	 */
-	private boolean rename() {
+	private boolean renameFile() {
 		if (login(false)) {
 			try {
 
 				logger.info("rename file");
-				JavascriptExecutor js = (JavascriptExecutor) driver;
-				js.executeScript("document.body.style.zoom='60%'");
 				// open oneDrive
 				goToOneDrive();
 
-				// zoom out, not working because he don't know where to
-				// click(probably it get the x and y of elements in 100%
-				// JavascriptExecutor js = (JavascriptExecutor) driver;
-				// js.executeScript("document.body.style.zoom='60%'");
-
 				// click on file row
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
-				DriverUtils.sleep(2000);
+				DriverUtils.sleep(200);
 				// click on rename icon in top bar
-				open3Dots();
-				//DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Rename");
-				DriverUtils.sleep(2000);
+				open3Dots("Rename");
 				// write the renamed name to the file
 				WebElement renameTextBox = driver.findElement(By.id("ItemNameEditor-input"));
 				// generate random string for renaming
@@ -548,7 +538,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.sleep(300);
 				// click on the save button in dialog box
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save");
-				DriverUtils.sleep(3000);
+				DriverUtils.sleep(2000);
 			} catch (Exception e) {
 				logger.error("could not rename file", e);
 				return false;
@@ -558,8 +548,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * rename all files in the list
-	 * 
+	 * rename all files
 	 * @return
 	 */
 	private boolean renameAll() {
@@ -573,19 +562,30 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				List<String> fileNames = new ArrayList<String>();
 
 				// get list of all file names
-				List<WebElement> elementList = driver.findElements(By.tagName("div"));
+				List<WebElement> elementList = driver.findElements(By.tagName("span"));
 				String myElement = null;
 				for (WebElement element : elementList) {
 					try {
-						myElement = element.getAttribute("aria-label");
+						myElement = element.getAttribute("class");
 					} catch (Exception e) {
 						continue;
 					}
 					if (myElement != null) {
 						// check if the a tag is on word
-						if ((myElement.contains("Microsoft") || myElement.contains("Image"))
-								&& myElement.contains("Modified")) {
-							fileNames.add(myElement.toString().split(",")[0]);
+						if (myElement.contains("DetailsRow-cell name")){
+							WebElement aElement = element.findElements(By.tagName("a")).get(0);
+							String myElementAttribute = null;
+							try{
+								myElementAttribute = aElement.getAttribute("aria-label");
+							} catch (Exception e) {
+								continue;
+							}
+							if (myElementAttribute != null) {
+								// check if the a tag is on word
+								if (!myElementAttribute.contains("Folder")){
+									fileNames.add(aElement.getText());
+								}
+							}
 						}
 					}
 				}
@@ -607,8 +607,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 								element.click();
 								DriverUtils.sleep(200);
 								// click on rename icon in top bar
-								DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText",
-										"Rename");
+								open3Dots("Rename");								
 								// write the renamed name to the file
 								WebElement renameTextBox = driver.findElement(By.id("ItemNameEditor-input"));
 								// generate random string for renaming
@@ -618,10 +617,9 @@ public class Office365ApplicationImpl extends AbstractApplication {
 								renameTextBox.clear();
 								// write the new name
 								renameTextBox.sendKeys(newName);
-								DriverUtils.sleep(300);
 								// click on the save button
-								DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class",
-										"ms-Button-label", "Save");
+								DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class","ms-Button-label", "Save");
+								DriverUtils.sleep(2000);
 							}
 						}
 					}
@@ -636,6 +634,95 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
+	/***
+	 * rename a random file
+	 * @return
+	 */
+	private boolean renameRadnomFile() {
+		if (login(false)) {
+			try {
+
+				logger.info("rename all files");
+				// open oneDrive
+				goToOneDrive();
+
+				List<String> fileNames = new ArrayList<String>();
+
+				// get list of all file names
+				List<WebElement> elementList = driver.findElements(By.tagName("span"));
+				String myElement = null;
+				for (WebElement element : elementList) {
+					try {
+						myElement = element.getAttribute("class");
+					} catch (Exception e) {
+						continue;
+					}
+					if (myElement != null) {
+						// check if the a tag is on word
+						if (myElement.contains("DetailsRow-cell name")){
+							WebElement aElement = element.findElements(By.tagName("a")).get(0);
+							String myElementAttribute = null;
+							try{
+								myElementAttribute = aElement.getAttribute("aria-label");
+							} catch (Exception e) {
+								continue;
+							}
+							if (myElementAttribute != null) {
+								// check if the a tag is on word
+								if (!myElementAttribute.contains("Folder")){
+									fileNames.add(aElement.getText());
+								}
+							}
+						}
+					}
+				}
+				
+				
+				Random rand = new Random();
+				int n = rand.nextInt(fileNames.size());
+				// clicking on the file
+				String fileName = fileNames.get(n);
+
+				List<WebElement> myElementList = driver.findElements(By.tagName("div"));
+				for (WebElement element : myElementList) {
+					try {
+						myElement = element.getAttribute("aria-label");
+					} catch (Exception e) {
+						continue;
+					}
+					if (myElement != null) {
+						// check if the a tag is on word
+						if (myElement.contains(fileName)) {
+
+							// clicking on the file
+							element.click();
+							DriverUtils.sleep(200);
+							// click on rename icon in top bar
+							open3Dots("Rename");
+							// write the renamed name to the file
+							WebElement renameTextBox = driver.findElement(By.id("ItemNameEditor-input"));
+							// generate random string for renaming
+							SecureRandom random = new SecureRandom();
+							String newName = new BigInteger(130, random).toString(32);
+							// clear the oldName from the textbox
+							renameTextBox.clear();
+							// write the new name
+							renameTextBox.sendKeys(newName);
+							// click on the save button
+							DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class","ms-Button-label", "Save");
+							DriverUtils.sleep(2000);
+						}
+					}
+				}
+			} catch (Exception e) {
+				logger.error("could not rename all files", e);
+				return false;
+			}
+		}
+
+		return true;
+	}
+	
 	/***
 	 * create folder
 	 * 
@@ -715,8 +802,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					// click on file row
 					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
 					DriverUtils.sleep(500);
-					// click on delete icon in top bar
-					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Move to");
+					// click on move to icon in top bar
+					open3Dots("Move to");
 					DriverUtils.sleep(500);
 
 					// choose folder from the list
@@ -732,7 +819,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 						}
 						if (myElement != null) {
 							// check if the a tag is on word
-							if (myElement.contains("od-FolderTree-folderName")) {
+							if (myElement.contains("od-FolderSelect-itemTitle")) {
 								if (count > 0) {
 									element.click();
 									break;
@@ -744,7 +831,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 					DriverUtils.sleep(500);
 					// click on the move button
-					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Move");
+					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Move here");
 					DriverUtils.sleep(3000);
 				}
 
@@ -799,7 +886,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
 				DriverUtils.sleep(300);
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Share");
+				open3Dots("Share");
 				DriverUtils.sleep(300);
 				DriverUtils.writeToHTMLElement(driver, "PeoplePicker-textBox", "alan@veridinet.com");
 				DriverUtils.sleep(500);
@@ -837,7 +924,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Folder", null);
 				DriverUtils.sleep(300);
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Share");
+				open3Dots("Share");
 				DriverUtils.sleep(300);
 				DriverUtils.writeToHTMLElement(driver, "PeoplePicker-textBox", "alan@veridinet.com");
 				DriverUtils.sleep(500);
@@ -1027,7 +1114,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	private void clickDelete() {
 		DriverUtils.sleep(1000);
 		// click on delete icon in top bar
-		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Delete");
+		open3Dots("Delete");
 		DriverUtils.sleep(1000);
 		// click on delete button in dialog box
 		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Delete");
@@ -1084,11 +1171,10 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return null;
 	}
 
-
 	/***
 	 * open the three dots if the action not find at the toolbar
 	 */
-	private void open3Dots(){
+	private void open3Dots(String text){
 		boolean flag = false ;
 		List<WebElement> elementList = driver.findElements(By.tagName("span"));
 		String myElement = null;
@@ -1101,7 +1187,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			if(myElement != null){
 				//check if the a tag is on word
 				if(myElement.contains("commandText")){
-					if(element.getText().equals("Rename")){
+					if(element.getText().equals(text)){
 						flag = true;
 						element.click();
 						break;
@@ -1111,7 +1197,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		}
 		if(!flag){
 			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "title", "Other things you can do with the selected items", null);
-			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Rename");
+			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", text);
 		}
 	}
 }
