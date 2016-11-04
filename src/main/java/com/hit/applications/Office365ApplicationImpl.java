@@ -9,6 +9,7 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -60,10 +61,12 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			return MultipleActions();
 		case "UPLOAD_FILE":
 			return uploadFile();
-//		case "UPLOAD_FOLDER":
-//			return uploadFolder();
 		case "DOWNLOAD":
 			return download();
+		case "DOWNLOAD_RANDOM":
+			return downloadRandom();
+		case "DOWNLOAD_ALL":
+			return downloadAll();
 		case "DELETE_FILE":
 			return delete("file");
 		case "DELETE_FOLDER":
@@ -94,7 +97,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			logger.error("the requested action is not available");
 			throw new UnsupportedOperationException("the requested action is not available");
 		}
-		
+
 	}
 
 	/***
@@ -285,6 +288,102 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
+	 * download all the files from the list
+	 * 
+	 * @return
+	 */
+	private boolean downloadAll() {
+		if (login(false)) {
+			try {
+
+				logger.info("download all the files");
+				// open oneDrive
+				goToOneDrive();
+				// get list of all file names
+				List<WebElement> elementList = driver.findElements(By.tagName("div"));
+				String myElement = null;
+				String myElement2 = null;
+				for (WebElement element : elementList) {
+					try {
+						myElement = element.getAttribute("class");
+						myElement2 = element.getAttribute("aria-label");
+					} catch (Exception e) {
+						continue;
+					}
+					if (myElement != null && myElement2 != null) {
+						if (myElement.contains("DetailsRow can-select") && !myElement2.contains("Folder")) {
+							try {
+								// clicking on the file
+								element.click();
+								DriverUtils.sleep(200);
+								// click on rename icon in top bar
+								DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText",
+										"Download");
+								DriverUtils.sleep(2000);
+							} catch (Exception e) {
+								continue;
+							}
+						}
+					}
+				}
+			} catch (Exception e) {
+				logger.error("could not download all files", e);
+				return false;
+			}
+		}
+		DriverUtils.sleep(10000);
+		return true;
+
+	}
+
+	/***
+	 * download a random file from the list
+	 * 
+	 * @return
+	 */
+	private boolean downloadRandom() {
+		if (login(false)) {
+			try {
+
+				logger.info("download a random file");
+				// open oneDrive
+				goToOneDrive();
+				// get list of all file names
+				List<WebElement> elementList = driver.findElements(By.tagName("div"));
+				List<WebElement> elementFiles = new ArrayList<WebElement>();
+				String myElement = null;
+				String myElement2 = null;
+				for (WebElement element : elementList) {
+					try {
+						myElement = element.getAttribute("class");
+						myElement2 = element.getAttribute("aria-label");
+					} catch (Exception e) {
+						continue;
+					}
+					if (myElement != null && myElement2 != null) {
+						if (myElement.contains("DetailsRow can-select") && !myElement2.contains("Folder")) {
+							elementFiles.add(element);
+						}
+					}
+				}
+				Random rand = new Random();
+				int n = rand.nextInt(elementFiles.size());
+				// clicking on the file
+				elementFiles.get(n).click();
+				DriverUtils.sleep(200);
+				// click on download icon in top bar
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Download");
+			} catch (Exception e) {
+				logger.error("could not download a random file", e);
+				return false;
+			}
+		}
+		DriverUtils.sleep(10000);
+		return true;
+
+	}
+
+	/***
 	 * upload files
 	 * 
 	 * @return
@@ -302,34 +401,40 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				List<String> fileNamesList = getListFilesNames(filesDir);
 				// check if there are images in the folder
 				if (fileNamesList.size() > 0) {
-					for (int i = 0; i < fileNamesList.size(); i++) {
-						// Click On new button label on top navigation
-						List<WebElement> elementList = driver.findElements(By.tagName("span"));
-						String myElement = null;
-						Point coordinates = null;
-						for (WebElement element : elementList) {
-							try {
-								myElement = element.getAttribute("class");
-							} catch (Exception e) {
-								continue;
-							}
-							if (myElement != null) {
-								// check if the a tag is on word
-								if (myElement.contains("commandText")) {
-									if (element.getText().equals("Upload")) {
-										element.click();
-										// get coordinates of the element
-										coordinates = element.getLocation();
-										break;
-									}
+
+					WebElement a = null;
+					// Click On new button label on top navigation
+					List<WebElement> elementList = driver.findElements(By.tagName("span"));
+					String myElement = null;
+					Point coordinates = null;
+					for (WebElement element : elementList) {
+						try {
+							myElement = element.getAttribute("class");
+						} catch (Exception e) {
+							continue;
+						}
+						if (myElement != null) {
+							// check if the a tag is on word
+							if (myElement.contains("commandText")) {
+								if (element.getText().equals("Upload")) {
+									a = element;
+									// get coordinates of the element
+									coordinates = element.getLocation();
+									break;
 								}
 							}
 						}
+					}
+					for (int i = 0; i < fileNamesList.size(); i++) {
+
+						a.click();
+
 						// move mouse to the coordinates
 						Robot robot = new Robot();
 						robot.mouseMove(coordinates.getX(), coordinates.getY() + 120);
-						
-						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText","Files");
+
+						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText",
+								"Files");
 
 						StringSelection strSelection;
 						// set the copy value as the next image name in the
@@ -352,66 +457,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				}
 			} catch (Exception e) {
 				logger.error("could not upload file", e);
-				return false;
-			}
-		}
-		return true;
-	}
-
-	//NOT WORKING!
-	/***
-	 * upload folder
-	 * @return
-	 */
-	private boolean uploadFolder() {
-		if (login(false)) {
-			try {
-				logger.info("upload folder");
-				// open oneDrive
-				goToOneDrive();
-
-				// get directory of images
-				String filesDir = GetProperties.getProp("uploadFilesDir");
-				// Click On new button label on top navigation
-				List<WebElement> elementList = driver.findElements(By.tagName("span"));
-				String myElement = null;
-				Point coordinates = null;
-				for (WebElement element : elementList) {
-					try {
-						myElement = element.getAttribute("class");
-					} catch (Exception e) {
-						continue;
-					}
-					if (myElement != null) {
-						// check if the a tag is on word
-						if (myElement.contains("commandText")) {
-							if (element.getText().equals("Upload")) {
-								element.click();
-								// get coordinates of the element
-								coordinates = element.getLocation();
-								break;
-							}
-						}
-					}
-				}
-				// move mouse to the coordinates
-				Robot robot = new Robot();
-				robot.mouseMove(coordinates.getX(), coordinates.getY() + 160);
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "class", "commandText", "Folder");
-
-				StringSelection strSelection;
-				// set the copy value as the next image name in the order
-				strSelection = new StringSelection(filesDir);
-				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
-
-				try {
-					// paste the value in the dialog box and press enter
-					DriverUtils.doRobot(robot);
-				} catch (InterruptedException e) {
-					logger.error("robot action", e);
-				}
-			} catch (Exception e) {
-				logger.error("could not upload folder", e);
 				return false;
 			}
 		}
@@ -474,15 +519,23 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			try {
 
 				logger.info("rename file");
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("document.body.style.zoom='60%'");
 				// open oneDrive
 				goToOneDrive();
 
+				// zoom out, not working because he don't know where to
+				// click(probably it get the x and y of elements in 100%
+				// JavascriptExecutor js = (JavascriptExecutor) driver;
+				// js.executeScript("document.body.style.zoom='60%'");
+
 				// click on file row
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
-				DriverUtils.sleep(500);
+				DriverUtils.sleep(2000);
 				// click on rename icon in top bar
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Rename");
-				DriverUtils.sleep(500);
+				open3Dots();
+				//DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Rename");
+				DriverUtils.sleep(2000);
 				// write the renamed name to the file
 				WebElement renameTextBox = driver.findElement(By.id("ItemNameEditor-input"));
 				// generate random string for renaming
@@ -495,6 +548,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.sleep(300);
 				// click on the save button in dialog box
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save");
+				DriverUtils.sleep(3000);
 			} catch (Exception e) {
 				logger.error("could not rename file", e);
 				return false;
@@ -503,11 +557,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
-	
-	
-	
-	
-	//NOT WORKING
 	/***
 	 * rename all files in the list
 	 * 
@@ -520,48 +569,46 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				logger.info("rename all files");
 				// open oneDrive
 				goToOneDrive();
-				
-				//zoom out, not working because he don't know where to click(probably it get the x and y of elements in 100%
-//				JavascriptExecutor js = (JavascriptExecutor) driver;
-//				js.executeScript("document.body.style.zoom='60%'");
-				
+
 				List<String> fileNames = new ArrayList<String>();
-				
-				//get list of all file names
+
+				// get list of all file names
 				List<WebElement> elementList = driver.findElements(By.tagName("div"));
 				String myElement = null;
-				for (WebElement element : elementList){
-					try{
+				for (WebElement element : elementList) {
+					try {
 						myElement = element.getAttribute("aria-label");
-					}catch(Exception e){
+					} catch (Exception e) {
 						continue;
 					}
-					if(myElement != null){
-						//check if the a tag is on word
-						if((myElement.contains("Microsoft") || myElement.contains("Image")) && myElement.contains("Modified")){
+					if (myElement != null) {
+						// check if the a tag is on word
+						if ((myElement.contains("Microsoft") || myElement.contains("Image"))
+								&& myElement.contains("Modified")) {
 							fileNames.add(myElement.toString().split(",")[0]);
 						}
 					}
 				}
-				
-				//Click on file to rename it
+
+				// Click on file to rename it
 				for (String file : fileNames) {
 					List<WebElement> myElementList = driver.findElements(By.tagName("div"));
-					for (WebElement element : myElementList){
-						try{
+					for (WebElement element : myElementList) {
+						try {
 							myElement = element.getAttribute("aria-label");
-						}catch(Exception e){
+						} catch (Exception e) {
 							continue;
 						}
-						if(myElement != null){
-							//check if the a tag is on word
-							if(myElement.contains(file)){
+						if (myElement != null) {
+							// check if the a tag is on word
+							if (myElement.contains(file)) {
 
-								//clicking on the file
+								// clicking on the file
 								element.click();
 								DriverUtils.sleep(200);
 								// click on rename icon in top bar
-								DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Rename");
+								DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText",
+										"Rename");
 								// write the renamed name to the file
 								WebElement renameTextBox = driver.findElement(By.id("ItemNameEditor-input"));
 								// generate random string for renaming
@@ -573,26 +620,22 @@ public class Office365ApplicationImpl extends AbstractApplication {
 								renameTextBox.sendKeys(newName);
 								DriverUtils.sleep(300);
 								// click on the save button
-								DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save");
+								DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class",
+										"ms-Button-label", "Save");
 							}
 						}
 					}
 				}
 
-				
 			} catch (Exception e) {
 				logger.error("could not rename all files", e);
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
-	
-	
-	
-	
-	
+
 	/***
 	 * create folder
 	 * 
@@ -740,7 +783,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		}
 		return true;
 	}
-	
+
 	/***
 	 * share a file
 	 * 
@@ -769,7 +812,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 				DriverUtils.sleep(500);
 				// share the folder
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share");				
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share");
 
 			} catch (Exception e) {
 				logger.error("could not share the file", e);
@@ -809,7 +852,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				// share the folder
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share");
 
-
 			} catch (Exception e) {
 				logger.error("could not share the folder", e);
 				return false;
@@ -820,36 +862,38 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 	/***
 	 * export contacts
+	 * 
 	 * @return
 	 */
-	private boolean exportContacts(){
+	private boolean exportContacts() {
 		if (login(false)) {
 			try {
 
 				logger.info("export contacts");
 				// open people
-				driver.get("https://outlook.office.com/owa/?realm=veridinet.com&exsvurl=1&ll-cc=1033&modurl=2&path=/people");
-				DriverUtils.sleep(5000);
-				
-				//run on all the divs
-				List<WebElement> elementList = driver.findElements(By.tagName("div"));
+				driver.get(
+						"https://outlook.office.com/owa/?realm=veridinet.com&exsvurl=1&ll-cc=1033&modurl=2&path=/people");
+				DriverUtils.sleep(15000);
+
+				// run on all the buttons
+				List<WebElement> elementList = driver.findElements(By.tagName("button"));
 				String myElement = null;
-				String myElement2 = null;
 				int counter = 0;
-				for (WebElement element : elementList){
-					try{
-						//get class and style attributes
-						myElement = element.getAttribute("class");
-						myElement2 = element.getAttribute("style");
-					}catch(Exception e){
+				for (WebElement element : elementList) {
+					try {
+						// get class and style attributes
+						myElement = element.getAttribute("title");
+					} catch (Exception e) {
 						continue;
 					}
-					if(myElement != null && myElement2 != null){
-						//check if the class is _ph_u5 and the style contains inline;
-						if(myElement.contains("_ph_u5") && myElement2.contains("inline;")){
-							//if its the seconds element with the properties i click it
-							if(counter == 2){
-								//click the Manage text in top toolbar
+					if (myElement != null) {
+						// check if the title of the button is Manage
+						// there is another manage on the page and that is why
+						// we take the second one
+						// which is the visible one and the clickable one
+						if (myElement.contains("Manage")) {
+							if (counter == 1) {
+								// click the Manage text in top toolbar
 								element.click();
 								break;
 							}
@@ -857,13 +901,16 @@ public class Office365ApplicationImpl extends AbstractApplication {
 						}
 					}
 				}
-				
-				//click on the Export contacts
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Export contacts","Export contacts");
+
+				DriverUtils.sleep(2000);
+				// click on the Export contacts
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Export contacts",
+						"Export contacts");
 				DriverUtils.sleep(3000);
-				//click on the button to export the contacts
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "o365buttonLabel _fce_r","Export");
-				//wait for the file to finish download
+				// click on the button to export the contacts
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "o365buttonLabel _fce_r",
+						"Export");
+				// wait for the file to finish download
 				DriverUtils.sleep(5000);
 			} catch (Exception e) {
 				logger.error("could not export contacts", e);
@@ -872,27 +919,30 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		}
 		return true;
 	}
-		
+
 	/***
 	 * open mail box
+	 * 
 	 * @return
 	 */
-	private boolean openMailBox(){
+	private boolean openMailBox() {
 		if (login(false)) {
 			try {
 
 				logger.info("open mail box");
 				// open people
-				driver.get("https://outlook.office.com/owa/?realm=veridinet.com&exsvurl=1&ll-cc=1033&modurl=2&path=/people");
+				driver.get(
+						"https://outlook.office.com/owa/?realm=veridinet.com&exsvurl=1&ll-cc=1033&modurl=2&path=/people");
 				DriverUtils.sleep(5000);
-							
-				//click on the icon in the top right corner
+
+				// click on the icon in the top right corner
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "class", "ms-Icon--person", null);
 				DriverUtils.sleep(3000);
-				
-				//click on the "Open another mailbox..." option
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Open another mailbox...","Open another mailbox...");
-				
+
+				// click on the "Open another mailbox..." option
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Open another mailbox...",
+						"Open another mailbox...");
+
 				// get the user to open the mail box
 				String mailBox = GetProperties.getProp("mailbox");
 				// write the user mail box to the textbox
@@ -906,10 +956,11 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				robot.mouseMove(elementPoint.getX(), elementPoint.getY() + 50);
 				robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 				DriverUtils.sleep(2000);
-				
-				//try to press on open button, if the user exist its gone open else nothing will happen
+
+				// try to press on open button, if the user exist its gone open
+				// else nothing will happen
 				driver.findElement(By.xpath("//button[@class='o365button']")).click();
-				
+
 			} catch (Exception e) {
 				logger.error("could not open mail box", e);
 				return false;
@@ -917,47 +968,51 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		}
 		return true;
 	}
-	
+
 	/***
 	 * turn offline settings
+	 * 
 	 * @return
 	 */
-	private boolean offlineSettings(){
+	private boolean offlineSettings() {
 		if (login(false)) {
 			try {
 
 				logger.info("offline settings");
 				// open people
-				driver.get("https://outlook.office.com/owa/?realm=veridinet.com&exsvurl=1&ll-cc=1033&modurl=2&path=/people");
+				driver.get(
+						"https://outlook.office.com/owa/?realm=veridinet.com&exsvurl=1&ll-cc=1033&modurl=2&path=/people");
 				DriverUtils.sleep(8000);
-				
-				//click on the setting button
+
+				// click on the setting button
 				driver.findElement(By.id("O365_MainLink_Settings")).click();
 				DriverUtils.sleep(2000);
-				
-				//click on the offline setting button
+
+				// click on the offline setting button
 				driver.findElement(By.id("offlinesettings_People")).click();
 				DriverUtils.sleep(2000);
-				
-				//check the Turn on offline access checkbox
+
+				// check the Turn on offline access checkbox
 				driver.findElement(By.xpath("//div[contains(@class,'_opc_N')]")).click();
 				driver.findElement(By.xpath("//div[@class='_opc_S']/div/button[@type='button']")).click();
 				DriverUtils.sleep(3000);
-				
-				//get the elements i need to click
-				WebElement element = driver.findElement(By.xpath("//div[@class='conductorContent']/div[contains(@class,'_op_w3')]/div[@class='_op_x3']/div[@class='_opc_m']/div[@class='_opc_o']/button[@autoid='_opc_1']"));
-				WebElement element2 = driver.findElement(By.xpath("//div[@class='conductorContent']/div[contains(@class,'_op_w3')]/div[@class='_op_x3']/div[@class='_opc_m']/div[@class='_opc_o']/button[@autoid='_opc_2']"));
-				//click YES
+
+				// get the elements i need to click
+				WebElement element = driver.findElement(By.xpath(
+						"//div[@class='conductorContent']/div[contains(@class,'_op_w3')]/div[@class='_op_x3']/div[@class='_opc_m']/div[@class='_opc_o']/button[@autoid='_opc_1']"));
+				WebElement element2 = driver.findElement(By.xpath(
+						"//div[@class='conductorContent']/div[contains(@class,'_op_w3')]/div[@class='_op_x3']/div[@class='_opc_m']/div[@class='_opc_o']/button[@autoid='_opc_2']"));
+				// click YES
 				element.click();
-				//click:
-				//1) NEXT
-				//2) NEXT
-				//3) OK
+				// click:
+				// 1) NEXT
+				// 2) NEXT
+				// 3) OK
 				for (int i = 0; i < 3; i++) {
 					DriverUtils.sleep(300);
 					element2.click();
 				}
-				
+
 			} catch (Exception e) {
 				logger.error("could not change offline settings", e);
 				return false;
@@ -965,7 +1020,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		}
 		return true;
 	}
-	
+
 	/***
 	 * press on delete icon and then on delete dialog box
 	 */
@@ -1029,4 +1084,34 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return null;
 	}
 
+
+	/***
+	 * open the three dots if the action not find at the toolbar
+	 */
+	private void open3Dots(){
+		boolean flag = false ;
+		List<WebElement> elementList = driver.findElements(By.tagName("span"));
+		String myElement = null;
+		for (WebElement element : elementList){
+			try{
+				myElement = element.getAttribute("class");
+			}catch(Exception e){
+				continue;
+			}
+			if(myElement != null){
+				//check if the a tag is on word
+				if(myElement.contains("commandText")){
+					if(element.getText().equals("Rename")){
+						flag = true;
+						element.click();
+						break;
+					}
+				}
+			}
+		}
+		if(!flag){
+			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "title", "Other things you can do with the selected items", null);
+			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Rename");
+		}
+	}
 }
