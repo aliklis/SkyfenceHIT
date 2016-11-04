@@ -2,7 +2,6 @@ package com.hit.applications;
 
 import java.awt.Robot;
 import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.InputEvent;
 import java.io.File;
 import java.math.BigInteger;
@@ -99,7 +98,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			logger.error("the requested action is not available");
 			throw new UnsupportedOperationException("the requested action is not available");
 		}
-
 	}
 
 	/***
@@ -274,16 +272,34 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	private boolean downloadFile() {
 		if (login(false)) {
 			try {
-				logger.info("download file");
+
+				logger.info("download the first file");
 				// open oneDrive
 				goToOneDrive();
-				// click on file row
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
-				DriverUtils.sleep(500);
-				// click on download icon in top bar
-				open3Dots("Download");
+				// get list of all file names
+				List<WebElement> elementList = driver.findElements(By.tagName("div"));
+				List<WebElement> elementFiles = new ArrayList<WebElement>();
+				String myElement = null;
+				String myElement2 = null;
+				for (WebElement element : elementList) {
+					try {
+						myElement = element.getAttribute("class");
+						myElement2 = element.getAttribute("aria-label");
+					} catch (Exception e) {
+						continue;
+					}
+					if (myElement != null && myElement2 != null) {
+						if (myElement.contains("DetailsRow can-select") && !myElement2.contains("Folder")) {
+							element.click();
+							open3Dots("Download");
+							break;
+						}
+					}
+				}
+				
+				DriverUtils.sleep(2000);
 			} catch (Exception e) {
-				logger.error("could not upload file", e);
+				logger.error("could not download a file", e);
 				return false;
 			}
 		}
@@ -1134,7 +1150,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	private boolean openMailBox() {
 		if (login(false)) {
 			try {
-
 				logger.info("open mail box");
 				// open people
 				driver.get(

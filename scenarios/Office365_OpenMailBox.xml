@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <request>
 	<application>office365</application>
-	<action>EXPORT_CONTACTS</action>
+	<action>OPEN_MAIL_BOX</action>
 	<numOfRuns>1</numOfRuns>
 	<useTor>false</useTor>
 	<useIncognito>false</useIncognito>
