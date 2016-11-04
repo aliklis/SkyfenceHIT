@@ -16,6 +16,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.hit.util.GetProperties;
 import com.hit.util.DriverUtils;
@@ -397,18 +399,18 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				// open oneDrive
 				goToOneDrive();
 
-				// get directory of images
+				// get directory of files
 				String filesDir = GetProperties.getProp("uploadFilesDir");
 				// get list of all the image names
 				List<String> fileNamesList = getListFilesNames(filesDir);
-				// check if there are images in the folder
+				
+				// check if there are files in the folder
 				if (fileNamesList.size() > 0) {
 
 					WebElement a = null;
-					// Click On new button label on top navigation
+					// Click on upload button label on top navigation
 					List<WebElement> elementList = driver.findElements(By.tagName("span"));
 					String myElement = null;
-					Point coordinates = null;
 					for (WebElement element : elementList) {
 						try {
 							myElement = element.getAttribute("class");
@@ -420,40 +422,19 @@ public class Office365ApplicationImpl extends AbstractApplication {
 							if (myElement.contains("commandText")) {
 								if (element.getText().equals("Upload")) {
 									a = element;
-									// get coordinates of the element
-									coordinates = element.getLocation();
 									break;
 								}
 							}
 						}
 					}
 					for (int i = 0; i < fileNamesList.size(); i++) {
-
+						WebDriverWait wait = new WebDriverWait(driver,10);
 						a.click();
-
-						// move mouse to the coordinates
-						Robot robot = new Robot();
-						robot.mouseMove(coordinates.getX(), coordinates.getY() + 120);
-
-						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText",
-								"Files");
-
-						StringSelection strSelection;
-						// set the copy value as the next image name in the
-						// order
-						strSelection = new StringSelection(fileNamesList.get(i));
-						Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
-
-						try {
-							// paste the value in the dialog box and press enter
-							DriverUtils.doRobot(robot);
-						} catch (InterruptedException e) {
-							logger.error("robot action", e);
-						}
-						robot.mouseMove(150, 150);
-						DriverUtils.sleep(300);
+						WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='ContextualMenu-fileInput']")));
+						element.sendKeys(fileNamesList.get(i));
+						//TODO constant that will be "file wait upload"
+						DriverUtils.sleep(2000);
 					}
-
 				} else {
 					logger.warn("no files in the folder: " + filesDir);
 				}
@@ -464,6 +445,81 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		}
 		return true;
 	}
+	
+//	private boolean uploadFile() {
+//		if (login(false)) {
+//			try {
+//				logger.info("upload file");
+//				// open oneDrive
+//				goToOneDrive();
+//
+//				// get directory of images
+//				String filesDir = GetProperties.getProp("uploadFilesDir");
+//				// get list of all the image names
+//				List<String> fileNamesList = getListFilesNames(filesDir);
+//				// check if there are images in the folder
+//				if (fileNamesList.size() > 0) {
+//
+//					WebElement a = null;
+//					// Click On new button label on top navigation
+//					List<WebElement> elementList = driver.findElements(By.tagName("span"));
+//					String myElement = null;
+//					Point coordinates = null;
+//					for (WebElement element : elementList) {
+//						try {
+//							myElement = element.getAttribute("class");
+//						} catch (Exception e) {
+//							continue;
+//						}
+//						if (myElement != null) {
+//							// check if the a tag is on word
+//							if (myElement.contains("commandText")) {
+//								if (element.getText().equals("Upload")) {
+//									a = element;
+//									// get coordinates of the element
+//									coordinates = element.getLocation();
+//									break;
+//								}
+//							}
+//						}
+//					}
+//					for (int i = 0; i < fileNamesList.size(); i++) {
+//
+//						a.click();
+//
+//						// move mouse to the coordinates
+//						Robot robot = new Robot();
+//						robot.mouseMove(coordinates.getX(), coordinates.getY() + 120);
+//
+//						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText",
+//								"Files");
+//
+//						StringSelection strSelection;
+//						// set the copy value as the next image name in the
+//						// order
+//						strSelection = new StringSelection(fileNamesList.get(i));
+//						Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
+//
+//						try {
+//							// paste the value in the dialog box and press enter
+//							DriverUtils.doRobot(robot);
+//						} catch (InterruptedException e) {
+//							logger.error("robot action", e);
+//						}
+//						robot.mouseMove(150, 150);
+//						DriverUtils.sleep(300);
+//					}
+//
+//				} else {
+//					logger.warn("no files in the folder: " + filesDir);
+//				}
+//			} catch (Exception e) {
+//				logger.error("could not upload file", e);
+//				return false;
+//			}
+//		}
+//		return true;
+//	}
 
 	/***
 	 * delete action, can delete or file or folder
