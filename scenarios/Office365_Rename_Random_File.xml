@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!DOCTYPE xml>
 <request>
 	<application>office365</application>
 	<action>RENAME_RANDOM_FILE</action>

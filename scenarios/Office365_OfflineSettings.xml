@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+<!DOCTYPE xml>
 <request>
 	<application>office365</application>
 	<action>OFFLINE_SETTINGS</action>

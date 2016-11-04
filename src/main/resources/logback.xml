@@ -1,3 +1,4 @@
+<!DOCTYPE xml>
 <configuration debug="false">
 
 <timestamp key="byDay" datePattern="yyyyMMdd"/>

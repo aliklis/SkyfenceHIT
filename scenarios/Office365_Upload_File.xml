@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
+<!DOCTYPE xml>
 <request>
 	<application>office365</application>
-	<action>UPLOAD</action>
+	<action>UPLOAD_FILE</action>
 	<numOfRuns>1</numOfRuns>
 	<useTor>false</useTor>
 	<useIncognito>false</useIncognito>

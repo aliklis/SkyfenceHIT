@@ -250,7 +250,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				goToOneDrive();
 				// get list of all file names
 				List<WebElement> elementList = driver.findElements(By.tagName("div"));
-				List<WebElement> elementFiles = new ArrayList<WebElement>();
 				String myElement = null;
 				String myElement2 = null;
 				for (WebElement element : elementList) {
@@ -1166,13 +1165,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	/***
 	 * redirect to oneDrive
 	 */
-//	private void goToOneDrive() {
-//		// open oneDrive
-//		driver.get("https://veridinet-my.sharepoint.com/_layouts/15/MySite.aspx?MySiteRedirect=AllDocuments");
-//		DriverUtils.sleep(8000);
-//		closeTeachingBubbleDiv();
-//	}
-	
 	private void goToOneDrive() {
 		try {
 			// if got here - expects to already be in login state in office365
