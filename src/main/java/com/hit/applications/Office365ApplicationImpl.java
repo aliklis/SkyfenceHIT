@@ -20,43 +20,34 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.hit.util.GetProperties;
+
 import com.hit.util.DriverUtils;
 
 public class Office365ApplicationImpl extends AbstractApplication {
 	private static Logger logger = Logger.getLogger(Office365ApplicationImpl.class);
 
-	/***
-	 * ctor
-	 * 
-	 * @param driver
-	 */
 	public Office365ApplicationImpl(WebDriver driver) {
 		super(driver);
 	}
 
-	/***
-	 * override method from IApplication
-	 */
 	@Override
 	public boolean doAction(ApplicationRequest applicationRequest) {
-		logger.info("Application: Office365");
+		logger.info("Application : Office365");
 
 		if (applicationRequest == null) {
-			logger.error("the application request object is not valid");
-			throw new NullPointerException("the application request object is not valid");
+			logger.error("The application request object is not valid");
+			throw new NullPointerException("The application request object is not valid");
 		}
 		if (driver == null) {
-			logger.error("the driver object is not valid");
-			throw new NullPointerException("the driver object is not valid");
+			logger.error("The driver object is not valid");
+			throw new NullPointerException("The driver object is not valid");
 		}
 
 		this.applicationRequest = applicationRequest;
-		logger.info("Action:" + applicationRequest.getAction());
+		logger.info("Action requested :" + applicationRequest.getAction());
 		switch (applicationRequest.getAction()) {
 		case "LOGIN":
 			return login(true);
-		//case "LOGIN_ONE_DRIVE":
-			//return loginOneDrive();
 		case "MULTIPLE_ACTIONS":
 			return MultipleActions();
 		case "UPLOAD_FILE":
@@ -96,19 +87,19 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		case "LOGOUT":
 			return logout();
 		default:
-			logger.error("the requested action is not available");
-			throw new UnsupportedOperationException("the requested action is not available");
+			logger.error("The requested action is not available");
+			throw new UnsupportedOperationException("The requested action is not available");
 		}
 	}
 
 	/***
-	 * login to office365
+	 * Log in to office365
 	 * 
 	 * @param logoutAtEnd
 	 * @return
 	 */
 	private boolean login(boolean logoutAtEnd) {
-		logger.info("logging to office365");
+		logger.info("Trying to log in to office365");
 		try {
 			String office365LoginURL = GetProperties.getProp("office365LoginURL");
 			String office365UserTextbox = GetProperties.getProp("office365UserTextbox");
@@ -127,15 +118,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			password.sendKeys(applicationRequest.getUser().getPassword());
 			password.submit();
 		} catch (Exception e) {
-			logger.error("could not log in to office 365", e);
+			logger.error("Could not log in to office 365", e);
 			return false;
-		}
-		try {
-			Thread.sleep(2000);
-		} catch (Exception ex) {
-			logger.error("error in sleeping method", ex);
-			return false;
-
 		}
 
 		this.loggedIn = true;
@@ -145,9 +129,9 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * make multiple actions on page
+	 * Run multiple different actions
 	 * 
-	 * @return
+	 * @return a boolean indicating that the run succeeded
 	 */
 	private boolean MultipleActions() {
 		if (login(false)) {
@@ -159,11 +143,12 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * click on the word icon
+	 * Click on the word icon
 	 * 
 	 * @throws InterruptedException
 	 */
 	private void OpenWordTemplate() {
+		logger.info("Opening word template");
 		// go to last opened window in the web
 		DriverUtils.getLastOpenedWindow(driver);
 
@@ -182,12 +167,12 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * send feedback
+	 * Send feedback
 	 * 
 	 * @throws InterruptedException
 	 */
 	private void SendFeedBack() {
-
+		logger.info("Sending feedback");
 		// click on the help menu
 		DriverUtils.clickOnElementByID(driver, "O365_MainLink_Help");
 
@@ -210,12 +195,12 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * logout
+	 * Log out from office365
 	 * 
 	 * @return
 	 */
 	private boolean logout() {
-		logger.info("logging out from office365");
+		logger.info("Trying to log out from office365");
 		if (this.loggedIn) {
 			try {
 				// click on element by className
@@ -227,7 +212,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.clickOnElementByID(driver, "O365_SubLink_ShellSignout");
 				driver.manage().deleteAllCookies();
 			} catch (Exception e) {
-				logger.error("could not log out from office365", e);
+				logger.error("Could not log out from office365", e);
 				return false;
 			}
 		}
@@ -235,74 +220,69 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
-	//david
 	/***
-	 * download file from the list( the first one)
-	 * 
+	 * Download the first file from the list in OneDrive
 	 * @return
 	 */
 	private boolean downloadFile() {
 		if (login(false)) {
 			try {
-
-				logger.info("download the first file");
-				// open oneDrive
+				logger.info("Trying to download the first file in OneDrive");
+				// open OneDrive
 				goToOneDrive();
-				// get list of all file names
+				// get a list of all the files names
 				List<WebElement> elementList = driver.findElements(By.tagName("div"));
-				String myElement = null;
-				String myElement2 = null;
+				String elementClass = null;
+				String elementLabel = null;
 				for (WebElement element : elementList) {
 					try {
-						myElement = element.getAttribute("class");
-						myElement2 = element.getAttribute("aria-label");
+						elementClass = element.getAttribute("class");
+						elementLabel = element.getAttribute("aria-label");
 					} catch (Exception e) {
 						continue;
 					}
-					if (myElement != null && myElement2 != null) {
-						if (myElement.contains("DetailsRow can-select") && !myElement2.contains("Folder")) {
+					if (elementClass != null && elementLabel != null) {
+						if (elementClass.contains("DetailsRow can-select") && !elementLabel.contains("Folder")) {
 							element.click();
 							open3Dots("Download");
 							break;
 						}
 					}
 				}
-				
+
 				DriverUtils.sleep(2000);
 			} catch (Exception e) {
-				logger.error("could not download a file", e);
+				logger.error("Could not download the first file in OneDrive", e);
 				return false;
 			}
 		}
 		return true;
 	}
 
-	//david
 	/***
-	 * download all the files from the list
+	 * download all the files from OneDrive
 	 * 
 	 * @return
 	 */
 	private boolean downloadAll() {
 		if (login(false)) {
 			try {
-
-				logger.info("download all the files");
-				// open oneDrive
+				logger.info("Trying to download all the files from OneDrive");
+				// open OneDrive
 				goToOneDrive();
-				// get list of all file names
+				// Get a list of all the files names
 				List<WebElement> elementList = driver.findElements(By.tagName("div"));
-				String myElement = null;
-				String myElement2 = null;
+				String elementClass = null;
+				String elementLabel = null;
 				for (WebElement element : elementList) {
 					try {
-						myElement = element.getAttribute("class");
-						myElement2 = element.getAttribute("aria-label");
+						elementClass = element.getAttribute("class");
+						elementLabel = element.getAttribute("aria-label");
 					} catch (Exception e) {
 						continue;
 					}
-					if (myElement != null && myElement2 != null) {
-						if (myElement.contains("DetailsRow can-select") && !myElement2.contains("Folder")) {
+					if (elementClass != null && elementLabel != null) {
+						if (elementClass.contains("DetailsRow can-select") && !elementLabel.contains("Folder")) {
 							try {
 								// clicking on the file
 								element.click();
@@ -317,16 +297,14 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					}
 				}
 			} catch (Exception e) {
-				logger.error("could not download all files", e);
+				logger.error("Could not download all the files in OneDrive", e);
 				return false;
 			}
 		}
 		DriverUtils.sleep(10000);
 		return true;
-
 	}
 
-	//david
 	/***
 	 * download a random file from the list
 	 * 
@@ -335,37 +313,36 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	private boolean downloadRandomFile() {
 		if (login(false)) {
 			try {
-
-				logger.info("download a random file");
-				// open oneDrive
+				logger.info("Download a random file from OneDrive");
+				// open OneDrive
 				goToOneDrive();
-				// get list of all file names
+				// get list of all the files names
 				List<WebElement> elementList = driver.findElements(By.tagName("div"));
 				List<WebElement> elementFiles = new ArrayList<WebElement>();
-				String myElement = null;
-				String myElement2 = null;
+				String elementClass = null;
+				String elementLabel = null;
 				for (WebElement element : elementList) {
 					try {
-						myElement = element.getAttribute("class");
-						myElement2 = element.getAttribute("aria-label");
+						elementClass = element.getAttribute("class");
+						elementLabel = element.getAttribute("aria-label");
 					} catch (Exception e) {
 						continue;
 					}
-					if (myElement != null && myElement2 != null) {
-						if (myElement.contains("DetailsRow can-select") && !myElement2.contains("Folder")) {
+					if (elementClass != null && elementLabel != null) {
+						if (elementClass.contains("DetailsRow can-select") && !elementLabel.contains("Folder")) {
 							elementFiles.add(element);
 						}
 					}
 				}
 				Random rand = new Random();
 				int n = rand.nextInt(elementFiles.size());
-				// clicking on the file
+				// Click on the file
 				elementFiles.get(n).click();
 				DriverUtils.sleep(200);
-				// click on download icon in top bar
+				// Click on download icon in top bar
 				open3Dots("Download");
 			} catch (Exception e) {
-				logger.error("could not download a random file", e);
+				logger.error("Could not download a random file", e);
 				return false;
 			}
 		}
@@ -375,27 +352,30 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * upload files
+	 * Upload all files from a given folder path which is set in the properties file
+	 * pay attention that files that have no content will be rejected by OneDrive
 	 * 
 	 * @return
 	 */
 	private boolean uploadFile() {
 		if (login(false)) {
 			try {
-				logger.info("upload file");
-				// open oneDrive
+				logger.info("Trying to upload files to OneDrive");
+				logger.info("Pay attention that files that have no content will be rejected by OneDrive");
+				// open OneDrive
 				goToOneDrive();
 
-				// get directory of files
+				// get the directory path
+
 				String filesDir = GetProperties.getProp("uploadFilesDir");
-				// get list of all the image names
+				// get list of all the file names
 				List<String> fileNamesList = getListFilesNames(filesDir);
-				
+
 				// check if there are files in the folder
 				if (fileNamesList.size() > 0) {
-
 					WebElement a = null;
-					// Click on upload button label on top navigation
+
+					// Find the upload button
 					List<WebElement> elementList = driver.findElements(By.tagName("span"));
 					String myElement = null;
 					for (WebElement element : elementList) {
@@ -405,7 +385,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 							continue;
 						}
 						if (myElement != null) {
-							// check if the a tag is on word
 							if (myElement.contains("commandText")) {
 								if (element.getText().equals("Upload")) {
 									a = element;
@@ -414,35 +393,39 @@ public class Office365ApplicationImpl extends AbstractApplication {
 							}
 						}
 					}
+					// Upload the files
 					for (int i = 0; i < fileNamesList.size(); i++) {
-						WebDriverWait wait = new WebDriverWait(driver,10);
+						WebDriverWait wait = new WebDriverWait(driver, 10);
 						a.click();
-						WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='ContextualMenu-fileInput']")));
+						WebElement element = wait.until(ExpectedConditions
+								.elementToBeClickable(By.xpath("//input[@class='ContextualMenu-fileInput']")));
 						element.sendKeys(fileNamesList.get(i));
-						//TODO constant that will be "file wait upload"
+						// TODO constant that will be "file wait upload"
 						DriverUtils.sleep(2000);
 					}
 				} else {
-					logger.warn("no files in the folder: " + filesDir);
+					logger.warn("No files were found in the folder " + filesDir);
 				}
 			} catch (Exception e) {
-				logger.error("could not upload file", e);
+				logger.error("Could not upload files to OneDrive", e);
 				return false;
 			}
 		}
 		return true;
 	}
-	
+
 	/***
-	 * delete action, can delete or file or folder
+	 * Delete action, can delete a file or a folder from OneDrive
 	 * 
 	 * @param type
+	 *            - a file or a folder
 	 * @return
 	 */
 	public boolean delete(String type) {
 		if (login(false)) {
+			logger.info("Trying to delete " + type);
 			try {
-				// open oneDrive
+				// open OneDrive
 				goToOneDrive();
 				if (type.equals("file")) {
 					deleteFile();
@@ -450,7 +433,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					deleteFolder();
 				}
 			} catch (Exception e) {
-				logger.error("could not delete file/folder", e);
+				logger.error("Could not delete " + type, e);
 				return false;
 			}
 		}
@@ -458,38 +441,32 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * delete file (the first in the list)
+	 * Delete the first file in OneDrive
 	 */
 	private void deleteFile() {
-		logger.info("delete file");
-		// click on file row
+		// Click on file row
 		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Microsoft", null);
 		clickDelete();
-
 	}
 
 	/***
-	 * delete folder (the first in the list)
+	 * Delete the first folder in OneDrive
 	 */
 	private void deleteFolder() {
-		logger.info("delete folder");
-		// click on file row
+		// Click on file row
 		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Folder", null);
 		clickDelete();
-
 	}
 
-	//david
 	/***
-	 * rename a file
+	 * Rename the first file in OneDrive
 	 * 
 	 * @return
 	 */
 	private boolean renameFile() {
 		if (login(false)) {
 			try {
-
-				logger.info("rename file");
+				logger.info("Trying to rename the first file in OneDrive");
 				// open oneDrive
 				goToOneDrive();
 
@@ -512,23 +489,23 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save");
 				DriverUtils.sleep(2000);
 			} catch (Exception e) {
-				logger.error("could not rename file", e);
+				logger.error("Could not rename the first file in OneDrive", e);
 				return false;
 			}
 		}
 		return true;
 	}
 
-	//david
 	/***
-	 * rename all files
+	 * Rename all the files in OneDrive
+	 * 
 	 * @return
 	 */
 	private boolean renameAll() {
 		if (login(false)) {
 			try {
 
-				logger.info("rename all files");
+				logger.info("Trying to rename all the files in OneDrive");
 				// open oneDrive
 				goToOneDrive();
 
@@ -545,17 +522,17 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					}
 					if (myElement != null) {
 						// check if the a tag is on word
-						if (myElement.contains("DetailsRow-cell name")){
+						if (myElement.contains("DetailsRow-cell name")) {
 							WebElement aElement = element.findElements(By.tagName("a")).get(0);
 							String myElementAttribute = null;
-							try{
+							try {
 								myElementAttribute = aElement.getAttribute("aria-label");
 							} catch (Exception e) {
 								continue;
 							}
 							if (myElementAttribute != null) {
 								// check if the a tag is on word
-								if (!myElementAttribute.contains("Folder")){
+								if (!myElementAttribute.contains("Folder")) {
 									fileNames.add(aElement.getText());
 								}
 							}
@@ -580,7 +557,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 								element.click();
 								DriverUtils.sleep(200);
 								// click on rename icon in top bar
-								open3Dots("Rename");								
+								open3Dots("Rename");
 								// write the renamed name to the file
 								WebElement renameTextBox = driver.findElement(By.id("ItemNameEditor-input"));
 								// generate random string for renaming
@@ -591,7 +568,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 								// write the new name
 								renameTextBox.sendKeys(newName);
 								// click on the save button
-								DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class","ms-Button-label", "Save");
+								DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class",
+										"ms-Button-label", "Save");
 								DriverUtils.sleep(2000);
 							}
 						}
@@ -599,7 +577,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				}
 
 			} catch (Exception e) {
-				logger.error("could not rename all files", e);
+				logger.error("Could not rename all the files in OneDrive", e);
 				return false;
 			}
 		}
@@ -607,16 +585,16 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
-	//david
 	/***
-	 * rename a random file
+	 * Renames a random file in OneDrive
+	 * 
 	 * @return
 	 */
 	private boolean renameRadnomFile() {
 		if (login(false)) {
 			try {
 
-				logger.info("rename all files");
+				logger.info("Trying to rename a random file in OneDrive");
 				// open oneDrive
 				goToOneDrive();
 
@@ -633,25 +611,24 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					}
 					if (myElement != null) {
 						// check if the a tag is on word
-						if (myElement.contains("DetailsRow-cell name")){
+						if (myElement.contains("DetailsRow-cell name")) {
 							WebElement aElement = element.findElements(By.tagName("a")).get(0);
 							String myElementAttribute = null;
-							try{
+							try {
 								myElementAttribute = aElement.getAttribute("aria-label");
 							} catch (Exception e) {
 								continue;
 							}
 							if (myElementAttribute != null) {
 								// check if the a tag is on word
-								if (!myElementAttribute.contains("Folder")){
+								if (!myElementAttribute.contains("Folder")) {
 									fileNames.add(aElement.getText());
 								}
 							}
 						}
 					}
 				}
-				
-				
+
 				Random rand = new Random();
 				int n = rand.nextInt(fileNames.size());
 				// clicking on the file
@@ -683,30 +660,29 @@ public class Office365ApplicationImpl extends AbstractApplication {
 							// write the new name
 							renameTextBox.sendKeys(newName);
 							// click on the save button
-							DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class","ms-Button-label", "Save");
+							DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label",
+									"Save");
 							DriverUtils.sleep(2000);
 						}
 					}
 				}
 			} catch (Exception e) {
-				logger.error("could not rename all files", e);
+				logger.error("Could not rename a random file in OneDrive", e);
 				return false;
 			}
 		}
-
 		return true;
 	}
-	
+
 	/***
-	 * create folder
+	 * Creates a folder in OneDrive
 	 * 
 	 * @return
 	 */
 	private boolean createFolder() {
 		if (login(false)) {
 			try {
-
-				logger.info("create folder");
+				logger.info("Trying to create a folder in OneDrive");
 				// open oneDrive
 				goToOneDrive();
 
@@ -750,16 +726,15 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Create");
 
 			} catch (Exception e) {
-				logger.error("could not create folder", e);
+				logger.error("Could not create a folder in OneDrive", e);
 				return false;
 			}
 		}
 		return true;
 	}
-	
-	//david
+
 	/***
-	 * move x files to folder
+	 * Move x files to folder (X is based on a configuration parameter)
 	 * 
 	 * @return
 	 */
@@ -767,11 +742,10 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		if (login(false)) {
 			try {
 
-				logger.info("move files to folder");
+				logger.info("Trying to move files to folder in OneDrive");
 				// open oneDrive
 				goToOneDrive();
-				
-				
+
 				List<String> fileNames = new ArrayList<String>();
 
 				// get list of all file names
@@ -785,34 +759,33 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					}
 					if (myElement != null) {
 						// check if the a tag is on word
-						if (myElement.contains("DetailsRow-cell name")){
+						if (myElement.contains("DetailsRow-cell name")) {
 							WebElement aElement = element.findElements(By.tagName("a")).get(0);
 							String myElementAttribute = null;
-							try{
+							try {
 								myElementAttribute = aElement.getAttribute("aria-label");
 							} catch (Exception e) {
 								continue;
 							}
 							if (myElementAttribute != null) {
 								// check if the a tag is on word
-								if (!myElementAttribute.contains("Folder")){
+								if (!myElementAttribute.contains("Folder")) {
 									fileNames.add(aElement.getText());
 								}
 							}
 						}
 					}
 				}
-				
-				
-				
+
 				int numberOfFiles = 0;
 				// get number of files to move to folder from config file
 				int numberOfFileToMove = Integer.parseInt(GetProperties.getProp("numberOfFilesToMove"));
-				//if the input of files to move bigger then the files you can move i take until the number of files, else i take the x files
-				if(numberOfFileToMove < fileNames.size()){
+				// if the input of files to move bigger then the files you can
+				// move i take until the number of files, else i take the x
+				// files
+				if (numberOfFileToMove < fileNames.size()) {
 					numberOfFiles = numberOfFileToMove;
-				}
-				else{
+				} else {
 					numberOfFiles = fileNames.size();
 				}
 				// move each file
@@ -833,7 +806,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 								// click on move to icon in top bar
 								open3Dots("Move to");
 								DriverUtils.sleep(2000);
-			
+
 								// choose folder from the list
 								List<WebElement> myElementList2 = driver.findElements(By.tagName("span"));
 								String myElement2 = null;
@@ -847,25 +820,23 @@ public class Office365ApplicationImpl extends AbstractApplication {
 									if (myElement2 != null) {
 										// check if the a tag is on word
 										if (myElement2.contains("od-FolderSelect-folderIcon")) {
-												element2.click();
-												DriverUtils.sleep(1000);
-												// click on the move button
-												DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Move here");
-												DriverUtils.sleep(3000);
-												break;
-											}
+											element2.click();
+											DriverUtils.sleep(1000);
+											// click on the move button
+											DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class",
+													"ms-Button-label", "Move here");
+											DriverUtils.sleep(3000);
+											break;
 										}
 									}
-
 								}
-			
-
 							}
 						}
+					}
 				}
 
 			} catch (Exception e) {
-				logger.error("could not move files to folder", e);
+				logger.error("Could not move files to folder in OneDrive", e);
 				return false;
 			}
 		}
@@ -873,15 +844,14 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * empty recycle bin
-	 * 
+	 * Empty OneDrive's recycle bin
 	 * @return
 	 */
 	private boolean emptyRecycleBin() {
 		if (login(false)) {
 			try {
 
-				logger.info("empty recycle bin");
+				logger.info("Trying to empty OneDrive's recycle bin");
 				// open oneDrive
 				goToOneDrive();
 
@@ -893,24 +863,22 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.sleep(1000);
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Delete");
 			} catch (Exception e) {
-				logger.error("could not empty recycle bin", e);
+				logger.error("Could not empty OneDrive's recycle bin", e);
 				return false;
 			}
 		}
 		return true;
 	}
 
-	//david
 	/***
-	 * share a file
+	 * Share a file in OneDrive
 	 * 
 	 * @return
 	 */
 	private boolean shareFile() {
 		if (login(false)) {
 			try {
-
-				logger.info("share file");
+				logger.info("Share a file in OneDrive");
 				// open oneDrive
 				goToOneDrive();
 
@@ -932,24 +900,22 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share");
 
 			} catch (Exception e) {
-				logger.error("could not share the file", e);
+				logger.error("Could not share a file in OneDrive", e);
 				return false;
 			}
 		}
 		return true;
 	}
 
-	//david
 	/***
-	 * share a folder
+	 * Share a folder in OneDrive
 	 * 
 	 * @return
 	 */
 	private boolean shareFolder() {
 		if (login(false)) {
 			try {
-
-				logger.info("share folder");
+				logger.info("Trying to share a folder in OneDrive");
 				// open oneDrive
 				goToOneDrive();
 
@@ -971,7 +937,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share");
 
 			} catch (Exception e) {
-				logger.error("could not share the folder", e);
+				logger.error("Could not share a folder in OneDrive", e);
 				return false;
 			}
 		}
@@ -979,15 +945,13 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * export contacts
-	 * 
+	 * Export contacts of outlook
 	 * @return
 	 */
 	private boolean exportContacts() {
 		if (login(false)) {
 			try {
-
-				logger.info("export contacts");
+				logger.info("Trying to export contacts");
 				// open people
 				goToPeople();
 				DriverUtils.sleep(15000);
@@ -1030,7 +994,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				// wait for the file to finish download
 				DriverUtils.sleep(5000);
 			} catch (Exception e) {
-				logger.error("could not export contacts", e);
+				logger.error("Could not export contacts", e);
 				return false;
 			}
 		}
@@ -1038,14 +1002,14 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * open mail box
+	 * Open another mailbox
 	 * 
 	 * @return
 	 */
 	private boolean openMailBox() {
 		if (login(false)) {
 			try {
-				logger.info("open mail box");
+				logger.info("Trying to open another mailbox");
 				// open people
 				goToPeople();
 				DriverUtils.sleep(15000);
@@ -1060,23 +1024,23 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 				// get the mailbox address to open
 				String mailBox = GetProperties.getProp("mailboxToOpen");
-				
+
 				// write the address to the textbox
 				WebElement element = driver.findElement(By.xpath("//form[@class='_fp_3']/input[@role='textbox']"));
 				element.sendKeys(mailBox);
 				DriverUtils.sleep(2000);
-				
+
 				// click enter for the first choice
 				element.sendKeys(Keys.ENTER);
 				DriverUtils.sleep(2000);
-				
+
 				// finds and clicks the open button
 				WebElement openButton = driver.findElement(By.xpath("//span[contains(text(), 'Open')]/parent::button"));
 				openButton.click();
 				DriverUtils.sleep(2000);
 
 			} catch (Exception e) {
-				logger.error("could not open mail box", e);
+				logger.error("Could not open another mailbox", e);
 				return false;
 			}
 		}
@@ -1084,18 +1048,16 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * turn offline settings
+	 * Change offline settings
 	 * 
 	 * @return
 	 */
 	private boolean offlineSettings() {
 		if (login(false)) {
 			try {
-
-				logger.info("offline settings");
+				logger.info("Trying to change offline settings");
 				// open people
-				driver.get(
-						"https://outlook.office.com/owa/?realm=veridinet.com&exsvurl=1&ll-cc=1033&modurl=2&path=/people");
+				goToPeople();
 				DriverUtils.sleep(8000);
 
 				// click on the setting button
@@ -1128,16 +1090,15 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				}
 
 			} catch (Exception e) {
-				logger.error("could not change offline settings", e);
+				logger.error("Could not change offline settings", e);
 				return false;
 			}
 		}
 		return true;
 	}
 
-	//david
 	/***
-	 * press on delete icon and then on delete dialog box
+	 * Press on delete icon and then on delete dialog box
 	 */
 	private void clickDelete() {
 		DriverUtils.sleep(1000);
@@ -1150,20 +1111,19 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/**
-	 * if there a div of discover it will take it off(in the future you may
-	 * disable this function)
+	 * Closes the "Discover" popup if it exists
 	 */
 	private void closeTeachingBubbleDiv() {
 		try {
 			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "od-TeachingBubble-closeButton",
 					null);
 		} catch (Exception e) {
-			logger.error("In Closing discover div, maybe its not there anymore", e);
+			logger.error("Failed to close discover popup, it might have been completely removed so this function is irrelevant", e);
 		}
 	}
-	
+
 	/***
-	 * redirect to oneDrive
+	 * Redirects to oneDrive
 	 */
 	private void goToOneDrive() {
 		try {
@@ -1179,6 +1139,9 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		}
 	}
 	
+	/**
+	 * Redirects to people
+	 */
 	private void goToPeople() {
 		try {
 			// if got here - expects to already be in login state in office365
@@ -1192,10 +1155,10 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * get file list for uploading
+	 * Get file list for uploading
 	 * 
-	 * @param filesDir
-	 * @return
+	 * @param filesDir directory path
+	 * @return the list of file names
 	 */
 	private List<String> getListFilesNames(String filesDir) {
 		try {
@@ -1213,29 +1176,30 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			}
 			return fileNamesList;
 		} catch (Exception e) {
-			logger.error("getting list of files names", e);
+			logger.error("Could not get the list of file names", e);
 		}
 		return null;
 	}
 
-	//david
 	/***
-	 * open the three dots if the action not find at the toolbar
+	 * open the three dots (when the screen/browser is not wide enough to contain all the menu)
+	 * will first try to open the action from the menu
+	 * if it is not in the menu, it assumes it is in the 3 dots (...) menu and tries to click on it there
 	 */
-	private void open3Dots(String text){
-		boolean flag = false ;
+	private void open3Dots(String text) {
+		boolean flag = false;
 		List<WebElement> elementList = driver.findElements(By.tagName("span"));
 		String myElement = null;
-		for (WebElement element : elementList){
-			try{
+		for (WebElement element : elementList) {
+			try {
 				myElement = element.getAttribute("class");
-			}catch(Exception e){
+			} catch (Exception e) {
 				continue;
 			}
-			if(myElement != null){
-				//check if the a tag is on word
-				if(myElement.contains("commandText")){
-					if(element.getText().equals(text)){
+			if (myElement != null) {
+				// check if the a tag is on word
+				if (myElement.contains("commandText")) {
+					if (element.getText().equals(text)) {
 						flag = true;
 						element.click();
 						break;
@@ -1243,8 +1207,9 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				}
 			}
 		}
-		if(!flag){
-			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "title", "Other things you can do with the selected items", null);
+		if (!flag) {
+			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "title",
+					"Other things you can do with the selected items", null);
 			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", text);
 		}
 	}

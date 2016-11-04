@@ -19,31 +19,29 @@ import com.hit.util.GetProperties;
 
 public class DropBoxApplicationImpl extends AbstractApplication {
 	private static Logger logger = Logger.getLogger(DropBoxApplicationImpl.class);
-	
+
 	/***
 	 * ctor
 	 */
 	public DropBoxApplicationImpl(WebDriver driver) {
 		super(driver);
 	}
-	
-	/***
-	 * override method from IApplication
-	 */
+
 	@Override
-	public boolean doAction(ApplicationRequest applicationRequest) throws NullPointerException, UnsupportedOperationException {
+	public boolean doAction(ApplicationRequest applicationRequest)
+			throws NullPointerException, UnsupportedOperationException {
 		logger.info("Application: DropBox");
-		
+
 		if (applicationRequest == null) {
-			logger.error("the application request object is not valid");
-			throw new NullPointerException("the application request object is not valid");
+			logger.error("The application request object is not valid");
+			throw new NullPointerException("The application request object is not valid");
 		}
 		if (driver == null) {
-			logger.error("the driver object is not valid");
-			throw new NullPointerException("the driver object is not valid");
+			logger.error("The driver object is not valid");
+			throw new NullPointerException("The driver object is not valid");
 		}
 		this.applicationRequest = applicationRequest;
-		logger.info("Action:" + applicationRequest.getAction());
+		logger.info("Action requested :" + applicationRequest.getAction());
 		switch (applicationRequest.getAction()) {
 		case "LOGIN":
 			return login(true);
@@ -52,231 +50,236 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 		case "DOWNLOAD":
 			return download();
 		default:
-			logger.error("the requested action is not available");
-			throw new UnsupportedOperationException("the requested action is not available");
+			logger.error("The requested action is not available");
+			throw new UnsupportedOperationException("The requested action is not available");
 		}
 	}
-	
+
 	/***
-	 * login to DropBox
+	 * Log in to DropBox
+	 * 
 	 * @param logoutAtEnd
 	 * @return
 	 */
 	private boolean login(boolean logoutAtEnd) {
-		logger.info("logging to dropbox");
-		if(this.loggedIn)
+		logger.info("Trying to log in to dropbox");
+		if (this.loggedIn)
 			return true;
-		try{
+		try {
 			String dropboxLoginURL = GetProperties.getProp("dropboxLoginURL");
 			String dropboxUserTextbox = GetProperties.getProp("dropboxUserTextbox");
 			String dropboxPasswordTextbox = GetProperties.getProp("dropboxPasswordTextbox");
 			boolean dropboxDoubleSubmit = Boolean.parseBoolean(GetProperties.getProp("dropboxDoubleSubmit"));
 			driver.get(dropboxLoginURL);
-			
+
 			// submit user name
-			//By byXpathUN = By.xpath("//input[(@name='login_email') and (@type = 'email')]");
-			By byXpathUN = By.xpath("//input[(@name='"+dropboxUserTextbox+"') and (@type = 'email')]");
+			// By byXpathUN = By.xpath("//input[(@name='login_email') and (@type
+			// = 'email')]");
+			By byXpathUN = By.xpath("//input[(@name='" + dropboxUserTextbox + "') and (@type = 'email')]");
 			WebElement username = driver.findElement(byXpathUN);
 			username.sendKeys(applicationRequest.getUser().getUsername());
-			
-			if(dropboxDoubleSubmit){
+
+			if (dropboxDoubleSubmit) {
 				username.submit();
 			}
-			
-			By byXpathPW = By.xpath("//input[(@name='"+dropboxPasswordTextbox+"') and (@type = 'password')]");
+
+			By byXpathPW = By.xpath("//input[(@name='" + dropboxPasswordTextbox + "') and (@type = 'password')]");
 			WebElement password = driver.findElement(byXpathPW);
 			// submit password
 			password.sendKeys(applicationRequest.getUser().getPassword());
 			password.submit();
-		}catch(Exception e){
-			logger.error("could not login to google", e);
+		} catch (Exception e) {
+			logger.error("Could not log in to google", e);
 		}
-		
-		try{
-		Thread.sleep(3000);
+
+		try {
+			Thread.sleep(3000);
+		} catch (Exception ex) {
+
 		}
-		catch(Exception ex){
-			
-		}
-		
+
 		this.loggedIn = true;
 		if (logoutAtEnd)
 			logout();
 		return true;
 	}
-	
+
 	/***
 	 * upload file
+	 * 
 	 * @return
 	 */
-	private boolean upload(){
-		if(login(false)){
-			try{
-				logger.info("uploading file");
-				//get directory of images
-				String imagesDir = GetProperties.getProp("uploadImageDir");
-				//get list of all the image names
-				List<String> imageNameList = getListImageNames(imagesDir);
-				//check if there are images in the folder
-				if(imageNameList.size() > 0){
-					//click on upload button
+	private boolean upload() {
+		if (login(false)) {
+			try {
+				logger.info("Trying to upload files");
+				// get directory of files
+				String filesDir = GetProperties.getProp("uploadFilesDir");
+				// get list of all the file names
+				List<String> fileNameList = getListFileNames(filesDir);
+				// check if there are files in the folder
+				if (fileNameList.size() > 0) {
+					// click on upload button
 					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_upload_16", null);
 					DriverUtils.getLastOpenedWindow(driver);
 					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--primary", null);
-					
-					String firstImage = imageNameList.get(0);
-					
-					//stimulate copy to clipboard
-					StringSelection strSelection = new StringSelection(firstImage);
+
+					String firstFile = fileNameList.get(0);
+
+					// stimulate copy to clipboard
+					StringSelection strSelection = new StringSelection(firstFile);
 					Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
-					
-					//create robot that perform human actions
+
+					// create robot that perform human actions
 					Robot robot = null;
 					try {
 						robot = new Robot();
 					} catch (AWTException e) {
-						logger.error("Initialization robot", e);
+						logger.error("Robot initialization failed", e);
 					}
-					
-	
-					//run actions of robot
+
+					// run actions of robot
 					try {
 						DriverUtils.doRobot(robot);
 					} catch (InterruptedException e) {
-						logger.error("robot action", e);
+						logger.error("Robot action failed", e);
 					}
-					
-					//run on all the images from the folder and upload them one by one
-					for (int i = 1; i < imageNameList.size(); i++) {
-						//click on "add more files" button
-						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--secondary", null);
-						//set the copy value as the next image name in the order
-						strSelection = new StringSelection(imageNameList.get(i));
+
+					// run on all the files from the folder and upload them one
+					// by one
+					for (int i = 1; i < fileNameList.size(); i++) {
+						DriverUtils.sleep(2000);
+						// click on "add more files" button
+						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--secondary",
+								null);
+						// set the copy value as the next file name in the order
+						strSelection = new StringSelection(fileNameList.get(i));
 						Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
-						
+
 						try {
-							//paste the value in the dialog box and press enter
+							// paste the value in the dialog box and press enter
 							doRobot(robot);
 						} catch (InterruptedException e) {
-							logger.error("robot action", e);
+							logger.error("Robot action failed", e);
 						}
 					}
-					
-					//wait until all the files as been upload and logout
+
+					// wait until all the files as been upload and logout
 					boolean finishedUploading = false;
-					while(!finishedUploading){
-						List<WebElement> elementList = driver.findElements(By.tagName("button"));	
-						for (WebElement element : elementList){
+					while (!finishedUploading) {
+						List<WebElement> elementList = driver.findElements(By.tagName("button"));
+						for (WebElement element : elementList) {
 							String myElement = element.getAttribute("class");
-							if(myElement != null){
-								//check if the a tag is on word
-								if(myElement.contains("c-btn--primary")){
+							if (myElement != null) {
+								// check if the a tag is on word
+								if (myElement.contains("c-btn--primary")) {
 									element.click();
-									finishedUploading=true;
+									finishedUploading = true;
 									break;
 								}
 							}
 						}
 					}
-				}else{
-					logger.warn("no images in the folder: " + imagesDir);
+				} else {
+					logger.warn("There are no files in the upload folder directory" + filesDir);
 				}
-			}catch(Exception e){
-				logger.error("uploading image", e);
+			} catch (Exception e) {
+				logger.error("Uploading a file to DropBox failed", e);
 			}
 		}
-		
+
 		return true;
 	}
-	
+
 	/***
-	 * trigger robot action
+	 * Triggers a robot action
+	 * 
 	 * @param robot
 	 * @throws InterruptedException
 	 */
-	private void doRobot(Robot robot) throws InterruptedException{
-		
+	private void doRobot(Robot robot) throws InterruptedException {
+
 		Thread.sleep(2000);
 
-		//PASTE, ENTER
+		// PASTE, ENTER
 		robot.keyPress(KeyEvent.VK_CONTROL);
 		robot.keyPress(KeyEvent.VK_V);
 		robot.keyRelease(KeyEvent.VK_V);
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
-		
+
 		Thread.sleep(3000);
 	}
-	
+
 	/***
-	 * download file
+	 * Download file from DropBox
+	 * 
 	 * @return
 	 */
-	private boolean download(){
-		
-		if(login(false)){
-			try{
-				logger.info("downloading file");
+	private boolean download() {
+
+		if (login(false)) {
+			try {
+				logger.info("Trying to download a file from DropBox");
 				int downloadTimes = Integer.parseInt(GetProperties.getProp("downloadTimes"));
-				//click on the first file in the list
+				// click on the first file in the list
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "li", "class", "o-grid--no-gutter", null);
 				for (int i = 0; i < downloadTimes; i++) {
 					DriverUtils.sleep(3000);
-					//click on the download button
+					// click on the download button
 					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_download", null);
 				}
 				DriverUtils.sleep(7000);
-			}catch(Exception e){
-				logger.info("could not upload file", e);
+			} catch (Exception e) {
+				logger.info("Could not download a file from DropBox", e);
 			}
 		}
 		return true;
-		
+
 	}
-	
+
 	/***
-	 * logout from dropbox
+	 * Log out from DropBox
+	 * 
 	 * @return
 	 */
 	private boolean logout() {
-		logger.info("logging out from dropbox");
+		logger.info("Trying to log out from dropbox");
 		if (!this.loggedIn)
 			return true;
-		try{
+		try {
 			driver.get("https://www.dropbox.com/logout");
 			driver.manage().deleteAllCookies();
-		}
-		catch(Exception e){
-			logger.error("could not log out from dropbox", e);
+		} catch (Exception e) {
+			logger.error("Could not log out from dropbox", e);
 		}
 		this.loggedIn = false;
 		return true;
 	}
 
 	/***
-	 * go to dir of images and get all the there names
+	 * Get all the file names in the upload directory
+	 * 
 	 * @return
 	 */
-	private List<String> getListImageNames(String imagesDir){
-		try{
-			
-			List<String> imageNameList = new ArrayList<String>(); 
-			File dir = new File(imagesDir);
+	private List<String> getListFileNames(String filesDir) {
+		try {
+			List<String> fileNameList = new ArrayList<String>();
+			File dir = new File(filesDir);
 			if (dir.exists() && dir.isDirectory()) {
 				File[] directoryListing = dir.listFiles();
 				if (directoryListing != null) {
 					for (File child : directoryListing) {
 						String filename = child.getName();
-						imageNameList.add(imagesDir + filename);
+						fileNameList.add(filesDir + filename);
 					}
 				}
 			}
-			return imageNameList;
-		}catch(Exception e){
-			logger.error("getting list of image names", e);
+			return fileNameList;
+		} catch (Exception e) {
+			logger.error("Could not get the file names in the upload directory", e);
 		}
 		return null;
 	}
-
 }

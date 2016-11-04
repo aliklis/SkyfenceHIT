@@ -10,46 +10,40 @@ import com.hit.util.GetProperties;
 public class GoogleApplicationImpl extends AbstractApplication {
 	private static Logger logger = Logger.getLogger(GoogleApplicationImpl.class);
 	
-	/***
-	 * ctor
-	 */
 	public GoogleApplicationImpl(WebDriver driver) {
 		super(driver);
 	}
 
-	/***
-	 * override method from IApplication
-	 */
 	@Override
 	public boolean doAction(ApplicationRequest applicationRequest) throws NullPointerException, UnsupportedOperationException {
 		logger.info("Application: Google");
 		
 		if (applicationRequest == null) {
-			logger.error("the application request object is not valid");
-			throw new NullPointerException("the application request object is not valid");
+			logger.error("The application request object is not valid");
+			throw new NullPointerException("The application request object is not valid");
 		}
 		if (driver == null) {
-			logger.error("the driver object is not valid");
-			throw new NullPointerException("the driver object is not valid");
+			logger.error("The driver object is not valid");
+			throw new NullPointerException("The driver object is not valid");
 		}
 		this.applicationRequest = applicationRequest;
-		logger.info("Action:" + applicationRequest.getAction());
+		logger.info("Action requested :" + applicationRequest.getAction());
 		switch (applicationRequest.getAction()) {
 		case "LOGIN":
 			return login(true);
 		default:
-			logger.error("the requested action is not available");
-			throw new UnsupportedOperationException("the requested action is not available");
+			logger.error("The requested action is not available");
+			throw new UnsupportedOperationException("The requested action is not available");
 		}
 	}
 
 	/***
-	 * login to Google
+	 * Log in to Google
 	 * @param logoutAtEnd
 	 * @return
 	 */
 	private boolean login(boolean logoutAtEnd) {
-		logger.info("logging to google");
+		logger.info("Trying to log in to google");
 		if (this.loggedIn)
 			return true;
 		try{
@@ -69,14 +63,13 @@ public class GoogleApplicationImpl extends AbstractApplication {
 			passwordElem.sendKeys(applicationRequest.getUser().getPassword());
 			passwordElem.submit();
 		}catch(Exception e){
-			logger.error("could not login to google", e);
+			logger.error("Could not login to google", e);
 		}
 		try {
 			Thread.sleep(2000);
 		} catch (Exception ex) {
 
 		}
-
 		this.loggedIn = true;
 		if (logoutAtEnd)
 			logout();
@@ -84,11 +77,11 @@ public class GoogleApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * logout from google
+	 * Log out from google
 	 * @return
 	 */
 	private boolean logout() {
-		logger.info("logging out from google");
+		logger.info("Trying to log out from google");
 		if (!this.loggedIn)
 			return true;
 		try{
@@ -96,7 +89,7 @@ public class GoogleApplicationImpl extends AbstractApplication {
 			driver.manage().deleteAllCookies();
 		}
 		catch(Exception e){
-			logger.error("could not log out from google", e);
+			logger.error("Could not log out from google", e);
 		}
 		this.loggedIn = false;
 		return true;

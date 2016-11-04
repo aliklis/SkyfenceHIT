@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
+
 public final class TorBrowser {
 	private static Logger logger = Logger.getLogger(TorBrowser.class);
 	

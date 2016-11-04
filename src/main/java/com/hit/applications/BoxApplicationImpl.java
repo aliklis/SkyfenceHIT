@@ -8,48 +8,41 @@ import org.openqa.selenium.WebElement;
 import com.hit.util.GetProperties;
 
 public class BoxApplicationImpl extends AbstractApplication {
-	private static Logger logger = Logger.getLogger(Office365ApplicationImpl.class);
+	private static Logger logger = Logger.getLogger(BoxApplicationImpl.class);
 	
-	/***
-	 * ctor
-	 * @param driver
-	 */
 	public BoxApplicationImpl(WebDriver driver) {
 		super(driver);
 	}
 	
-	/***
-	 * override method from IApplication
-	 */
 	@Override
 	public boolean doAction(ApplicationRequest applicationRequest) throws NullPointerException, UnsupportedOperationException {
 		logger.info("Application: Box");
 		if (applicationRequest == null) {
-			logger.error("the application request object is not valid");
-			throw new NullPointerException("the application request object is not valid");
+			logger.error("The application request object is not valid");
+			throw new NullPointerException("The application request object is not valid");
 		}
 		if (driver == null) {
-			logger.error("the driver object is not valid");
-			throw new NullPointerException("the driver object is not valid");
+			logger.error("The driver object is not valid");
+			throw new NullPointerException("The driver object is not valid");
 		}
 		this.applicationRequest = applicationRequest;
-		logger.info("Action:" + applicationRequest.getAction());
+		logger.info("Action requested :" + applicationRequest.getAction());
 		switch (applicationRequest.getAction()) {
 		case "LOGIN":
 			return login(true);
 		default:
-			logger.error("the requested action is not available");
-			throw new UnsupportedOperationException("the requested action is not available");
+			logger.error("The requested action is not available");
+			throw new UnsupportedOperationException("The requested action is not available");
 		}
 	}
 	
 	/***
-	 * login to box
+	 * Log in to Box
 	 * @param logoutAtEnd
 	 * @return
 	 */
 	private boolean login(boolean logoutAtEnd) {
-		logger.info("logging to box");
+		logger.info("Trying to log in to box");
 		if(this.loggedIn)
 			return true;
 		try{
@@ -70,7 +63,7 @@ public class BoxApplicationImpl extends AbstractApplication {
 			password.sendKeys(applicationRequest.getUser().getPassword());
 			password.submit();
 		}catch(Exception e){
-			logger.error("could not login to box", e);
+			logger.error("Could not log in to box", e);
 		}
 		try {
 			Thread.sleep(2000);
@@ -84,18 +77,18 @@ public class BoxApplicationImpl extends AbstractApplication {
 	}
 	
 	/***
-	 * logout form box
+	 * Log out from box
 	 * @return
 	 */
 	private boolean logout() {
-		logger.info("logout from box");
+		logger.info("Trying to log out from box");
 		if (!this.loggedIn)
 			return true;
 		try{
 			driver.get("https://app.box.com/logout");
 			driver.manage().deleteAllCookies();
 		}catch(Exception e){
-			logger.error("could not logout from box", e);
+			logger.error("Could not log out from box", e);
 		}
 		this.loggedIn = false;
 		return true;

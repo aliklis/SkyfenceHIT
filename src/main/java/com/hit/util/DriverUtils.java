@@ -16,6 +16,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+
 public class DriverUtils {
 	private static Logger logger = Logger.getLogger(DriverUtils.class);
 	

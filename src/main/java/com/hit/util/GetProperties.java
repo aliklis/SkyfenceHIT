@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 public class GetProperties {
 	private static Logger logger = Logger.getLogger(GetProperties.class);
+	
 	private final static String propFileName = "config.properties";
 
 	public static String getProp(String key) {

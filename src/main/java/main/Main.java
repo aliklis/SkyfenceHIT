@@ -17,11 +17,11 @@ public class Main {
 	private static Logger logger = Logger.getLogger(Main.class);
 	
 	/***
-	 * main function
-	 * @param args
+	 * Main entry point for the program
+	 * @param args - the only argument to be taken is the directory name from which to read the XML files
 	 */
 	public static void main(String[] args) {
-		logger.info("starting...");
+		logger.info("Main program is starting");
 		try{
 			String directory = null;
 			List<Request> requestList = null;
@@ -36,35 +36,35 @@ public class Main {
 	
 			if (requestList != null) {
 				for (Request currRequest : requestList) {
-					//if not using proxy set proxy null
+					// if proxy is not requested then setting it to null
 					if(currRequest.getProxies() == null){
 						ScenarioManager.run(currRequest, null);
 					}
-					//run on list of proxies
+					// iterate over the list of proxies and run the scenarios
 					else{
 						List<String> proxyList = currRequest.getProxies();
 						for (String proxy : proxyList) {
+							logger.info("This scenario will use the proxy " + proxy);
 							ScenarioManager.run(currRequest, proxy);
 						}
 					}
 	
 				}
 			}
-		}catch(Exception e){
-			logger.error("finished with errors");
+		} catch(Exception e){ 
+			logger.error("Main program finished with errors");
 		}
-		logger.info("finished successfully :-); :-) :-)");
+		logger.info("Main program finished successfully");
 	}
 
 	/***
-	 * iterate over the files list from given directory(only XML) if no files or
-	 * get an error in process return null else return list of requests
-	 * 
-	 * @param directory
-	 * @return List<Request>
+	 * Iterate over the XML files in the given directory
+	 * Returns null if couldn't read atleast one XML file
+	 * @param directory path
+	 * @return list of request objects
 	 */
 	public static List<Request> getRequestList(String directory) {
-		logger.info("Get scenarios xml files");
+		logger.info("Started retrieval of scenarios XML files");
 		List<Request> requestList = new ArrayList<Request>();
 		File dir = new File(directory);
 		if (dir.exists() && dir.isDirectory()) {
@@ -74,27 +74,27 @@ public class Main {
 					String filename = child.getName();
 					if (filename.endsWith(".xml") || filename.endsWith(".XML")) {
 						try {
+							logger.info("Trying to retrieve scenario of XML filename " + filename);
 							Request request = getXMLRequest(child.getPath());
 							requestList.add(request);
 						} catch (JAXBException e) {
-							logger.error("Getting scenario files",e);
+							logger.error("Retreiving scenario XML file for filename " + filename + " failed",e);
 							return null;
 						}
 					}
 				}
-				logger.info("finished getting scenario xml files");
+				logger.info("Retrieved all scenario xml files successfully");
 				return requestList;
 			}
 		}
-        
 		return null;
 	}
 
 	/***
-	 * read xml files into request object with JAXB
+	 * Read XML files into request object with JAXB
 	 * 
-	 * @param fileName
-	 * @return
+	 * @param fileName to be read
+	 * @returns the request object that represents the XML file
 	 * @throws JAXBException
 	 */
 	public static Request getXMLRequest(String fileName) throws JAXBException {

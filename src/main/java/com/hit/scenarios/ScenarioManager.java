@@ -14,30 +14,33 @@ import com.hit.util.User;
 
 public class ScenarioManager {
 	private static Logger logger = Logger.getLogger(ScenarioManager.class);
-	/***
-	 * 	this class will read an xml file and parse it to a request
-	 * currently hard coded
-	 * basically need to read the xml file in the main method and create req objects.
-	 * these req objects will be sent to the scenario manager to get the right application
-	 * and send the action to this application
+
+	/**
+	 * Runs a scenario by the request and proxy
+	 * 
+	 * @param request
+	 *            to be ran
+	 * @param Proxy
+	 *            if needed
 	 */
-	public static void run(Request request, String Proxy) {
+	public static void run(Request request, String proxy) {
 		WebDriver driver;
 		IApplication app;
 		ApplicationRequest applicationRequest = new ApplicationRequest(request.getAction());
-		
+
 		/***
-		 * request will create either a driver with tor
-		 * or a regular login (that might include proxy if proxy != null)
-		 * but if tor is set to true - will not check for proxy address
+		 * request will create either a driver with Tor or a regular login (that
+		 * might include proxy if proxy != null) but if tor is set to true -
+		 * will not check for proxy address
 		 */
-		
 		if (request.isUseTor() == true) {
+			logger.info("Using Tor to run this scenario");
 			driver = DriverUtils.getDriverWithTor(request.isUseIncognito());
 		} else {
-			driver = DriverUtils.getDriver(request.isUseIncognito(), Proxy);
+			driver = DriverUtils.getDriver(request.isUseIncognito(), proxy);
 		}
-		logger.info("inCognito:" + request.isUseIncognito());
+
+		logger.info("Is incognito:" + request.isUseIncognito());
 		logger.info("Number of runs:" + request.getNumOfRuns());
 		try {
 			switch (request.getApplication().toUpperCase()) {
@@ -54,21 +57,22 @@ public class ScenarioManager {
 				app = ApplicationFactory.GetBoxApplication(driver);
 				break;
 			default:
-				throw new NullPointerException("Please enter a valid application");
+				logger.error("An invalid application has been requested");
+				throw new NullPointerException("An invalid application has been requested");
 			}
 
 			int numberOfRuns = request.getNumOfRuns();
 			List<User> usersList = request.getUsers();
-			//iterate the action as the number of run
+
+			// Run the action numberOfRuns times
 			for (int i = 0; i < numberOfRuns; i++) {
-				for(User currUser : usersList){
+				for (User currUser : usersList) {
 					applicationRequest.setUser(currUser);
 					app.doAction(applicationRequest);
 				}
-				
 			}
 		} catch (Exception ex) {
-			logger.error("running", ex);
+			logger.error("Scenario Manager failed to run this scenario");
 			throw ex;
 		} finally {
 			driver.quit();
@@ -76,10 +80,5 @@ public class ScenarioManager {
 				DriverUtils.endTorSession();
 			}
 		}
-
-
-		
-
-
 	}
 }

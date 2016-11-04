@@ -1,7 +1,12 @@
 package com.hit.applications;
 
+/**
+ * Application interface
+ */
 public interface IApplication {
-	// Interface for an application
-	// runs an action and returns true if the action succeeded
+
+	/***
+	 * doAction method determines the action to be ran and runs the requested method accordingly
+	 */
 	public boolean doAction(ApplicationRequest applicationRequest);
 }
