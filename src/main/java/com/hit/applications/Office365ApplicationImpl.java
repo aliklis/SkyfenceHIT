@@ -12,6 +12,7 @@ import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -54,8 +55,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		switch (applicationRequest.getAction()) {
 		case "LOGIN":
 			return login(true);
-		case "LOGIN_ONE_DRIVE":
-			return loginOneDrive();
+		//case "LOGIN_ONE_DRIVE":
+			//return loginOneDrive();
 		case "MULTIPLE_ACTIONS":
 			return MultipleActions();
 		case "UPLOAD_FILE":
@@ -140,35 +141,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		this.loggedIn = true;
 		if (logoutAtEnd)
 			logout();
-		return true;
-	}
-
-	/***
-	 * login to oneDrive
-	 * 
-	 * @return
-	 */
-	private boolean loginOneDrive() {
-		logger.info("logging to OneDrive");
-		boolean officeLogin = login(false);
-		if (officeLogin != true)
-			return false;
-		try {
-			// if got here - expects to already be in login state in office365
-			driver.get("https://portal.office.com/Home");
-			WebElement OneDriveForwardURLElem = driver.findElement(By.id("ShellDocuments_link"));
-			String URL = OneDriveForwardURLElem.getAttribute("href");
-			driver.get(URL);
-		} catch (Exception e) {
-			logger.error("could not log into login oneDrive", e);
-			return false;
-		}
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			logger.error("error in sleeping method", e);
-			return false;
-		}
 		return true;
 	}
 
@@ -462,81 +434,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 	
-//	private boolean uploadFile() {
-//		if (login(false)) {
-//			try {
-//				logger.info("upload file");
-//				// open oneDrive
-//				goToOneDrive();
-//
-//				// get directory of images
-//				String filesDir = GetProperties.getProp("uploadFilesDir");
-//				// get list of all the image names
-//				List<String> fileNamesList = getListFilesNames(filesDir);
-//				// check if there are images in the folder
-//				if (fileNamesList.size() > 0) {
-//
-//					WebElement a = null;
-//					// Click On new button label on top navigation
-//					List<WebElement> elementList = driver.findElements(By.tagName("span"));
-//					String myElement = null;
-//					Point coordinates = null;
-//					for (WebElement element : elementList) {
-//						try {
-//							myElement = element.getAttribute("class");
-//						} catch (Exception e) {
-//							continue;
-//						}
-//						if (myElement != null) {
-//							// check if the a tag is on word
-//							if (myElement.contains("commandText")) {
-//								if (element.getText().equals("Upload")) {
-//									a = element;
-//									// get coordinates of the element
-//									coordinates = element.getLocation();
-//									break;
-//								}
-//							}
-//						}
-//					}
-//					for (int i = 0; i < fileNamesList.size(); i++) {
-//
-//						a.click();
-//
-//						// move mouse to the coordinates
-//						Robot robot = new Robot();
-//						robot.mouseMove(coordinates.getX(), coordinates.getY() + 120);
-//
-//						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText",
-//								"Files");
-//
-//						StringSelection strSelection;
-//						// set the copy value as the next image name in the
-//						// order
-//						strSelection = new StringSelection(fileNamesList.get(i));
-//						Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
-//
-//						try {
-//							// paste the value in the dialog box and press enter
-//							DriverUtils.doRobot(robot);
-//						} catch (InterruptedException e) {
-//							logger.error("robot action", e);
-//						}
-//						robot.mouseMove(150, 150);
-//						DriverUtils.sleep(300);
-//					}
-//
-//				} else {
-//					logger.warn("no files in the folder: " + filesDir);
-//				}
-//			} catch (Exception e) {
-//				logger.error("could not upload file", e);
-//				return false;
-//			}
-//		}
-//		return true;
-//	}
-
 	/***
 	 * delete action, can delete or file or folder
 	 * 
@@ -1093,8 +990,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 				logger.info("export contacts");
 				// open people
-				driver.get(
-						"https://outlook.office.com/owa/?realm=veridinet.com&exsvurl=1&ll-cc=1033&modurl=2&path=/people");
+				goToPeople();
 				DriverUtils.sleep(15000);
 
 				// run on all the buttons
@@ -1152,9 +1048,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			try {
 				logger.info("open mail box");
 				// open people
-				driver.get(
-						"https://outlook.office.com/owa/?realm=veridinet.com&exsvurl=1&ll-cc=1033&modurl=2&path=/people");
-				DriverUtils.sleep(5000);
+				goToPeople();
+				DriverUtils.sleep(15000);
 
 				// click on the icon in the top right corner
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "class", "ms-Icon--person", null);
@@ -1164,23 +1059,22 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Open another mailbox...",
 						"Open another mailbox...");
 
-				// get the user to open the mail box
-				String mailBox = GetProperties.getProp("mailbox");
-				// write the user mail box to the textbox
+				// get the mailbox address to open
+				String mailBox = GetProperties.getProp("mailboxToOpen");
+				
+				// write the address to the textbox
 				WebElement element = driver.findElement(By.xpath("//form[@class='_fp_3']/input[@role='textbox']"));
-				Point elementPoint = element.getLocation();
 				element.sendKeys(mailBox);
 				DriverUtils.sleep(2000);
-
-				// move mouse to the coordinates and click
-				Robot robot = new Robot();
-				robot.mouseMove(elementPoint.getX(), elementPoint.getY() + 50);
-				robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+				
+				// click enter for the first choice
+				element.sendKeys(Keys.ENTER);
 				DriverUtils.sleep(2000);
-
-				// try to press on open button, if the user exist its gone open
-				// else nothing will happen
-				driver.findElement(By.xpath("//button[@class='o365button']")).click();
+				
+				// finds and clicks the open button
+				WebElement openButton = driver.findElement(By.xpath("//span[contains(text(), 'Open')]/parent::button"));
+				openButton.click();
+				DriverUtils.sleep(2000);
 
 			} catch (Exception e) {
 				logger.error("could not open mail box", e);
@@ -1272,11 +1166,37 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	/***
 	 * redirect to oneDrive
 	 */
+//	private void goToOneDrive() {
+//		// open oneDrive
+//		driver.get("https://veridinet-my.sharepoint.com/_layouts/15/MySite.aspx?MySiteRedirect=AllDocuments");
+//		DriverUtils.sleep(8000);
+//		closeTeachingBubbleDiv();
+//	}
+	
 	private void goToOneDrive() {
-		// open oneDrive
-		driver.get("https://veridinet-my.sharepoint.com/_layouts/15/MySite.aspx?MySiteRedirect=AllDocuments");
-		DriverUtils.sleep(8000);
-		closeTeachingBubbleDiv();
+		try {
+			// if got here - expects to already be in login state in office365
+			driver.get(GetProperties.getProp("office365Portal"));
+			WebElement OneDriveForwardURLElem = driver.findElement(By.id("ShellDocuments_link"));
+			String URL = OneDriveForwardURLElem.getAttribute("href");
+			driver.get(URL);
+			DriverUtils.sleep(8000);
+			closeTeachingBubbleDiv();
+		} catch (Exception e) {
+			logger.error("could not log into oneDrive", e);
+		}
+	}
+	
+	private void goToPeople() {
+		try {
+			// if got here - expects to already be in login state in office365
+			driver.get(GetProperties.getProp("office365Portal"));
+			WebElement PeopleForwardURLElem = driver.findElement(By.id("ShellPeople_link"));
+			String URL = PeopleForwardURLElem.getAttribute("href");
+			driver.get(URL);
+		} catch (Exception e) {
+			logger.error("could not log into people", e);
+		}
 	}
 
 	/***
