@@ -126,7 +126,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			logout();
 		return true;
 	}
-
 	/***
 	 * Log out from office365
 	 * 
@@ -426,7 +425,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				for (String fileName : fileNames) {
 					clickableElement = getFileElement(fileName);
 					clickableElement.click();
-					DriverUtils.sleep(2000);
 					openActionOneDriveMenu("Rename");
 					newName = new BigInteger(130, random).toString(32);
 					// write the renamed name to the file
@@ -435,7 +433,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					// click on the save button in dialog box
 					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save",
 							-1, 1);
-					DriverUtils.sleep(2000);
 				}
 			} catch (Exception e) {
 				logger.error("Could not rename all the files in OneDrive", e);

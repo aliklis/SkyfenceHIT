@@ -70,3 +70,27 @@
 [INFO] 21:30:17 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
 [INFO] 21:30:17 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
 [INFO] 21:30:23 Main main - Main program finished successfully
+[INFO] 21:33:17 Main main - Main program is starting
+[INFO] 21:33:17 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 21:33:17 Main getRequestList - Trying to retrieve scenario of XML filename Office365_ExportContacts.xml
+[INFO] 21:33:17 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 21:33:17 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 21:33:20 ScenarioManager run - Is incognito:false
+[INFO] 21:33:20 ScenarioManager run - Number of runs:1
+[INFO] 21:33:20 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 21:33:20 Office365ApplicationImpl doAction - Action requested : EXPORT_CONTACTS
+[INFO] 21:33:20 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 21:33:34 Office365ApplicationImpl exportContacts - Trying to export contacts
+[INFO] 21:34:01 Main main - Main program finished successfully
+[INFO] 21:34:23 Main main - Main program is starting
+[INFO] 21:34:23 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 21:34:23 Main getRequestList - Trying to retrieve scenario of XML filename Office365_ExportContacts.xml
+[INFO] 21:34:23 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 21:34:23 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 21:34:26 ScenarioManager run - Is incognito:false
+[INFO] 21:34:26 ScenarioManager run - Number of runs:1
+[INFO] 21:34:26 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 21:34:26 Office365ApplicationImpl doAction - Action requested : EXPORT_CONTACTS
+[INFO] 21:34:26 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 21:34:40 Office365ApplicationImpl exportContacts - Trying to export contacts
+[INFO] 21:35:06 Main main - Main program finished successfully
