@@ -10,3 +10,63 @@
 [INFO] 20:56:51 Office365ApplicationImpl login - Trying to log in to office365
 [INFO] 20:57:00 Office365ApplicationImpl downloadAll - Trying to download all the files from OneDrive
 [INFO] 20:57:56 Main main - Main program finished successfully
+[INFO] 21:26:16 Main main - Main program is starting
+[INFO] 21:26:16 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 21:26:16 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Rename_All.xml
+[INFO] 21:26:16 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 21:26:16 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 21:26:18 ScenarioManager run - Is incognito:false
+[INFO] 21:26:18 ScenarioManager run - Number of runs:1
+[INFO] 21:26:18 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 21:26:18 Office365ApplicationImpl doAction - Action requested : RENAME_ALL
+[INFO] 21:26:18 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 21:26:31 Office365ApplicationImpl renameAll - Trying to rename all the files in OneDrive
+[INFO] 21:26:39 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 21:26:39 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 21:26:40 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 21:26:43 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 21:26:43 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 21:26:44 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 21:26:46 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 21:26:46 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 21:26:46 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 21:26:48 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 21:26:48 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 21:26:48 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 21:26:50 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 21:26:50 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 21:26:50 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 21:26:53 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 21:26:53 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 21:26:53 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 21:26:59 Main main - Main program finished successfully
+[INFO] 21:29:32 Main main - Main program is starting
+[INFO] 21:29:32 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 21:29:32 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Rename_All.xml
+[INFO] 21:29:32 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 21:29:32 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 21:29:35 ScenarioManager run - Is incognito:false
+[INFO] 21:29:35 ScenarioManager run - Number of runs:1
+[INFO] 21:29:35 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 21:29:35 Office365ApplicationImpl doAction - Action requested : RENAME_ALL
+[INFO] 21:29:35 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 21:29:44 Office365ApplicationImpl renameAll - Trying to rename all the files in OneDrive
+[INFO] 21:29:55 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 21:29:55 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 21:29:55 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 21:29:59 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 21:29:59 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 21:29:59 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 21:30:04 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 21:30:04 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 21:30:04 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 21:30:08 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 21:30:08 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 21:30:09 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 21:30:13 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 21:30:13 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 21:30:13 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 21:30:17 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 21:30:17 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 21:30:17 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 21:30:23 Main main - Main program finished successfully

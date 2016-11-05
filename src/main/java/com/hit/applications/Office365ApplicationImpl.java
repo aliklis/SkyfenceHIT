@@ -49,8 +49,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		switch (applicationRequest.getAction()) {
 		case "LOGIN":
 			return login(true);
-		case "MULTIPLE_ACTIONS":
-			return MultipleActions();
 		case "UPLOAD_FILES":
 			return uploadFiles();
 		case "DOWNLOAD_FILE":
@@ -127,74 +125,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		if (logoutAtEnd)
 			logout();
 		return true;
-	}
-
-	/***
-	 * Run multiple different actions
-	 * 
-	 * @return a boolean indicating that the run succeeded
-	 */
-	private boolean MultipleActions() {
-		if (login(false)) {
-			SendFeedBack();
-			OpenWordTemplate();
-		}
-		return true;
-	}
-
-	/***
-	 * Click on the word icon
-	 * 
-	 * @throws InterruptedException
-	 */
-	private void OpenWordTemplate() {
-		logger.info("Opening word template");
-		// go to last opened window in the web
-		DriverUtils.getLastOpenedWindow(driver);
-
-		// click on the element for word template
-		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "a", "ng-href",
-				"https://office.live.com/start/Word.aspx?auth=2", null, -1, 1);
-
-		DriverUtils.sleep(2000);
-
-		// go to last opened window in the web
-		DriverUtils.getLastOpenedWindow(driver);
-
-		// click on feedback from help menu
-		DriverUtils.clickOnElementByID(driver, "template_TM00002003", -1);
-
-	}
-
-	/***
-	 * Send feedback
-	 * 
-	 * @throws InterruptedException
-	 */
-	private void SendFeedBack() {
-		logger.info("Sending feedback");
-		try {
-			// click on the help menu
-			DriverUtils.clickOnElementByID(driver, "O365_MainLink_Help", -1);
-
-			// click on feedback from help menu
-			DriverUtils.clickOnElementByID(driver, "O365_SubLink_ShellFeedback", -1);
-
-			// go to last opened window in the web
-			DriverUtils.getLastOpenedWindow(driver);
-
-			// insert comment in feedback
-
-			DriverUtils.writeToHTMLElement(driver, "txtFeedbackComment", "nice service, thank you!!!", -1);
-			// send feedback
-			DriverUtils.clickOnElementByID(driver, "btnFeedbackSubmit", -1);
-			// sleep for a second, let the feedback to be sent
-			DriverUtils.sleep(1000);
-			// close feedBack windows
-			DriverUtils.clickOnElementByID(driver, "btnFeedbackClose", -1);
-		} catch (Exception e) {
-			logger.error("Could not send feedback", e);
-		}
 	}
 
 	/***
@@ -496,6 +426,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				for (String fileName : fileNames) {
 					clickableElement = getFileElement(fileName);
 					clickableElement.click();
+					DriverUtils.sleep(2000);
 					openActionOneDriveMenu("Rename");
 					newName = new BigInteger(130, random).toString(32);
 					// write the renamed name to the file
