@@ -623,3 +623,33 @@ Session ID: 5a68da7b8f5631152d923487b4fd6fe6
 [INFO] 18:02:47 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
 [INFO] 18:02:47 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
 [INFO] 18:02:53 Main main - Main program finished successfully
+[INFO] 18:07:42 Main main - Main program is starting
+[INFO] 18:07:42 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:07:42 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:07:42 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:07:42 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:07:44 ScenarioManager run - Is incognito:false
+[INFO] 18:07:44 ScenarioManager run - Number of runs:1
+[INFO] 18:07:44 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:07:44 Office365ApplicationImpl doAction - Action requested : RENAME_RANDOM
+[ERROR] 18:07:44 Office365ApplicationImpl doAction - The requested action is not available
+[ERROR] 18:07:44 ScenarioManager run - Scenario Manager failed to run this scenario
+[ERROR] 18:07:45 Main main - Main program finished with errors
+[INFO] 18:07:45 Main main - Main program finished successfully
+[INFO] 18:08:17 Main main - Main program is starting
+[INFO] 18:08:17 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:08:17 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:08:17 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:08:17 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:08:20 ScenarioManager run - Is incognito:false
+[INFO] 18:08:20 ScenarioManager run - Number of runs:1
+[INFO] 18:08:20 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:08:20 Office365ApplicationImpl doAction - Action requested : RENAME_RANDOM_FILE
+[INFO] 18:08:20 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:08:30 Office365ApplicationImpl renameRandomFile - Trying to rename a random file in OneDrive
+[ERROR] 18:08:55 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[WARN] 18:08:55 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 18:09:07 DriverUtils writeToHTMLElement2 - Trying to write to element with id ItemNameEditor-input
+[INFO] 18:09:07 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 18:09:07 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 18:09:13 Main main - Main program finished successfully

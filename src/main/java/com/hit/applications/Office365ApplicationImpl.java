@@ -67,7 +67,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		case "RENAME_FILE":
 			return renameFile();
 		case "RENAME_RANDOM_FILE":
-			return renameRadnomFile();
+			return renameRandomFile();
 		case "RENAME_ALL":
 			return renameAll();
 		case "CREATE_FOLDER":
@@ -489,7 +489,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				logger.info("Trying to rename all the files in OneDrive");
 				// open oneDrive
 				goToOneDrive();
-				
+
 				// get a list of all file names
 				List<WebElement> elements = driver.findElements(By.xpath(
 						"(//span[@class='DetailsRow-cell name']/child::a[not(contains(@aria-label,'Folder'))])"));
@@ -501,10 +501,10 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				WebElement clickableElement = null;
 				SecureRandom random = new SecureRandom();
 				String newName;
-				
+
 				List<String> fileNames = new ArrayList<String>();
-				
-				for(WebElement fileNameElement : elements) {
+
+				for (WebElement fileNameElement : elements) {
 					fileNames.add(fileNameElement.getText());
 				}
 				for (String fileName : fileNames) {
@@ -533,82 +533,38 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	 * 
 	 * @return
 	 */
-	private boolean renameRadnomFile() {
+	private boolean renameRandomFile() {
 		if (login(false)) {
 			try {
-
 				logger.info("Trying to rename a random file in OneDrive");
 				// open oneDrive
 				goToOneDrive();
 
-				List<String> fileNames = new ArrayList<String>();
+				List<WebElement> elementFiles = getFilesInOneDrive();
 
-				// get list of all file names
-				List<WebElement> elementList = driver.findElements(By.tagName("span"));
-				String myElement = null;
-				for (WebElement element : elementList) {
-					try {
-						myElement = element.getAttribute("class");
-					} catch (Exception e) {
-						continue;
-					}
-					if (myElement != null) {
-						// check if the a tag is on word
-						if (myElement.contains("DetailsRow-cell name")) {
-							WebElement aElement = element.findElements(By.tagName("a")).get(0);
-							String myElementAttribute = null;
-							try {
-								myElementAttribute = aElement.getAttribute("aria-label");
-							} catch (Exception e) {
-								continue;
-							}
-							if (myElementAttribute != null) {
-								// check if the a tag is on word
-								if (!myElementAttribute.contains("Folder")) {
-									fileNames.add(aElement.getText());
-								}
-							}
-						}
-					}
+				if (elementFiles == null | elementFiles.size() == 0) {
+					return false;
 				}
-
+				// Randomly choose a file to download from the list
 				Random rand = new Random();
-				int n = rand.nextInt(fileNames.size());
-				// clicking on the file
-				String fileName = fileNames.get(n);
+				int n = rand.nextInt(elementFiles.size());
 
-				List<WebElement> myElementList = driver.findElements(By.tagName("div"));
-				for (WebElement element : myElementList) {
-					try {
-						myElement = element.getAttribute("aria-label");
-					} catch (Exception e) {
-						continue;
-					}
-					if (myElement != null) {
-						// check if the a tag is on word
-						if (myElement.contains(fileName)) {
+				// Click on the file
+				elementFiles.get(n).click();
 
-							// clicking on the file
-							element.click();
-							DriverUtils.sleep(200);
-							// click on rename icon in top bar
-							open3Dots("Rename");
-							// write the renamed name to the file
-							WebElement renameTextBox = driver.findElement(By.id("ItemNameEditor-input"));
-							// generate random string for renaming
-							SecureRandom random = new SecureRandom();
-							String newName = new BigInteger(130, random).toString(32);
-							// clear the oldName from the textbox
-							renameTextBox.clear();
-							// write the new name
-							renameTextBox.sendKeys(newName);
-							// click on the save button
-							DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label",
-									"Save");
-							DriverUtils.sleep(2000);
-						}
-					}
-				}
+				DriverUtils.sleep(200);
+
+				open3Dots("Rename");
+				SecureRandom random = new SecureRandom();
+				String newName = new BigInteger(130, random).toString(32);
+
+				// write the renamed name to the file
+				DriverUtils.writeToHTMLElement2(driver, "ItemNameEditor-input", newName, -1);
+
+				// click on the save button in dialog box
+				DriverUtils.clickOnElementByTagNameAndAttribute2(driver, "span", "class", "ms-Button-label", "Save",
+						-1);
+				DriverUtils.sleep(2000);
 			} catch (Exception e) {
 				logger.error("Could not rename a random file in OneDrive", e);
 				return false;
