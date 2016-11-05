@@ -14,15 +14,13 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 public final class TorBrowser {
 	private static Logger logger = Logger.getLogger(TorBrowser.class);
 	
-	/***
-	 * ctor
-	 */
 	private TorBrowser(){}
 	
 	/***
-	 * start tor browser
+	 * Start Tor browser
 	 */
 	static void Start(){
+		logger.info("Trying to start Tor");
 		File torProfileDir = new File(
 				GetProperties.getProp("torProfileDir"));
 		FirefoxBinary binary = new FirefoxBinary(new File(
@@ -34,34 +32,34 @@ public final class TorBrowser {
 		} catch (IOException e) {
 			logger.error("failed starting tor",e);
 		}
-		// sleep for 10 seconds while tor browser is starting
+		// sleep while tor browser is starting
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
-			logger.error("In command Thread.sleep",e);
+			logger.error("Failed to sleep 5 seconds in Tor startup",e);
 		}
 	}
 	
 	/***
-	 * stop tor browser
+	 * Stop Tor browser
 	 */
 	static void Stop(){
+		logger.info("Trying to stop Tor browser");
 	    Runtime rt = Runtime.getRuntime();
-
 	    try {
 	        rt.exec("taskkill /F /IM firefox.exe");
 	        while (processIsRunning("firefox.exe")) {
 	            Thread.sleep(100);
 	        }
 	    } catch (Exception e) {
-	    	logger.error("stoping browser",e);
+	    	logger.error("Failed stopping Tor browser",e);
 	    }
 	}
 	
 	/***
-	 * run processes
-	 * @param process
-	 * @return
+	 * Check if a process is running
+	 * @param process to check for
+	 * @return true if it is running
 	 */
 	private static boolean processIsRunning(String process) {
 	    boolean processIsRunning = false;

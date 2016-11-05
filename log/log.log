@@ -1,0 +1,215 @@
+[INFO] 13:36:17 Main main - Main program is starting
+[INFO] 13:36:17 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 13:36:17 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Upload_File.xml
+[INFO] 13:36:17 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 13:36:17 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 13:36:20 ScenarioManager run - Is incognito:false
+[INFO] 13:36:20 ScenarioManager run - Number of runs:1
+[INFO] 13:36:20 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 13:36:20 Office365ApplicationImpl doAction - Action requested :UPLOAD_FILE
+[INFO] 13:36:20 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 13:36:24 Office365ApplicationImpl uploadFile - Trying to upload files to OneDrive
+[INFO] 13:36:24 Office365ApplicationImpl uploadFile - Pay attention that files that have no content will be rejected by OneDrive
+[ERROR] 13:36:24 Office365ApplicationImpl goToOneDrive - could not log into oneDrive
+org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 3 milliseconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir3272_18580}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: effb3ffffcf7f8ebc18647037c9ef05d
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:316)
+	at com.hit.applications.Office365ApplicationImpl.goToOneDrive(Office365ApplicationImpl.java:1131)
+	at com.hit.applications.Office365ApplicationImpl.uploadFile(Office365ApplicationImpl.java:366)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:54)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:71)
+	at main.Main.main(Main.java:41)
+[ERROR] 13:36:24 Office365ApplicationImpl uploadFile - Could not upload files to OneDrive
+org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir3272_18580}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: effb3ffffcf7f8ebc18647037c9ef05d
+*** Element info: {Using=tag name, value=span}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:388)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementsByTagName(RemoteWebDriver.java:453)
+	at org.openqa.selenium.By$ByTagName.findElements(By.java:327)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:351)
+	at com.hit.applications.Office365ApplicationImpl.uploadFile(Office365ApplicationImpl.java:379)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:54)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:71)
+	at main.Main.main(Main.java:41)
+[INFO] 13:36:25 Main main - Main program finished successfully
+[INFO] 13:37:16 Main main - Main program is starting
+[INFO] 13:37:16 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 13:37:16 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Upload_File.xml
+[INFO] 13:37:17 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 13:37:17 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 13:37:19 ScenarioManager run - Is incognito:false
+[INFO] 13:37:19 ScenarioManager run - Number of runs:1
+[INFO] 13:37:19 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 13:37:19 Office365ApplicationImpl doAction - Action requested :UPLOAD_FILE
+[INFO] 13:37:19 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 13:37:23 Office365ApplicationImpl uploadFile - Trying to upload files to OneDrive
+[INFO] 13:37:23 Office365ApplicationImpl uploadFile - Pay attention that files that have no content will be rejected by OneDrive
+[ERROR] 13:37:23 Office365ApplicationImpl goToOneDrive - could not log into oneDrive
+org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4 milliseconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir6700_32234}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: cff0bd417e90545b4a6c703e5b1257a2
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:316)
+	at com.hit.applications.Office365ApplicationImpl.goToOneDrive(Office365ApplicationImpl.java:1131)
+	at com.hit.applications.Office365ApplicationImpl.uploadFile(Office365ApplicationImpl.java:366)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:54)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:71)
+	at main.Main.main(Main.java:41)
+[ERROR] 13:37:23 Office365ApplicationImpl uploadFile - Could not upload files to OneDrive
+org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 3 milliseconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir6700_32234}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: cff0bd417e90545b4a6c703e5b1257a2
+*** Element info: {Using=tag name, value=span}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:388)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementsByTagName(RemoteWebDriver.java:453)
+	at org.openqa.selenium.By$ByTagName.findElements(By.java:327)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:351)
+	at com.hit.applications.Office365ApplicationImpl.uploadFile(Office365ApplicationImpl.java:379)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:54)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:71)
+	at main.Main.main(Main.java:41)
+[INFO] 13:37:24 Main main - Main program finished successfully
+[INFO] 13:37:33 Main main - Main program is starting
+[INFO] 13:37:33 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 13:37:33 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Login_Tor.xml
+[INFO] 13:37:33 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 13:37:33 ScenarioManager run - Using Tor to run this scenario
+[INFO] 13:37:33 TorBrowser Start - Trying to start Tor
+[INFO] 13:37:40 ScenarioManager run - Is incognito:false
+[INFO] 13:37:40 ScenarioManager run - Number of runs:1
+[INFO] 13:37:40 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 13:37:40 Office365ApplicationImpl doAction - Action requested :LOGIN
+[INFO] 13:37:40 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 13:38:25 Office365ApplicationImpl logout - Trying to log out from office365
+[ERROR] 13:38:35 Office365ApplicationImpl logout - Could not log out from office365
+org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"class name","selector":"o365cs-me-tile-nophoto-username-container"}
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.05 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir3644_25195}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 2312b8ae544dbdeee66ee66b27a815cb
+*** Element info: {Using=class name, value=o365cs-me-tile-nophoto-username-container}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:477)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at com.hit.applications.Office365ApplicationImpl.logout(Office365ApplicationImpl.java:207)
+	at com.hit.applications.Office365ApplicationImpl.login(Office365ApplicationImpl.java:127)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:50)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:71)
+	at main.Main.main(Main.java:41)
+[INFO] 13:38:36 TorBrowser Stop - Trying to stop Tor browser
+[INFO] 13:38:36 Main main - Main program finished successfully
+[INFO] 13:43:02 Main main - Main program is starting
+[INFO] 13:43:02 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 13:43:02 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Login_Tor.xml
+[INFO] 13:43:02 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 13:43:02 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 13:43:33 Main main - Main program is starting
+[INFO] 13:43:33 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 13:43:33 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Login_Tor.xml
+[INFO] 13:43:33 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 13:43:33 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 13:43:36 ScenarioManager run - Is incognito:false
+[INFO] 13:43:36 ScenarioManager run - Number of runs:1
+[INFO] 13:43:36 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 13:43:36 Office365ApplicationImpl doAction - Action requested :LOGIN
+[INFO] 13:43:36 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 13:43:45 Office365ApplicationImpl logout - Trying to log out from office365
+[ERROR] 13:43:55 Office365ApplicationImpl logout - Could not log out from office365
+org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"class name","selector":"o365cs-me-tile-nophoto-username-container"}
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.07 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir2852_21835}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 384c8152d9a646051f5bdc4e4109ce67
+*** Element info: {Using=class name, value=o365cs-me-tile-nophoto-username-container}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:477)
+	at org.openqa.selenium.By$ByClassName.findElement(By.java:391)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at com.hit.applications.Office365ApplicationImpl.logout(Office365ApplicationImpl.java:207)
+	at com.hit.applications.Office365ApplicationImpl.login(Office365ApplicationImpl.java:127)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:50)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:71)
+	at main.Main.main(Main.java:41)
+[INFO] 13:43:56 Main main - Main program finished successfully

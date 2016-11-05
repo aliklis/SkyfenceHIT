@@ -20,23 +20,21 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class DriverUtils {
 	private static Logger logger = Logger.getLogger(DriverUtils.class);
 	
-	// used to initialize startup options for chrome driver and firefox driver
+	// used to initialize startup options for chrome web driver
 	static {
-		File gecko = new File(GetProperties.getProp("geckoLocation"));
-		System.setProperty("webdriver.gecko.driver", gecko.getAbsolutePath());
-
 		File chromeDriver = new File(GetProperties.getProp("chromeDriverLocation"));
 		System.setProperty("webdriver.chrome.driver", chromeDriver.getAbsolutePath());
 	}
 	
 	/***
-	 * the web driver 
-	 * @param incognito
-	 * @param proxyAddr
+	 * Initialize a new webdriver
+	 * @param incognito if the driver is needed to be in incognito mode
+	 * @param proxyAddr proxy to be set
 	 * @return
 	 */
 	public static WebDriver getDriver(boolean incognito, String proxyAddr) {
 		try{
+			logger.info("Trying to initialize a new webdriver");
 			WebDriver driver;
 			DesiredCapabilities cap = new DesiredCapabilities();
 			ChromeOptions options = new ChromeOptions();
@@ -62,14 +60,14 @@ public class DriverUtils {
 			return driver;
 		}
 		catch(Exception e){
-			logger.error("getting driver", e);
+			logger.error("Failed to initialize a web driver", e);
 		}
 		return null;
 	}
 	
 	/***
-	 * get web driver with tor
-	 * @param incognito
+	 * Initialize a web driver with Tor
+	 * @param incognito if needed to be in incognito mode
 	 * @return
 	 */
 	public static WebDriver getDriverWithTor(boolean incognito){
@@ -96,38 +94,38 @@ public class DriverUtils {
 			
 			return driver;
 		}catch(Exception e){
-			logger.error("getting driver with tor", e);
+			logger.error("Failed to initialize a driver with Tor", e);
 		}
 		return null;
 	}
 	
 	/***
-	 * stop tor session
+	 * Stop Tor session
 	 */
 	public static void endTorSession(){
 		try{
 		TorBrowser.Stop();
 		}catch(Exception e){
-			logger.error("stopping to session");
+			logger.error("Failed to stop Tor session");
 		}
 	}
 	
 	/***
-	 * get the last opened window
+	 * Get the last opened window
 	 */
 	public static void getLastOpenedWindow(WebDriver driver){
 		try{
-			//get the last opened window
+			// get the last opened window
 			for(String handle : driver.getWindowHandles()) {
 			    driver.switchTo().window(handle);
 			}
 		}catch(Exception e){
-			logger.error("Driver: " + driver);	
+			logger.error("Failed to get the last opened window",e);	
 		}
 	}
 	
 	/***
-	 * sleep
+	 * A sleep function
 	 * @param milliseconds
 	 */
 	public static void sleep(int milliseconds){
@@ -139,7 +137,7 @@ public class DriverUtils {
 	}
 
 	/***
-	 * click on an element in the web
+	 * Click on an element in the web
 	 * @param name
 	 */
 	public static void clickOnElementByID(WebDriver driver, String name){
@@ -149,12 +147,12 @@ public class DriverUtils {
 				element.click();
 			}
 		}catch(Exception e){
-			logger.error("Driver: " + driver +" name: " + name);
+			logger.error("Could not click on the element name: " + name, e);
 		}
 	}
 	
 	/***
-	 * write to an element(form/text/input) in the web
+	 * Write to an element(form/text/input) in the web
 	 * @param name
 	 * @param text
 	 */
@@ -165,12 +163,12 @@ public class DriverUtils {
 			element.sendKeys(text);
 		}
 		}catch(Exception e){
-			logger.error("Driver: " + driver +" name: " + name + " text: " + text, e);
+			logger.error("Could not write to the element " + name, e);
 		}
 	}
 
 	/***
-	 * click on an element by tagname with specified attribute and specified value
+	 * Click on an element by tagname with specified attribute and specified value
 	 * @param tagName
 	 * @param attributeName
 	 * @param attributeValue
@@ -202,20 +200,18 @@ public class DriverUtils {
 				}
 			}
 		}catch(Exception e){
-			logger.error("Driver: " + driver +" tagName: " + tagName + " attributeName: " + attributeName + " attributeValue: " + attributeValue, e);
+			logger.error("Could not write to the element with tagName: " + tagName + " and attributeName: " + attributeName + " and attributeValue: " + attributeValue, e);
 		}
 	}
 	
 	
 	/***
-	 * trigger robot action
+	 * Trigger a robot action
 	 * @param robot
 	 * @throws InterruptedException
 	 */
 	public static void doRobot(Robot robot) throws InterruptedException{
-		
 		Thread.sleep(2000);
-
 		//PASTE, ENTER
 		robot.keyPress(KeyEvent.VK_CONTROL);
 		robot.keyPress(KeyEvent.VK_V);
@@ -223,7 +219,6 @@ public class DriverUtils {
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
-		
 		Thread.sleep(3000);
 	}
 	
