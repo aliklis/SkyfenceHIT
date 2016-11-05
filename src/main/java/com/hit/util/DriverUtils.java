@@ -3,7 +3,6 @@ package com.hit.util;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
@@ -146,28 +145,15 @@ public class DriverUtils {
 	}
 
 	/***
-	 * Click on an element in the web
-	 * 
-	 * @param name
+	 * Click on an element by its id
 	 */
-	public static void clickOnElementByID(WebDriver driver, String name) {
-		try {
-			WebElement element = driver.findElement(By.id(name));
-			if (element != null) {
-				element.click();
-			}
-		} catch (Exception e) {
-			logger.error("Could not click on the element name: " + name, e);
-		}
-	}
-
-	public static void clickOnElementByID2(WebDriver driver, String id, int optionalTimeOut) {
+	public static void clickOnElementByID(WebDriver driver, String id, int optionalTimeout) throws NoSuchElementException, TimeoutException {
 		logger.info("Trying to click on element with id " + id);
 		int waitTimeOut;
-		if(optionalTimeOut < 0)
+		if (optionalTimeout < 0)
 			waitTimeOut = Integer.parseInt(GetProperties.getProp("webDriverWaitTimeOutPageLoad"));
 		else
-			waitTimeOut = optionalTimeOut;
+			waitTimeOut = optionalTimeout;
 		WebDriverWait wait = new WebDriverWait(driver, waitTimeOut);
 		try {
 			WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
@@ -183,39 +169,28 @@ public class DriverUtils {
 	}
 
 	/***
-	 * Write to an element(form/text/input) in the web
-	 * 
-	 * @param name
-	 * @param text
+	 * Write to an element by its id
 	 */
-	public static void writeToHTMLElement(WebDriver driver, String name, String text) {
-		try {
-			WebElement element = driver.findElement(By.id(name));
-			if (element != null) {
-				element.sendKeys(text);
-			}
-		} catch (Exception e) {
-			logger.error("Could not write to the element " + name, e);
-		}
-	}
-	
-	public static void writeToHTMLElement2(WebDriver driver, String id, String text, int optionalTimeOut) {
+	public static void writeToHTMLElement(WebDriver driver, String id, String text, int optionalTimeout) throws Exception {
 		logger.info("Trying to write to element with id " + id);
 		try {
-			WebElement element = findElementById(driver, id, optionalTimeOut);
+			WebElement element = findElementById(driver, id, optionalTimeout);
 			element.sendKeys(text);
 		} catch (Exception e) {
 			logger.error("Could not write to the element with id " + id, e);
 		}
 	}
-	
-	public static WebElement findElementById(WebDriver driver, String id, int optionalTimeOut) {
+
+	/**
+	 * Find an element by its id
+	 */
+	public static WebElement findElementById(WebDriver driver, String id, int optionalTimeout) throws NoSuchElementException, TimeoutException {
 		logger.info("Trying to find element with id : " + id);
 		int waitTimeOut;
-		if(optionalTimeOut < 0)
+		if (optionalTimeout < 0)
 			waitTimeOut = Integer.parseInt(GetProperties.getProp("webDriverWaitTimeOutPageLoad"));
 		else
-			waitTimeOut = optionalTimeOut;
+			waitTimeOut = optionalTimeout;
 		WebDriverWait wait = new WebDriverWait(driver, waitTimeOut);
 		try {
 			WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(id)));
@@ -230,88 +205,44 @@ public class DriverUtils {
 		}
 	}
 
-	/***
-	 * Click on an element by tagname with specified attribute and specified
-	 * value
-	 * 
-	 * @param tagName
-	 * @param attributeName
-	 * @param attributeValue
-	 */
-	public static void clickOnElementByTagNameAndAttribute(WebDriver driver, String tagName, String attributeName,
-			String attributeValue, String text) {
-		logger.info("Trying to click on element with tag name " + tagName + " and attribute " + attributeName
-				+ " and attribute value " + attributeValue + " and text " + text);
-		boolean didFind = false;
-		try {
-			List<WebElement> elementList = driver.findElements(By.tagName(tagName));
-			String myElement = null;
-			for (WebElement element : elementList) {
-				try {
-					myElement = element.getAttribute(attributeName);
-				} catch (Exception e) {
-					continue;
-				}
-				if (myElement != null) {
-					// check if the a tag is on word
-					if (myElement.contains(attributeValue)) {
-						if (text != null) {
-							if (element.getText().equals(text)) {
-								element.click();
-								didFind = true;
-								break;
-							}
-						} else {
-							element.click();
-							didFind = true;
-							break;
-						}
-					}
-				}
-			}
-			if (!didFind) {
-				logger.warn("The element with tag name " + tagName + " and attributeName " + attributeName
-						+ " and attributeValue " + attributeValue + " and text " + text + " was not found");
-			}
-		} catch (Exception e) {
-			logger.error("Could not write to the element with tag name: " + tagName + " and attributeName: "
-					+ attributeName + " and attributeValue: " + attributeValue + " and text " + text, e);
-		}
-	}
-
-	public static void clickOnElementByTagNameAndAttribute2(WebDriver driver, String tagName, String attributeName,
-			String attributeValue, String text, int optionalTimeOut) {
+	public static WebElement findElementByXPathExpression(WebDriver driver, String xpath, int optionalTimeout) throws NoSuchElementException, TimeoutException {
 		int waitTimeOut;
-		if(optionalTimeOut < 0)
+		if (optionalTimeout < 0)
 			waitTimeOut = Integer.parseInt(GetProperties.getProp("webDriverWaitTimeOutPageLoad"));
 		else
-			waitTimeOut = optionalTimeOut;
+			waitTimeOut = optionalTimeout;
+		WebDriverWait wait = new WebDriverWait(driver, waitTimeOut);
+		try {
+			WebElement element = null;
+				element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath)));
+			return element;
+		} catch (NoSuchElementException e) {
+			logger.error("Could not find the requested element with the requested xpath");
+			throw e;
+		} catch (TimeoutException e) {
+			logger.error("Could not find the requested element with the requested xpath");
+			throw e;
+		}
+	}
+	public static WebElement findElementByTagNameAndAttribute(WebDriver driver, String tagName, String attributeName,
+			String attributeValue, String text, int optionalTimeout, int indexOfElement) throws NoSuchElementException, TimeoutException {
+		int waitTimeOut;
+		if (optionalTimeout < 0)
+			waitTimeOut = Integer.parseInt(GetProperties.getProp("webDriverWaitTimeOutPageLoad"));
+		else
+			waitTimeOut = optionalTimeout;
 		WebDriverWait wait = new WebDriverWait(driver, waitTimeOut);
 		try {
 			WebElement element = null;
 			if (text == null) {
 				element = wait.until(ExpectedConditions.visibilityOfElementLocated(
-						By.xpath("//" + tagName + "[@" + attributeName + "='" + attributeValue + "']")));
+						By.xpath("(//" + tagName + "[contains(@" + attributeName + ",'" + attributeValue + "')])["+ indexOfElement +"]")));
 			} else {
-				element = wait.until(ExpectedConditions.visibilityOfElementLocated(
-						By.xpath("//" + tagName + "[@" + attributeName + "='" + attributeValue + "' and contains(text(), '" + text + "')]")));
+				element = wait
+						.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//" + tagName + "[contains(@"
+								+ attributeName + ",'" + attributeValue + "') and contains(text(), '" + text + "')])["+indexOfElement + "]")));
 			}
-
-			// if got here - element is not null, otherwise the 'until' will
-			// throw a timeout exception
-			
-			element.click();
-			// if (flag) {
-			// logger.info("The element with tag name " + tagName + " and
-			// attributeName " + attributeName
-			// + " and attributeValue " + attributeValue + " and text " + text +
-			// " has been clicked");
-			// } else {
-			// logger.info("The element with tag name " + tagName + " and
-			// attributeName " + attributeName
-			// + " and attributeValue " + attributeValue + " and text " + text +
-			// " has not been clicked");
-			// }
+			return element;
 		} catch (NoSuchElementException e) {
 			logger.error("The element with tag name " + tagName + " and attributeName " + attributeName
 					+ " and attributeValue " + attributeValue + " and text " + text + " was not found");
@@ -319,6 +250,31 @@ public class DriverUtils {
 		} catch (TimeoutException e) {
 			logger.error("The element with tag name " + tagName + " and attributeName " + attributeName
 					+ " and attributeValue " + attributeValue + " and text " + text + " was not found");
+			throw e;
+		}
+	}
+
+	/***
+	 * Click on an element by its tag name, attribute name and value and
+	 * optionally its text
+	 */
+	public static void clickOnElementByTagNameAndAttribute(WebDriver driver, String tagName, String attributeName,
+			String attributeValue, String text, int optionalTimeOut, int indexOfElement) {
+		try {
+			WebElement element = null;
+
+			// if got here - element is not null, otherwise an exception would
+			// have been risen
+			element = findElementByTagNameAndAttribute(driver, tagName, attributeName, attributeValue, text,
+					optionalTimeOut, indexOfElement);
+			element.click();
+		} catch (NoSuchElementException e) {
+			logger.error("The element with tag name " + tagName + " and attributeName " + attributeName
+					+ " and attributeValue " + attributeValue + " and text " + text + " was not clicked");
+			throw e;
+		} catch (TimeoutException e) {
+			logger.error("The element with tag name " + tagName + " and attributeName " + attributeName
+					+ " and attributeValue " + attributeValue + " and text " + text + " was not clicked");
 			throw e;
 		}
 	}

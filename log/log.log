@@ -653,3 +653,1275 @@ Session ID: 5a68da7b8f5631152d923487b4fd6fe6
 [INFO] 18:09:07 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
 [INFO] 18:09:07 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
 [INFO] 18:09:13 Main main - Main program finished successfully
+[INFO] 18:13:40 Main main - Main program is starting
+[INFO] 18:13:40 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:13:40 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:13:40 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:13:40 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:13:43 ScenarioManager run - Is incognito:false
+[INFO] 18:13:43 ScenarioManager run - Number of runs:1
+[INFO] 18:13:43 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:13:43 Office365ApplicationImpl doAction - Action requested : LOGIN
+[INFO] 18:13:43 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:13:53 Office365ApplicationImpl logout - Trying to log out from office365
+[INFO] 18:13:56 DriverUtils clickOnElementByID - Trying to click on element with id O365_SubLink_ShellSignout
+[INFO] 18:13:58 DriverUtils clickOnElementByID - Successfully clicked on element with id O365_SubLink_ShellSignout
+[INFO] 18:14:02 Main main - Main program finished successfully
+[INFO] 18:15:03 Main main - Main program is starting
+[INFO] 18:15:03 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:15:03 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:15:03 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:15:03 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:15:06 ScenarioManager run - Is incognito:false
+[INFO] 18:15:06 ScenarioManager run - Number of runs:1
+[INFO] 18:15:06 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:15:06 Office365ApplicationImpl doAction - Action requested : SHARE_FOLDER
+[INFO] 18:15:06 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:15:15 Office365ApplicationImpl shareFolder - Trying to share a folder in OneDrive
+[ERROR] 18:15:35 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[WARN] 18:15:35 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 18:15:35 DriverUtils clickOnElementByTagNameAndAttribute - Trying to click on element with tag name span and attribute aria-label and attribute value Folder and text null
+[INFO] 18:15:39 DriverUtils writeToHTMLElement2 - Trying to write to element with id PeoplePicker-textBox
+[INFO] 18:15:39 DriverUtils findElementById - Trying to find element with id : PeoplePicker-textBox
+[INFO] 18:15:40 DriverUtils findElementById - Successfully found element with id : PeoplePicker-textBox
+[INFO] 18:15:41 DriverUtils clickOnElementByTagNameAndAttribute - Trying to click on element with tag name span and attribute class and attribute value ms-Button-label and text Share
+[INFO] 18:15:47 Main main - Main program finished successfully
+[INFO] 18:17:48 Main main - Main program is starting
+[INFO] 18:17:48 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:17:48 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:17:48 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:17:48 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:17:51 ScenarioManager run - Is incognito:false
+[INFO] 18:17:51 ScenarioManager run - Number of runs:1
+[INFO] 18:17:51 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:17:51 Office365ApplicationImpl doAction - Action requested : DELETE_FOLDER
+[INFO] 18:17:51 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:18:00 Office365ApplicationImpl delete - Trying to delete folder
+[ERROR] 18:18:16 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[WARN] 18:18:16 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 18:18:23 Main main - Main program finished successfully
+[INFO] 18:19:52 Main main - Main program is starting
+[INFO] 18:19:52 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:19:52 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:19:52 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:19:52 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:19:55 ScenarioManager run - Is incognito:false
+[INFO] 18:19:55 ScenarioManager run - Number of runs:1
+[INFO] 18:19:55 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:19:55 Office365ApplicationImpl doAction - Action requested : EMPTY_RECYCLE_BIN
+[INFO] 18:19:55 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:20:04 Office365ApplicationImpl emptyRecycleBin - Trying to empty OneDrive recycle bin
+[ERROR] 18:20:22 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[WARN] 18:20:22 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 18:20:26 Main main - Main program finished successfully
+[INFO] 18:21:17 Main main - Main program is starting
+[INFO] 18:21:17 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:21:17 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:21:17 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:21:17 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:21:20 ScenarioManager run - Is incognito:false
+[INFO] 18:21:20 ScenarioManager run - Number of runs:1
+[INFO] 18:21:20 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:21:20 Office365ApplicationImpl doAction - Action requested : SHARE_FOLDER
+[INFO] 18:21:20 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:21:29 Office365ApplicationImpl shareFolder - Trying to share a folder in OneDrive
+[ERROR] 18:21:44 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[WARN] 18:21:44 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 18:21:46 DriverUtils writeToHTMLElement - Trying to write to element with id PeoplePicker-textBox
+[INFO] 18:21:46 DriverUtils findElementById - Trying to find element with id : PeoplePicker-textBox
+[INFO] 18:21:47 DriverUtils findElementById - Successfully found element with id : PeoplePicker-textBox
+[INFO] 18:21:52 Main main - Main program finished successfully
+[INFO] 18:23:23 Main main - Main program is starting
+[INFO] 18:23:23 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:23:23 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:23:23 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:23:23 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:23:25 ScenarioManager run - Is incognito:false
+[INFO] 18:23:25 ScenarioManager run - Number of runs:1
+[INFO] 18:23:25 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:23:25 Office365ApplicationImpl doAction - Action requested : SHARE_FILE
+[INFO] 18:23:25 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:23:35 Office365ApplicationImpl shareFile - Share a file in OneDrive
+[ERROR] 18:23:51 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[WARN] 18:23:51 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 18:23:51 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[INFO] 18:24:02 DriverUtils clickOnElementByTagNameAndAttribute - Trying to click on element with tag name div and attribute title and attribute value Other things you can do with the selected items and text null
+[WARN] 18:24:06 DriverUtils clickOnElementByTagNameAndAttribute - The element with tag name div and attributeName title and attributeValue Other things you can do with the selected items and text null was not found
+[INFO] 18:24:06 DriverUtils clickOnElementByTagNameAndAttribute - Trying to click on element with tag name span and attribute class and attribute value commandText and text Share
+[INFO] 18:24:08 DriverUtils writeToHTMLElement - Trying to write to element with id PeoplePicker-textBox
+[INFO] 18:24:08 DriverUtils findElementById - Trying to find element with id : PeoplePicker-textBox
+[INFO] 18:24:09 DriverUtils findElementById - Successfully found element with id : PeoplePicker-textBox
+[INFO] 18:24:13 Main main - Main program finished successfully
+[INFO] 18:24:58 Main main - Main program is starting
+[INFO] 18:24:58 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:24:58 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:24:58 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:24:58 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:25:01 ScenarioManager run - Is incognito:false
+[INFO] 18:25:01 ScenarioManager run - Number of runs:1
+[INFO] 18:25:01 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:25:01 Office365ApplicationImpl doAction - Action requested : EXPORT_CONTACTS
+[INFO] 18:25:01 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:25:10 Office365ApplicationImpl exportContacts - Trying to export contacts
+[ERROR] 18:25:59 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue o365buttonLabel _fce_r and text Export was not found
+[ERROR] 18:25:59 Office365ApplicationImpl exportContacts - Could not export contacts
+org.openqa.selenium.TimeoutException: Timed out after 20 seconds waiting for visibility of element located by By.xpath: //span[@class='o365buttonLabel _fce_r' and contains(text(), 'Export')]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir492_25358}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 93072fda090d97202596d89774494160
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.util.DriverUtils.clickOnElementByTagNameAndAttribute2(DriverUtils.java:267)
+	at com.hit.applications.Office365ApplicationImpl.exportContacts(Office365ApplicationImpl.java:894)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:84)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[@class='o365buttonLabel _fce_r' and contains(text(), 'Export')]"}
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.04 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir492_25358}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 93072fda090d97202596d89774494160
+*** Element info: {Using=xpath, value=//span[@class='o365buttonLabel _fce_r' and contains(text(), 'Export')]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 5 more
+[INFO] 18:26:03 Main main - Main program finished successfully
+[INFO] 18:29:25 Main main - Main program is starting
+[INFO] 18:29:25 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:29:25 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:29:25 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:29:25 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:29:28 ScenarioManager run - Is incognito:false
+[INFO] 18:29:28 ScenarioManager run - Number of runs:1
+[INFO] 18:29:28 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:29:28 Office365ApplicationImpl doAction - Action requested : EXPORT_CONTACTS
+[INFO] 18:29:28 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:29:43 Office365ApplicationImpl exportContacts - Trying to export contacts
+[INFO] 18:30:21 Main main - Main program finished successfully
+[INFO] 18:31:12 Main main - Main program is starting
+[INFO] 18:31:12 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:31:12 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:31:12 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:31:12 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:31:15 ScenarioManager run - Is incognito:false
+[INFO] 18:31:15 ScenarioManager run - Number of runs:1
+[INFO] 18:31:15 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:31:15 Office365ApplicationImpl doAction - Action requested : EXPORT_CONTACTS
+[INFO] 18:31:15 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:31:23 Office365ApplicationImpl exportContacts - Trying to export contacts
+[ERROR] 18:31:49 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName aria-label and attributeValue Export contacts and text Export contacts was not found
+[ERROR] 18:31:49 Office365ApplicationImpl exportContacts - Could not export contacts
+org.openqa.selenium.TimeoutException: Timed out after 20 seconds waiting for visibility of element located by By.xpath: //span[contains(@aria-label,'Export contacts') and contains(text(), 'Export contacts')]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir5216_31999}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 8f2bde5c525fc483dd672226292960b6
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.util.DriverUtils.clickOnElementByTagNameAndAttribute2(DriverUtils.java:268)
+	at com.hit.applications.Office365ApplicationImpl.exportContacts(Office365ApplicationImpl.java:887)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:84)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(@aria-label,'Export contacts') and contains(text(), 'Export contacts')]"}
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20.54 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir5216_31999}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 8f2bde5c525fc483dd672226292960b6
+*** Element info: {Using=xpath, value=//span[contains(@aria-label,'Export contacts') and contains(text(), 'Export contacts')]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 5 more
+[INFO] 18:31:53 Main main - Main program finished successfully
+[INFO] 18:36:20 Main main - Main program is starting
+[INFO] 18:36:20 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:36:20 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:36:20 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:36:20 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:36:23 ScenarioManager run - Is incognito:false
+[INFO] 18:36:23 ScenarioManager run - Number of runs:1
+[INFO] 18:36:23 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:36:23 Office365ApplicationImpl doAction - Action requested : EXPORT_CONTACTS
+[INFO] 18:36:23 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:36:32 Office365ApplicationImpl exportContacts - Trying to export contacts
+[INFO] 18:37:06 Main main - Main program finished successfully
+[INFO] 18:40:29 Main main - Main program is starting
+[INFO] 18:40:29 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:40:29 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:40:29 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:40:29 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:40:32 ScenarioManager run - Is incognito:false
+[INFO] 18:40:32 ScenarioManager run - Number of runs:1
+[INFO] 18:40:32 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:40:32 Office365ApplicationImpl doAction - Action requested : EXPORT_CONTACTS
+[INFO] 18:40:32 Office365ApplicationImpl login - Trying to log in to office365
+[ERROR] 18:40:32 Office365ApplicationImpl login - Could not log in to office 365
+org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 5 milliseconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir7612_24417}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 390d425d68c91c964ad252060f4c5e8e
+*** Element info: {Using=name, value=login}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:461)
+	at org.openqa.selenium.By$ByName.findElement(By.java:303)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at com.hit.applications.Office365ApplicationImpl.login(Office365ApplicationImpl.java:113)
+	at com.hit.applications.Office365ApplicationImpl.exportContacts(Office365ApplicationImpl.java:854)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:84)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+[INFO] 18:40:38 Main main - Main program is starting
+[INFO] 18:40:38 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:40:38 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:40:38 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:40:38 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:40:41 ScenarioManager run - Is incognito:false
+[INFO] 18:40:41 ScenarioManager run - Number of runs:1
+[INFO] 18:40:41 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:40:41 Office365ApplicationImpl doAction - Action requested : EXPORT_CONTACTS
+[INFO] 18:40:41 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:40:50 Office365ApplicationImpl exportContacts - Trying to export contacts
+[ERROR] 18:41:16 DriverUtils findElementByTagNameAndAttribute - The element with tag name button and attributeName title and attributeValue Manage and text null was not found
+[ERROR] 18:41:16 Office365ApplicationImpl exportContacts - Could not export contacts
+org.openqa.selenium.TimeoutException: Timed out after 20 seconds waiting for visibility of element located by By.xpath: //button[contains(@title,'Manage')]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir8020_27995}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: d98be067e097389d250a449ac4042404
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.util.DriverUtils.findElementByTagNameAndAttribute(DriverUtils.java:220)
+	at com.hit.applications.Office365ApplicationImpl.exportContacts(Office365ApplicationImpl.java:862)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:84)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+[INFO] 18:41:20 Main main - Main program finished successfully
+[INFO] 18:49:09 Main main - Main program is starting
+[INFO] 18:49:09 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:49:09 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:49:09 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:49:09 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:49:12 ScenarioManager run - Is incognito:false
+[INFO] 18:49:12 ScenarioManager run - Number of runs:1
+[INFO] 18:49:12 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:49:12 Office365ApplicationImpl doAction - Action requested : EXPORT_CONTACTS
+[INFO] 18:49:12 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:49:22 Office365ApplicationImpl exportContacts - Trying to export contacts
+[ERROR] 18:49:49 DriverUtils findElementByTagNameAndAttribute - The element with tag name button and attributeName title and attributeValue Manage and text null was not found
+[ERROR] 18:49:49 Office365ApplicationImpl exportContacts - Could not export contacts
+org.openqa.selenium.TimeoutException: Timed out after 20 seconds waiting for visibility of element located by By.xpath: //button[contains(@title,'Manage')][1]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir5884_10677}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: cdae091f86183324f6bc8c747a032ed2
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.util.DriverUtils.findElementByTagNameAndAttribute(DriverUtils.java:220)
+	at com.hit.applications.Office365ApplicationImpl.exportContacts(Office365ApplicationImpl.java:862)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:84)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+[INFO] 18:49:53 Main main - Main program finished successfully
+[INFO] 18:50:15 Main main - Main program is starting
+[INFO] 18:50:15 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:50:15 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:50:15 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:50:15 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:50:18 ScenarioManager run - Is incognito:false
+[INFO] 18:50:18 ScenarioManager run - Number of runs:1
+[INFO] 18:50:18 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:50:18 Office365ApplicationImpl doAction - Action requested : EXPORT_CONTACTS
+[INFO] 18:50:18 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:50:26 Office365ApplicationImpl exportContacts - Trying to export contacts
+[ERROR] 18:50:53 DriverUtils findElementByTagNameAndAttribute - The element with tag name button and attributeName title and attributeValue Manage and text null was not found
+[ERROR] 18:50:53 Office365ApplicationImpl exportContacts - Could not export contacts
+org.openqa.selenium.TimeoutException: Timed out after 20 seconds waiting for visibility of element located by By.xpath: //button[contains(@title,'Manage')][2]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir7764_19756}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 9d52c04bf89ad0fb3148a7826a849b10
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.util.DriverUtils.findElementByTagNameAndAttribute(DriverUtils.java:220)
+	at com.hit.applications.Office365ApplicationImpl.exportContacts(Office365ApplicationImpl.java:862)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:84)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//button[contains(@title,'Manage')][2]"}
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.22 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir7764_19756}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 9d52c04bf89ad0fb3148a7826a849b10
+*** Element info: {Using=xpath, value=//button[contains(@title,'Manage')][2]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 5 more
+[INFO] 18:50:56 Main main - Main program finished successfully
+[INFO] 18:51:59 Main main - Main program is starting
+[INFO] 18:51:59 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:51:59 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:52:00 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:52:00 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:52:02 ScenarioManager run - Is incognito:false
+[INFO] 18:52:02 ScenarioManager run - Number of runs:1
+[INFO] 18:52:02 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:52:02 Office365ApplicationImpl doAction - Action requested : DELETE_FILE
+[INFO] 18:52:02 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:52:12 Office365ApplicationImpl delete - Trying to delete file
+[ERROR] 18:52:28 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 18:52:28 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 18:52:28 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 18:52:28 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[ERROR] 18:52:58 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue ms-Button-label and text Delete was not found
+[ERROR] 18:52:58 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue ms-Button-label and text Delete was not clicked
+[ERROR] 18:52:58 Office365ApplicationImpl delete - Could not delete file
+org.openqa.selenium.TimeoutException: Timed out after 20 seconds waiting for visibility of element located by By.xpath: //span[contains(@class,'ms-Button-label') and contains(text(), 'Delete')][0]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir3060_4655}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 69f4753711b292499c2476ea85fd60a7
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.util.DriverUtils.findElementByTagNameAndAttribute(DriverUtils.java:224)
+	at com.hit.util.DriverUtils.clickOnElementByTagNameAndAttribute2(DriverUtils.java:291)
+	at com.hit.applications.Office365ApplicationImpl.clickDelete(Office365ApplicationImpl.java:1019)
+	at com.hit.applications.Office365ApplicationImpl.deleteFile(Office365ApplicationImpl.java:426)
+	at com.hit.applications.Office365ApplicationImpl.delete(Office365ApplicationImpl.java:395)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:64)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(@class,'ms-Button-label') and contains(text(), 'Delete')][0]"}
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.06 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir3060_4655}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 69f4753711b292499c2476ea85fd60a7
+*** Element info: {Using=xpath, value=//span[contains(@class,'ms-Button-label') and contains(text(), 'Delete')][0]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 8 more
+[INFO] 18:53:02 Main main - Main program finished successfully
+[INFO] 18:53:18 Main main - Main program is starting
+[INFO] 18:53:18 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:53:18 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:53:18 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:53:18 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:53:21 ScenarioManager run - Is incognito:false
+[INFO] 18:53:21 ScenarioManager run - Number of runs:1
+[INFO] 18:53:21 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:53:21 Office365ApplicationImpl doAction - Action requested : DELETE_FILE
+[INFO] 18:53:21 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:53:29 Office365ApplicationImpl delete - Trying to delete file
+[ERROR] 18:53:44 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 18:53:44 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 18:53:44 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 18:53:44 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[INFO] 18:53:59 Main main - Main program finished successfully
+[INFO] 18:57:29 Main main - Main program is starting
+[INFO] 18:57:29 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 18:57:29 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 18:57:29 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 18:57:29 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 18:57:32 ScenarioManager run - Is incognito:false
+[INFO] 18:57:32 ScenarioManager run - Number of runs:1
+[INFO] 18:57:32 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 18:57:32 Office365ApplicationImpl doAction - Action requested : EXPORT_CONTACTS
+[INFO] 18:57:32 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 18:57:44 Office365ApplicationImpl exportContacts - Trying to export contacts
+[INFO] 19:03:25 Main main - Main program is starting
+[INFO] 19:03:25 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:03:25 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:03:25 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:03:25 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:03:27 ScenarioManager run - Is incognito:false
+[INFO] 19:03:27 ScenarioManager run - Number of runs:1
+[INFO] 19:03:28 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:03:28 Office365ApplicationImpl doAction - Action requested : EXPORT_CONTACTS
+[INFO] 19:03:28 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:03:40 Office365ApplicationImpl exportContacts - Trying to export contacts
+[INFO] 19:03:59 Main main - Main program finished successfully
+[INFO] 19:05:22 Main main - Main program is starting
+[INFO] 19:05:22 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:05:22 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:05:22 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:05:22 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:05:25 ScenarioManager run - Is incognito:false
+[INFO] 19:05:25 ScenarioManager run - Number of runs:1
+[INFO] 19:05:25 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:05:25 Office365ApplicationImpl doAction - Action requested : EXPORT_CONTACTS
+[INFO] 19:05:25 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:05:34 Office365ApplicationImpl exportContacts - Trying to export contacts
+[INFO] 19:06:01 Main main - Main program finished successfully
+[INFO] 19:11:07 Main main - Main program is starting
+[INFO] 19:11:07 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:11:07 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:11:07 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:11:07 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:11:10 ScenarioManager run - Is incognito:false
+[INFO] 19:11:10 ScenarioManager run - Number of runs:1
+[INFO] 19:11:10 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:11:10 Office365ApplicationImpl doAction - Action requested : OPEN_MAILBOX
+[ERROR] 19:11:10 Office365ApplicationImpl doAction - The requested action is not available
+[ERROR] 19:11:10 ScenarioManager run - Scenario Manager failed to run this scenario
+[ERROR] 19:11:11 Main main - Main program finished with errors
+[INFO] 19:11:11 Main main - Main program finished successfully
+[INFO] 19:11:21 Main main - Main program is starting
+[INFO] 19:11:21 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:11:21 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:11:21 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:11:21 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:11:23 ScenarioManager run - Is incognito:false
+[INFO] 19:11:23 ScenarioManager run - Number of runs:1
+[INFO] 19:11:23 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:11:23 Office365ApplicationImpl doAction - Action requested : OPEN_MAILBOX
+[INFO] 19:11:23 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:11:34 Office365ApplicationImpl openMailBox - Trying to open another mailbox
+[INFO] 19:12:06 Main main - Main program finished successfully
+[INFO] 19:13:15 Main main - Main program is starting
+[INFO] 19:13:15 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:13:15 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:13:15 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:13:15 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:13:18 ScenarioManager run - Is incognito:false
+[INFO] 19:13:18 ScenarioManager run - Number of runs:1
+[INFO] 19:13:18 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:13:18 Office365ApplicationImpl doAction - Action requested : OPEN_MAILBOX
+[INFO] 19:13:18 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:13:26 Office365ApplicationImpl openMailBox - Trying to open another mailbox
+[ERROR] 19:13:55 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName aria-label and attributeValue Open another mailbox... and text Open another mailbox... was not found
+[ERROR] 19:13:55 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName aria-label and attributeValue Open another mailbox... and text Open another mailbox... was not clicked
+[ERROR] 19:13:55 Office365ApplicationImpl openMailBox - Could not open another mailbox
+org.openqa.selenium.TimeoutException: Timed out after 20 seconds waiting for visibility of element located by By.xpath: (//span[contains(@aria-label,'Open another mailbox...') and contains(text(), 'Open another mailbox...')])[1]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir7400_14542}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 3bda75fe5ecaade675044e7f0c9e2af8
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.util.DriverUtils.findElementByTagNameAndAttribute(DriverUtils.java:243)
+	at com.hit.util.DriverUtils.clickOnElementByTagNameAndAttribute2(DriverUtils.java:310)
+	at com.hit.applications.Office365ApplicationImpl.openMailBox(Office365ApplicationImpl.java:896)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:86)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"(//span[contains(@aria-label,'Open another mailbox...') and contains(text(), 'Open another mailbox...')])[1]"}
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20.18 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir7400_14542}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 3bda75fe5ecaade675044e7f0c9e2af8
+*** Element info: {Using=xpath, value=(//span[contains(@aria-label,'Open another mailbox...') and contains(text(), 'Open another mailbox...')])[1]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 6 more
+[INFO] 19:13:59 Main main - Main program finished successfully
+[INFO] 19:14:22 Main main - Main program is starting
+[INFO] 19:14:22 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:14:22 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:14:22 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:14:22 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:14:25 ScenarioManager run - Is incognito:false
+[INFO] 19:14:25 ScenarioManager run - Number of runs:1
+[INFO] 19:14:25 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:14:25 Office365ApplicationImpl doAction - Action requested : OPEN_MAILBOX
+[INFO] 19:14:25 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:14:35 Office365ApplicationImpl openMailBox - Trying to open another mailbox
+[INFO] 19:15:05 Main main - Main program finished successfully
+[INFO] 19:16:17 Main main - Main program is starting
+[INFO] 19:16:17 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:16:17 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:16:17 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:16:17 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:16:20 ScenarioManager run - Is incognito:false
+[INFO] 19:16:20 ScenarioManager run - Number of runs:1
+[INFO] 19:16:20 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:16:20 Office365ApplicationImpl doAction - Action requested : OPEN_MAILBOX
+[INFO] 19:16:20 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:16:30 Office365ApplicationImpl openMailBox - Trying to open another mailbox
+[ERROR] 19:17:03 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName aria-label and attributeValue Open another mailbox... and text Open another mailbox... was not found
+[ERROR] 19:17:03 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName aria-label and attributeValue Open another mailbox... and text Open another mailbox... was not clicked
+[ERROR] 19:17:03 Office365ApplicationImpl openMailBox - Could not open another mailbox
+org.openqa.selenium.TimeoutException: Timed out after 20 seconds waiting for visibility of element located by By.xpath: (//span[contains(@aria-label,'Open another mailbox...') and contains(text(), 'Open another mailbox...')])[1]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir6560_23228}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: f4a2c7fdd8922a5c3b950a6121c6ae9a
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.util.DriverUtils.findElementByTagNameAndAttribute(DriverUtils.java:243)
+	at com.hit.util.DriverUtils.clickOnElementByTagNameAndAttribute2(DriverUtils.java:310)
+	at com.hit.applications.Office365ApplicationImpl.openMailBox(Office365ApplicationImpl.java:897)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:86)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"(//span[contains(@aria-label,'Open another mailbox...') and contains(text(), 'Open another mailbox...')])[1]"}
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 20.61 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir6560_23228}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: f4a2c7fdd8922a5c3b950a6121c6ae9a
+*** Element info: {Using=xpath, value=(//span[contains(@aria-label,'Open another mailbox...') and contains(text(), 'Open another mailbox...')])[1]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 6 more
+[INFO] 19:17:07 Main main - Main program finished successfully
+[INFO] 19:18:20 Main main - Main program is starting
+[INFO] 19:18:20 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:18:20 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:18:20 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:18:20 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:18:23 ScenarioManager run - Is incognito:false
+[INFO] 19:18:23 ScenarioManager run - Number of runs:1
+[INFO] 19:18:23 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:18:23 Office365ApplicationImpl doAction - Action requested : OPEN_MAILBOX
+[INFO] 19:18:23 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:18:38 Office365ApplicationImpl openMailBox - Trying to open another mailbox
+[ERROR] 19:19:16 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName aria-label and attributeValue Open another mailbox... and text Open another mailbox... was not found
+[ERROR] 19:19:16 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName aria-label and attributeValue Open another mailbox... and text Open another mailbox... was not clicked
+[ERROR] 19:19:16 Office365ApplicationImpl openMailBox - Could not open another mailbox
+org.openqa.selenium.TimeoutException: Timed out after 20 seconds waiting for visibility of element located by By.xpath: (//span[contains(@aria-label,'Open another mailbox...') and contains(text(), 'Open another mailbox...')])[1]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir6852_6663}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 65f045d3ad67d66e756fbc90836ddfdf
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.util.DriverUtils.findElementByTagNameAndAttribute(DriverUtils.java:243)
+	at com.hit.util.DriverUtils.clickOnElementByTagNameAndAttribute2(DriverUtils.java:310)
+	at com.hit.applications.Office365ApplicationImpl.openMailBox(Office365ApplicationImpl.java:899)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:86)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"(//span[contains(@aria-label,'Open another mailbox...') and contains(text(), 'Open another mailbox...')])[1]"}
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.63 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir6852_6663}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 65f045d3ad67d66e756fbc90836ddfdf
+*** Element info: {Using=xpath, value=(//span[contains(@aria-label,'Open another mailbox...') and contains(text(), 'Open another mailbox...')])[1]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 6 more
+[INFO] 19:19:20 Main main - Main program finished successfully
+[INFO] 19:20:05 Main main - Main program is starting
+[INFO] 19:20:05 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:20:05 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:20:05 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:20:05 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:20:07 ScenarioManager run - Is incognito:false
+[INFO] 19:20:07 ScenarioManager run - Number of runs:1
+[INFO] 19:20:07 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:20:07 Office365ApplicationImpl doAction - Action requested : OPEN_MAILBOX
+[INFO] 19:20:07 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:20:16 Office365ApplicationImpl openMailBox - Trying to open another mailbox
+[INFO] 19:30:16 Main main - Main program is starting
+[INFO] 19:30:16 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:30:16 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:30:16 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:30:16 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:30:19 ScenarioManager run - Is incognito:false
+[INFO] 19:30:19 ScenarioManager run - Number of runs:1
+[INFO] 19:30:19 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:30:19 Office365ApplicationImpl doAction - Action requested : RENAME_FILE
+[INFO] 19:30:19 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:30:29 Office365ApplicationImpl renameFile - Trying to rename the first file in OneDrive
+[INFO] 19:30:39 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[INFO] 19:30:45 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 19:30:45 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 19:30:45 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 19:30:49 Main main - Main program finished successfully
+[INFO] 19:31:59 Main main - Main program is starting
+[INFO] 19:31:59 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:31:59 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:31:59 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:31:59 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:32:02 ScenarioManager run - Is incognito:false
+[INFO] 19:32:02 ScenarioManager run - Number of runs:1
+[INFO] 19:32:02 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:32:02 Office365ApplicationImpl doAction - Action requested : RENAME_FILE
+[INFO] 19:32:02 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:32:15 Office365ApplicationImpl renameFile - Trying to rename the first file in OneDrive
+[ERROR] 19:32:30 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 19:32:30 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 19:32:30 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 19:32:30 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[ERROR] 19:32:58 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:32:58 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[ERROR] 19:33:19 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:33:19 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[ERROR] 19:33:19 Office365ApplicationImpl renameFile - Could not rename the first file in OneDrive
+org.openqa.selenium.TimeoutException: Timed out after 20 seconds waiting for visibility of element located by By.xpath: (//span[contains(@class,'commandText') and contains(text(), 'Rename')])[1]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir3284_14214}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 71de096c66d2a8c24f567089c54ed249
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.util.DriverUtils.findElementByTagNameAndAttribute(DriverUtils.java:243)
+	at com.hit.util.DriverUtils.clickOnElementByTagNameAndAttribute2(DriverUtils.java:310)
+	at com.hit.applications.Office365ApplicationImpl.open3Dots(Office365ApplicationImpl.java:1191)
+	at com.hit.applications.Office365ApplicationImpl.renameFile(Office365ApplicationImpl.java:462)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:68)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+[INFO] 19:33:22 Main main - Main program finished successfully
+[INFO] 19:34:01 Main main - Main program is starting
+[INFO] 19:34:01 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:34:01 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:34:01 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:34:01 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:34:04 ScenarioManager run - Is incognito:false
+[INFO] 19:34:04 ScenarioManager run - Number of runs:1
+[INFO] 19:34:04 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:34:04 Office365ApplicationImpl doAction - Action requested : RENAME_FILE
+[INFO] 19:34:04 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:34:18 Office365ApplicationImpl renameFile - Trying to rename the first file in OneDrive
+[ERROR] 19:34:33 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 19:34:33 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 19:34:33 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 19:34:33 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[ERROR] 19:34:48 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:34:48 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[ERROR] 19:35:01 Office365ApplicationImpl renameFile - Could not rename the first file in OneDrive
+org.openqa.selenium.WebDriverException: chrome not reachable
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 4.09 seconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir6076_15922}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 1ef4f1a4aceea3d3921be8aa84af3d4c
+*** Element info: {Using=xpath, value=(//span[contains(@class,'commandText') and contains(text(), 'Rename')])[1]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	at com.hit.util.DriverUtils.findElementByTagNameAndAttribute(DriverUtils.java:243)
+	at com.hit.util.DriverUtils.clickOnElementByTagNameAndAttribute2(DriverUtils.java:310)
+	at com.hit.applications.Office365ApplicationImpl.open3Dots(Office365ApplicationImpl.java:1171)
+	at com.hit.applications.Office365ApplicationImpl.renameFile(Office365ApplicationImpl.java:462)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:68)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+[INFO] 19:37:42 Main main - Main program is starting
+[INFO] 19:37:42 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:37:42 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:37:42 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:37:42 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:37:45 ScenarioManager run - Is incognito:false
+[INFO] 19:37:45 ScenarioManager run - Number of runs:1
+[INFO] 19:37:45 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:37:45 Office365ApplicationImpl doAction - Action requested : RENAME_FILE
+[INFO] 19:37:45 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:37:55 Office365ApplicationImpl renameFile - Trying to rename the first file in OneDrive
+[ERROR] 19:38:10 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 19:38:10 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 19:38:10 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 19:38:10 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[ERROR] 19:38:25 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:38:25 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[INFO] 19:39:52 Main main - Main program is starting
+[INFO] 19:39:52 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:39:52 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:39:52 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:39:52 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:39:55 ScenarioManager run - Is incognito:false
+[INFO] 19:39:55 ScenarioManager run - Number of runs:1
+[INFO] 19:39:55 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:39:55 Office365ApplicationImpl doAction - Action requested : RENAME_FILE
+[INFO] 19:39:55 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:40:09 Office365ApplicationImpl renameFile - Trying to rename the first file in OneDrive
+[ERROR] 19:40:24 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 19:40:24 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 19:40:24 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 19:40:24 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[ERROR] 19:40:40 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:40:40 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[ERROR] 19:40:50 Office365ApplicationImpl renameFile - Could not rename the first file in OneDrive
+org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for element to be clickable: By.xpath: //span[contains(@class='CommandText') and contains(text(),'Rename']
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir6308_26889}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0b639e3686b42955e5f6e25f1684a9d7
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.applications.Office365ApplicationImpl.open3Dots(Office365ApplicationImpl.java:1172)
+	at com.hit.applications.Office365ApplicationImpl.renameFile(Office365ApplicationImpl.java:462)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:68)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+Caused by: org.openqa.selenium.InvalidSelectorException: invalid selector: Unable to locate an element with the xpath expression //span[contains(@class='CommandText') and contains(text(),'Rename'] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//span[contains(@class='CommandText') and contains(text(),'Rename']' is not a valid XPath expression.
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir6308_26889}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 0b639e3686b42955e5f6e25f1684a9d7
+*** Element info: {Using=xpath, value=//span[contains(@class='CommandText') and contains(text(),'Rename']}
+	at sun.reflect.GeneratedConstructorAccessor8.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:653)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:646)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 5 more
+[INFO] 19:40:54 Main main - Main program finished successfully
+[INFO] 19:41:30 Main main - Main program is starting
+[INFO] 19:41:30 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:41:30 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:41:30 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:41:30 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:41:33 ScenarioManager run - Is incognito:false
+[INFO] 19:41:33 ScenarioManager run - Number of runs:1
+[INFO] 19:41:33 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:41:33 Office365ApplicationImpl doAction - Action requested : RENAME_FILE
+[INFO] 19:41:33 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:41:48 Office365ApplicationImpl renameFile - Trying to rename the first file in OneDrive
+[ERROR] 19:42:03 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 19:42:03 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 19:42:03 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 19:42:03 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[ERROR] 19:42:18 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:42:18 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[ERROR] 19:42:29 Office365ApplicationImpl renameFile - Could not rename the first file in OneDrive
+org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for element to be clickable: By.xpath: //span[contains(@class='CommandText') and contains(text(),'Rename'])
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir2116_21534}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 90e797dbace39b14dcc69d1f23872fa5
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.applications.Office365ApplicationImpl.open3Dots(Office365ApplicationImpl.java:1172)
+	at com.hit.applications.Office365ApplicationImpl.renameFile(Office365ApplicationImpl.java:462)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:68)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+Caused by: org.openqa.selenium.InvalidSelectorException: invalid selector: Unable to locate an element with the xpath expression //span[contains(@class='CommandText') and contains(text(),'Rename']) because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//span[contains(@class='CommandText') and contains(text(),'Rename'])' is not a valid XPath expression.
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir2116_21534}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 90e797dbace39b14dcc69d1f23872fa5
+*** Element info: {Using=xpath, value=//span[contains(@class='CommandText') and contains(text(),'Rename'])}
+	at sun.reflect.GeneratedConstructorAccessor8.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:653)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:646)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 5 more
+[INFO] 19:42:32 Main main - Main program finished successfully
+[INFO] 19:42:47 Main main - Main program is starting
+[INFO] 19:42:47 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:42:47 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:42:47 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:42:47 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:42:50 ScenarioManager run - Is incognito:false
+[INFO] 19:42:50 ScenarioManager run - Number of runs:1
+[INFO] 19:42:50 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:42:50 Office365ApplicationImpl doAction - Action requested : RENAME_FILE
+[INFO] 19:42:50 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:43:05 Office365ApplicationImpl renameFile - Trying to rename the first file in OneDrive
+[ERROR] 19:43:20 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 19:43:20 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 19:43:20 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 19:43:20 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[ERROR] 19:43:34 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:43:34 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[ERROR] 19:43:45 Office365ApplicationImpl renameFile - Could not rename the first file in OneDrive
+org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for element to be clickable: By.xpath: //span[contains(@class='CommandText') and contains(text(),'Rename')]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir6548_9749}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: e222ced664f33661801119ecf62a4a4e
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.applications.Office365ApplicationImpl.open3Dots(Office365ApplicationImpl.java:1172)
+	at com.hit.applications.Office365ApplicationImpl.renameFile(Office365ApplicationImpl.java:462)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:68)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+Caused by: org.openqa.selenium.InvalidSelectorException: invalid selector: Unable to locate an element with the xpath expression //span[contains(@class='CommandText') and contains(text(),'Rename')] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//span[contains(@class='CommandText') and contains(text(),'Rename')]' is not a valid XPath expression.
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir6548_9749}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: e222ced664f33661801119ecf62a4a4e
+*** Element info: {Using=xpath, value=//span[contains(@class='CommandText') and contains(text(),'Rename')]}
+	at sun.reflect.GeneratedConstructorAccessor8.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:653)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:646)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 5 more
+[INFO] 19:43:49 Main main - Main program finished successfully
+[INFO] 19:45:04 Main main - Main program is starting
+[INFO] 19:45:04 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:45:04 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:45:04 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:45:04 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:45:07 ScenarioManager run - Is incognito:false
+[INFO] 19:45:07 ScenarioManager run - Number of runs:1
+[INFO] 19:45:07 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:45:07 Office365ApplicationImpl doAction - Action requested : RENAME_FILE
+[INFO] 19:45:07 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:45:21 Office365ApplicationImpl renameFile - Trying to rename the first file in OneDrive
+[ERROR] 19:45:36 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 19:45:36 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 19:45:36 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 19:45:36 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[ERROR] 19:45:50 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:45:50 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[ERROR] 19:46:00 Office365ApplicationImpl renameFile - Could not rename the first file in OneDrive
+org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for element to be clickable: By.xpath: //span[contains(@class,'CommandText') and contains(text(),'Rename')]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir6604_6635}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 98a782cce50ad7e76a148e099c984a16
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.applications.Office365ApplicationImpl.open3Dots(Office365ApplicationImpl.java:1172)
+	at com.hit.applications.Office365ApplicationImpl.renameFile(Office365ApplicationImpl.java:462)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:68)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(@class,'CommandText') and contains(text(),'Rename')]"}
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.04 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir6604_6635}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 98a782cce50ad7e76a148e099c984a16
+*** Element info: {Using=xpath, value=//span[contains(@class,'CommandText') and contains(text(),'Rename')]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:653)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:646)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 5 more
+[INFO] 19:46:04 Main main - Main program finished successfully
+[INFO] 19:48:34 Main main - Main program is starting
+[INFO] 19:48:34 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:48:34 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:48:34 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:48:34 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:48:36 ScenarioManager run - Is incognito:false
+[INFO] 19:48:36 ScenarioManager run - Number of runs:1
+[INFO] 19:48:36 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:48:36 Office365ApplicationImpl doAction - Action requested : RENAME_FILE
+[INFO] 19:48:36 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:48:51 Office365ApplicationImpl renameFile - Trying to rename the first file in OneDrive
+[ERROR] 19:49:09 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 19:49:09 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 19:49:09 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 19:49:09 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[ERROR] 19:49:18 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:49:18 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[ERROR] 19:49:39 DriverUtils findElementByTagNameAndAttribute - The element with tag name div and attributeName title and attributeValue Other things you can do with the selected items and text Rename was not found
+[ERROR] 19:49:39 Office365ApplicationImpl renameFile - Could not rename the first file in OneDrive
+org.openqa.selenium.TimeoutException: Timed out after 20 seconds waiting for visibility of element located by By.xpath: (//div[contains(@title,'Other things you can do with the selected items') and contains(text(), 'Rename')])[1]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir2268_3975}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 5476275047c854a16a9e6c4d8438661b
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.util.DriverUtils.findElementByTagNameAndAttribute(DriverUtils.java:243)
+	at com.hit.applications.Office365ApplicationImpl.open3Dots(Office365ApplicationImpl.java:1171)
+	at com.hit.applications.Office365ApplicationImpl.renameFile(Office365ApplicationImpl.java:463)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:69)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"(//div[contains(@title,'Other things you can do with the selected items') and contains(text(), 'Rename')])[1]"}
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.00 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir2268_3975}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 5476275047c854a16a9e6c4d8438661b
+*** Element info: {Using=xpath, value=(//div[contains(@title,'Other things you can do with the selected items') and contains(text(), 'Rename')])[1]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 6 more
+[INFO] 19:49:43 Main main - Main program finished successfully
+[INFO] 19:50:07 Main main - Main program is starting
+[INFO] 19:50:07 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:50:07 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:50:07 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:50:07 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:50:10 ScenarioManager run - Is incognito:false
+[INFO] 19:50:10 ScenarioManager run - Number of runs:1
+[INFO] 19:50:10 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:50:10 Office365ApplicationImpl doAction - Action requested : RENAME_FILE
+[INFO] 19:50:10 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:50:25 Office365ApplicationImpl renameFile - Trying to rename the first file in OneDrive
+[ERROR] 19:50:56 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 19:50:56 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 19:50:56 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 19:50:56 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[ERROR] 19:51:11 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:51:11 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[ERROR] 19:51:21 Office365ApplicationImpl renameFile - Could not rename the first file in OneDrive
+org.openqa.selenium.TimeoutException: Timed out after 10 seconds waiting for element to be clickable: By.xpath: //span[contains(@class,'CommandText') and contains(text(),'Rename')]
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir7536_11703}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: e79aad0af3f469023d366d27f814eda7
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:80)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:261)
+	at com.hit.applications.Office365ApplicationImpl.open3Dots(Office365ApplicationImpl.java:1178)
+	at com.hit.applications.Office365ApplicationImpl.renameFile(Office365ApplicationImpl.java:463)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:69)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[contains(@class,'CommandText') and contains(text(),'Rename')]"}
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.06 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir7536_11703}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: e79aad0af3f469023d366d27f814eda7
+*** Element info: {Using=xpath, value=//span[contains(@class,'CommandText') and contains(text(),'Rename')]}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:500)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:361)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:899)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:41)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:205)
+	at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:201)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:653)
+	at org.openqa.selenium.support.ui.ExpectedConditions$22.apply(ExpectedConditions.java:646)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:238)
+	... 5 more
+[INFO] 19:51:25 Main main - Main program finished successfully
+[INFO] 19:52:17 Main main - Main program is starting
+[INFO] 19:52:17 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:52:17 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:52:18 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:52:18 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:52:20 ScenarioManager run - Is incognito:false
+[INFO] 19:52:20 ScenarioManager run - Number of runs:1
+[INFO] 19:52:20 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:52:20 Office365ApplicationImpl doAction - Action requested : RENAME_FILE
+[INFO] 19:52:20 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:52:33 Office365ApplicationImpl renameFile - Trying to rename the first file in OneDrive
+[ERROR] 19:52:50 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 19:52:50 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 19:52:50 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 19:52:50 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[ERROR] 19:53:04 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:53:04 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[INFO] 19:53:04 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 19:53:04 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 19:53:04 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 19:53:08 Main main - Main program finished successfully
+[INFO] 19:53:50 Main main - Main program is starting
+[INFO] 19:53:50 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:53:50 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:53:50 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:53:50 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:53:53 ScenarioManager run - Is incognito:false
+[INFO] 19:53:53 ScenarioManager run - Number of runs:1
+[INFO] 19:53:53 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:53:53 Office365ApplicationImpl doAction - Action requested : RENAME_FILE
+[INFO] 19:53:53 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:54:08 Office365ApplicationImpl renameFile - Trying to rename the first file in OneDrive
+[ERROR] 19:54:24 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 19:54:24 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 19:54:24 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[INFO] 19:54:24 Office365ApplicationImpl getFirstFileInOneDrive - Trying to retrieve the first file element in OneDrive
+[ERROR] 19:54:38 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:54:38 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[INFO] 19:54:38 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 19:54:38 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 19:54:39 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 19:54:43 Main main - Main program finished successfully
+[INFO] 19:54:53 Main main - Main program is starting
+[INFO] 19:54:53 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 19:54:53 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 19:54:54 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 19:54:54 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 19:54:56 ScenarioManager run - Is incognito:false
+[INFO] 19:54:56 ScenarioManager run - Number of runs:1
+[INFO] 19:54:56 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 19:54:56 Office365ApplicationImpl doAction - Action requested : RENAME_ALL
+[INFO] 19:54:56 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 19:55:09 Office365ApplicationImpl renameAll - Trying to rename all the files in OneDrive
+[ERROR] 19:55:25 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not found
+[ERROR] 19:55:25 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue od-TeachingBubble-closeButton and text null was not clicked
+[WARN] 19:55:25 Office365ApplicationImpl closeTeachingBubbleDiv - Could not close discover popup, it might have been completely removed so this function is irrelevant
+[ERROR] 19:55:32 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:55:32 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[INFO] 19:55:32 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 19:55:32 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 19:55:32 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[ERROR] 19:55:42 DriverUtils findElementByTagNameAndAttribute - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not found
+[ERROR] 19:55:42 DriverUtils clickOnElementByTagNameAndAttribute2 - The element with tag name span and attributeName class and attributeValue commandText and text Rename was not clicked
+[INFO] 19:55:42 DriverUtils writeToHTMLElement - Trying to write to element with id ItemNameEditor-input
+[INFO] 19:55:42 DriverUtils findElementById - Trying to find element with id : ItemNameEditor-input
+[INFO] 19:55:42 DriverUtils findElementById - Successfully found element with id : ItemNameEditor-input
+[INFO] 19:55:48 Main main - Main program finished successfully

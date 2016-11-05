@@ -82,7 +82,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			return shareFolder();
 		case "EXPORT_CONTACTS":
 			return exportContacts();
-		case "OPEN_MAIL_BOX":
+		case "OPEN_MAILBOX":
 			return openMailBox();
 		case "OFFLINE_SETTINGS":
 			return offlineSettings();
@@ -153,9 +153,9 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		// go to last opened window in the web
 		DriverUtils.getLastOpenedWindow(driver);
 
-		// click on an element by tagname
-		DriverUtils.clickOnElementByTagNameAndAttribute2(driver, "a", "ng-href",
-				"https://office.live.com/start/Word.aspx?auth=2", null, -1);
+		// click on the element for word template
+		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "a", "ng-href",
+				"https://office.live.com/start/Word.aspx?auth=2", null, -1, 1);
 
 		DriverUtils.sleep(2000);
 
@@ -163,7 +163,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		DriverUtils.getLastOpenedWindow(driver);
 
 		// click on feedback from help menu
-		DriverUtils.clickOnElementByID2(driver, "template_TM00002003", -1);
+		DriverUtils.clickOnElementByID(driver, "template_TM00002003", -1);
 
 	}
 
@@ -174,25 +174,28 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	 */
 	private void SendFeedBack() {
 		logger.info("Sending feedback");
-		// click on the help menu
-		DriverUtils.clickOnElementByID2(driver, "O365_MainLink_Help", -1);
+		try {
+			// click on the help menu
+			DriverUtils.clickOnElementByID(driver, "O365_MainLink_Help", -1);
 
-		// click on feedback from help menu
-		DriverUtils.clickOnElementByID2(driver, "O365_SubLink_ShellFeedback", -1);
+			// click on feedback from help menu
+			DriverUtils.clickOnElementByID(driver, "O365_SubLink_ShellFeedback", -1);
 
-		// go to last opened window in the web
-		DriverUtils.getLastOpenedWindow(driver);
+			// go to last opened window in the web
+			DriverUtils.getLastOpenedWindow(driver);
 
-		// insert comment in feedback
-		DriverUtils.writeToHTMLElement2(driver, "txtFeedbackComment", "nice service, thank you!!!", -1);
+			// insert comment in feedback
 
-		// send feedback
-		DriverUtils.clickOnElementByID2(driver, "btnFeedbackSubmit", -1);
-		// sleep for a second, let the feedback to be sent
-		// DriverUtils.sleep(1000);
-		// close feedBack windows
-		DriverUtils.clickOnElementByID2(driver, "btnFeedbackClose", -1);
-
+			DriverUtils.writeToHTMLElement(driver, "txtFeedbackComment", "nice service, thank you!!!", -1);
+			// send feedback
+			DriverUtils.clickOnElementByID(driver, "btnFeedbackSubmit", -1);
+			// sleep for a second, let the feedback to be sent
+			DriverUtils.sleep(1000);
+			// close feedBack windows
+			DriverUtils.clickOnElementByID(driver, "btnFeedbackClose", -1);
+		} catch (Exception e) {
+			logger.error("Could not send feedback", e);
+		}
 	}
 
 	/***
@@ -204,9 +207,9 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		logger.info("Trying to log out from office365");
 		if (this.loggedIn) {
 			try {
-				DriverUtils.clickOnElementByTagNameAndAttribute2(driver, "button", "aria-label",
-						"Use the down arrow to use the Me Control pane", null, -1);
-				DriverUtils.clickOnElementByID(driver, "O365_SubLink_ShellSignout");
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "aria-label",
+						"Use the down arrow to use the Me Control pane", null, -1, 1);
+				DriverUtils.clickOnElementByID(driver, "O365_SubLink_ShellSignout", -1);
 				driver.manage().deleteAllCookies();
 			} catch (Exception e) {
 				logger.error("Could not log out from office365", e);
@@ -234,7 +237,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					return false;
 				}
 				element.click();
-				open3Dots("Download");
+				openActionOneDriveMenu("Download");
 			} catch (Exception e) {
 				logger.error("Could not download the first file in OneDrive", e);
 				return false;
@@ -266,7 +269,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					element.click();
 
 					// click on download icon in top bar
-					open3Dots("Download");
+					openActionOneDriveMenu("Download");
 				}
 			} catch (Exception e) {
 				logger.error("Could not download all the files in OneDrive", e);
@@ -302,7 +305,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				elementFiles.get(n).click();
 				DriverUtils.sleep(200);
 				// Click on download icon in top bar
-				open3Dots("Download");
+				openActionOneDriveMenu("Download");
 			} catch (Exception e) {
 				logger.error("Could not download a random file", e);
 				return false;
@@ -432,7 +435,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	 */
 	private boolean deleteFolder() {
 		// Click on file row
-		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Folder", null);
+		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Folder", null, -1, 1);
 		clickDelete();
 		return true;
 	}
@@ -455,7 +458,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				}
 				firstFileElement.click();
 				// click on rename icon in top bar
-				open3Dots("Rename");
+				openActionOneDriveMenu("Rename");
 
 				// generate random string for renaming
 				SecureRandom random = new SecureRandom();
@@ -463,11 +466,11 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 				// write the renamed name to the file
 
-				DriverUtils.writeToHTMLElement2(driver, "ItemNameEditor-input", newName, -1);
+				DriverUtils.writeToHTMLElement(driver, "ItemNameEditor-input", newName, -1);
 
 				// click on the save button in dialog box
-				DriverUtils.clickOnElementByTagNameAndAttribute2(driver, "span", "class", "ms-Button-label", "Save",
-						-1);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save", -1,
+						1);
 			} catch (Exception e) {
 				logger.error("Could not rename the first file in OneDrive", e);
 				return false;
@@ -510,14 +513,14 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				for (String fileName : fileNames) {
 					clickableElement = getFileElement(fileName);
 					clickableElement.click();
-					open3Dots("Rename");
+					openActionOneDriveMenu("Rename");
 					newName = new BigInteger(130, random).toString(32);
 					// write the renamed name to the file
-					DriverUtils.writeToHTMLElement2(driver, "ItemNameEditor-input", newName, -1);
+					DriverUtils.writeToHTMLElement(driver, "ItemNameEditor-input", newName, -1);
 
 					// click on the save button in dialog box
-					DriverUtils.clickOnElementByTagNameAndAttribute2(driver, "span", "class", "ms-Button-label", "Save",
-							-1);
+					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save",
+							-1, 1);
 					DriverUtils.sleep(2000);
 				}
 			} catch (Exception e) {
@@ -554,16 +557,16 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 				DriverUtils.sleep(200);
 
-				open3Dots("Rename");
+				openActionOneDriveMenu("Rename");
 				SecureRandom random = new SecureRandom();
 				String newName = new BigInteger(130, random).toString(32);
 
 				// write the renamed name to the file
-				DriverUtils.writeToHTMLElement2(driver, "ItemNameEditor-input", newName, -1);
+				DriverUtils.writeToHTMLElement(driver, "ItemNameEditor-input", newName, -1);
 
 				// click on the save button in dialog box
-				DriverUtils.clickOnElementByTagNameAndAttribute2(driver, "span", "class", "ms-Button-label", "Save",
-						-1);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Save", -1,
+						1);
 				DriverUtils.sleep(2000);
 			} catch (Exception e) {
 				logger.error("Could not rename a random file in OneDrive", e);
@@ -613,7 +616,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				robot.mouseMove(coordinates.getX(), coordinates.getY() + 120);
 				DriverUtils.sleep(50);
 				// choose folder
-				DriverUtils.clickOnElementByTagNameAndAttribute2(driver, "span", "class", "commandText", "Folder", -1);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Folder", -1,
+						1);
 				DriverUtils.sleep(1000);
 				// enter the name of the new folder
 				WebElement createFolderTextBox = driver.findElement(By.className("od-FolderBuilder-nameInput"));
@@ -622,7 +626,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				createFolderTextBox.sendKeys(folderName);
 				DriverUtils.sleep(300);
 				// click on the create button
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Create");
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Create",
+						-1, 1);
 
 			} catch (Exception e) {
 				logger.error("Could not create a folder in OneDrive", e);
@@ -703,7 +708,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 								DriverUtils.sleep(300);
 								// closeTeachingBubbleDiv();
 								// click on move to icon in top bar
-								open3Dots("Move to");
+								openActionOneDriveMenu("Move to");
 								DriverUtils.sleep(2000);
 
 								// choose folder from the list
@@ -722,8 +727,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 											element2.click();
 											DriverUtils.sleep(1000);
 											// click on the move button
-											DriverUtils.clickOnElementByTagNameAndAttribute2(driver, "span", "class",
-													"ms-Button-label", "Move here", -1);
+											DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class",
+													"ms-Button-label", "Move here", -1, 1);
 											DriverUtils.sleep(3000);
 											break;
 										}
@@ -755,12 +760,13 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				goToOneDrive();
 
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "LeftNav-linkText",
-						"Recycle bin");
-				DriverUtils.sleep(1000);
+						"Recycle bin", -1, 1);
+				// DriverUtils.sleep(1000);
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "CommandBarItem-commandText",
-						"Empty recycle bin");
-				DriverUtils.sleep(1000);
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Delete");
+						"Empty recycle bin", -1, 1);
+				// DriverUtils.sleep(1000);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Delete",
+						-1, 1);
 			} catch (Exception e) {
 				logger.error("Could not empty OneDrive recycle bin", e);
 				return false;
@@ -785,8 +791,9 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					return false;
 				}
 				firstFileElement.click();
-				open3Dots("Share");
-				DriverUtils.writeToHTMLElement2(driver, "PeoplePicker-textBox", "alan@veridinet.com", -1);
+				openActionOneDriveMenu("Share");
+				DriverUtils.writeToHTMLElement(driver, "PeoplePicker-textBox", GetProperties.getProp("shareAddress"),
+						-1);
 
 				// move mouse to center of screen
 				Robot robot = new Robot();
@@ -797,8 +804,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				DriverUtils.sleep(500);
 
 				// share the folder
-				DriverUtils.clickOnElementByTagNameAndAttribute2(driver, "span", "class", "ms-Button-label", "Share",
-						-1);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share", -1,
+						1);
 				return true;
 			} catch (Exception e) {
 				logger.error("Could not share a file in OneDrive", e);
@@ -820,11 +827,12 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				// open oneDrive
 				goToOneDrive();
 
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Folder", null);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Folder", null, -1, 1);
 				DriverUtils.sleep(300);
-				open3Dots("Share");
+				openActionOneDriveMenu("Share");
 				DriverUtils.sleep(300);
-				DriverUtils.writeToHTMLElement(driver, "PeoplePicker-textBox", "alan@veridinet.com");
+				DriverUtils.writeToHTMLElement(driver, "PeoplePicker-textBox", GetProperties.getProp("shareAddress"),
+						-1);
 				DriverUtils.sleep(500);
 
 				// move mouse to center of screen
@@ -835,7 +843,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 				DriverUtils.sleep(500);
 				// share the folder
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share");
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Share", -1,
+						1);
 
 			} catch (Exception e) {
 				logger.error("Could not share a folder in OneDrive", e);
@@ -856,45 +865,20 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				logger.info("Trying to export contacts");
 				// open people
 				goToPeople();
-				DriverUtils.sleep(15000);
 
-				// run on all the buttons
-				List<WebElement> elementList = driver.findElements(By.tagName("button"));
-				String myElement = null;
-				int counter = 0;
-				for (WebElement element : elementList) {
-					try {
-						// get class and style attributes
-						myElement = element.getAttribute("title");
-					} catch (Exception e) {
-						continue;
-					}
-					if (myElement != null) {
-						// check if the title of the button is Manage
-						// there is another manage on the page and that is why
-						// we take the second one
-						// which is the visible one and the clickable one
-						if (myElement.contains("Manage")) {
-							if (counter == 1) {
-								// click the Manage text in top toolbar
-								element.click();
-								break;
-							}
-							counter++;
-						}
-					}
-				}
+				// click on the second manage button because the first one is
+				// not visible
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "title", "Manage", null, -1, 2);
 
-				DriverUtils.sleep(2000);
 				// click on the Export contacts
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Export contacts",
-						"Export contacts");
-				DriverUtils.sleep(3000);
+						"Export contacts", -1, 1);
 				// click on the button to export the contacts
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "o365buttonLabel _fce_r",
-						"Export");
-				// wait for the file to finish download
-				DriverUtils.sleep(5000);
+						"Export", -1, 1);
+
+				// sleep during download time
+				DriverUtils.sleep(Integer.parseInt(GetProperties.getProp("downloadTimeSleep")));
 			} catch (Exception e) {
 				logger.error("Could not export contacts", e);
 				return false;
@@ -914,32 +898,36 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				logger.info("Trying to open another mailbox");
 				// open people
 				goToPeople();
-				DriverUtils.sleep(15000);
 
+				DriverUtils.sleep(12000);
 				// click on the icon in the top right corner
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "class", "ms-Icon--person", null);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "class", "ms-Icon--person", null, -1, 1);
+
 				DriverUtils.sleep(3000);
 
 				// click on the "Open another mailbox..." option
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "aria-label", "Open another mailbox...",
-						"Open another mailbox...");
+						"Open another mailbox...", -1, 1);
 
 				// get the mailbox address to open
 				String mailBox = GetProperties.getProp("mailboxToOpen");
 
-				// write the address to the textbox
-				WebElement element = driver.findElement(By.xpath("//form[@class='_fp_3']/input[@role='textbox']"));
-				element.sendKeys(mailBox);
-				DriverUtils.sleep(2000);
+				// write the address to the text box
+				WebElement element = DriverUtils.findElementByXPathExpression(driver,
+						"//form[@class='_fp_3']/input[@role='textbox']", -1);
 
+				element.sendKeys(mailBox);
+
+				DriverUtils.sleep(2000);
 				// click enter for the first choice
 				element.sendKeys(Keys.ENTER);
-				DriverUtils.sleep(2000);
 
 				// finds and clicks the open button
-				WebElement openButton = driver.findElement(By.xpath("//span[contains(text(), 'Open')]/parent::button"));
+				WebElement openButton = DriverUtils.findElementByXPathExpression(driver,
+						"//span[contains(text(), 'Open')]/parent::button", -1);
 				openButton.click();
-				DriverUtils.sleep(2000);
+
+				DriverUtils.sleep(5000);
 
 			} catch (Exception e) {
 				logger.error("Could not open another mailbox", e);
@@ -999,29 +987,29 @@ public class Office365ApplicationImpl extends AbstractApplication {
 		return true;
 	}
 
+	/**
+	 * Utility functions
+	 */
+
 	/***
 	 * Press on delete icon and then on delete dialog box
 	 */
 	private void clickDelete() {
-		DriverUtils.sleep(1000);
 		// click on delete icon in top bar
-		open3Dots("Delete");
-		// DriverUtils.sleep(1000);
+		openActionOneDriveMenu("Delete");
+		
 		// click on delete button in dialog box
-		DriverUtils.clickOnElementByTagNameAndAttribute2(driver, "span", "class", "ms-Button-label", "Delete", -1);
+		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Delete", -1, 1);
 	}
 
 	/**
-	 * Closes the "Discover" popup if it exists
+	 * Closes the "Discover" pop up if it exists
 	 */
 	private void closeTeachingBubbleDiv() {
 		try {
-			DriverUtils.clickOnElementByTagNameAndAttribute2(driver, "span", "class", "od-TeachingBubble-closeButton",
-					null, 2);
-		} catch (NoSuchElementException e) {
-			logger.warn(
-					"Could not close discover popup, it might have been completely removed so this function is irrelevant");
-		} catch (TimeoutException e) {
+			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "od-TeachingBubble-closeButton",
+					null, 2, 1);
+		} catch (NoSuchElementException | TimeoutException e) {
 			logger.warn(
 					"Could not close discover popup, it might have been completely removed so this function is irrelevant");
 		} catch (Exception e) {
@@ -1170,36 +1158,22 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	}
 
 	/***
-	 * open the three dots (when the screen/browser is not wide enough to
-	 * contain all the menu) will first try to open the action from the menu if
-	 * it is not in the menu, it assumes it is in the 3 dots (...) menu and
-	 * tries to click on it there
+	 * Open an action from the menu bar in OneDrive will first try to open the
+	 * action from the menu. it is not in the menu, it assumes it is in the 3
+	 * dots (...) and tries to click on it there
 	 */
-	private void open3Dots(String text) {
-		boolean flag = false;
-		List<WebElement> elementList = driver.findElements(By.tagName("span"));
-		String myElement = null;
-		for (WebElement element : elementList) {
-			try {
-				myElement = element.getAttribute("class");
-			} catch (Exception e) {
-				continue;
-			}
-			if (myElement != null) {
-				// check if the a tag is on word
-				if (myElement.contains("commandText")) {
-					if (element.getText().equals(text)) {
-						flag = true;
-						element.click();
-						break;
-					}
-				}
-			}
-		}
-		if (!flag) {
+	private void openActionOneDriveMenu(String actionName) {
+		try {
+			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", actionName, 7, 1);
+		} catch (TimeoutException | NoSuchElementException e) {
+			// the element wasn't found so trying to open the three dots
+			WebDriverWait wait = new WebDriverWait(driver, 10);
 			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "title",
-					"Other things you can do with the selected items", null);
-			DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", text);
+					"Other things you can do with the selected items", null, -1, 1);
+			WebElement element = wait.until(ExpectedConditions.elementToBeClickable(
+					By.xpath("//span[contains(@class,'ContextualMenu-commandText') and contains(text(),'" + actionName
+							+ "')]")));
+			element.click();
 		}
 	}
 }

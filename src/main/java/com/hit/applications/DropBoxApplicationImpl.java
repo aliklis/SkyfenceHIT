@@ -120,9 +120,11 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 				// check if there are files in the folder
 				if (fileNameList.size() > 0) {
 					// click on upload button
-					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_upload_16", null);
+					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_upload_16", null, -1,
+							1);
 					DriverUtils.getLastOpenedWindow(driver);
-					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--primary", null);
+					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--primary", null,
+							-1, 1);
 
 					String firstFile = fileNameList.get(0);
 
@@ -151,7 +153,7 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 						DriverUtils.sleep(2000);
 						// click on "add more files" button
 						DriverUtils.clickOnElementByTagNameAndAttribute(driver, "button", "class", "c-btn--secondary",
-								null);
+								null, -1, 1);
 						// set the copy value as the next file name in the order
 						strSelection = new StringSelection(fileNameList.get(i));
 						Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelection, null);
@@ -224,11 +226,13 @@ public class DropBoxApplicationImpl extends AbstractApplication {
 				logger.info("Trying to download a file from DropBox");
 				int downloadTimes = Integer.parseInt(GetProperties.getProp("downloadTimes"));
 				// click on the first file in the list
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "li", "class", "o-grid--no-gutter", null);
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "li", "class", "o-grid--no-gutter", null, -1,
+						1);
 				for (int i = 0; i < downloadTimes; i++) {
 					DriverUtils.sleep(3000);
 					// click on the download button
-					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_download", null);
+					DriverUtils.clickOnElementByTagNameAndAttribute(driver, "img", "class", "s_web_download", null, -1,
+							1);
 				}
 				DriverUtils.sleep(7000);
 			} catch (Exception e) {
