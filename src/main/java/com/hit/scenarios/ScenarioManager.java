@@ -9,6 +9,7 @@ import com.hit.applications.ApplicationFactory;
 import com.hit.applications.ApplicationRequest;
 import com.hit.applications.IApplication;
 import com.hit.util.DriverUtils;
+import com.hit.util.GetProperties;
 import com.hit.util.Request;
 import com.hit.util.User;
 
@@ -63,12 +64,14 @@ public class ScenarioManager {
 
 			int numberOfRuns = request.getNumOfRuns();
 			List<User> usersList = request.getUsers();
-
+			
+			int webDriverPostSleep = Integer.parseInt(GetProperties.getProp("webDriverPostSleep"));
 			// Run the action numberOfRuns times
 			for (int i = 0; i < numberOfRuns; i++) {
 				for (User currUser : usersList) {
 					applicationRequest.setUser(currUser);
 					app.doAction(applicationRequest);
+					DriverUtils.sleep(webDriverPostSleep);
 				}
 			}
 		} catch (Exception ex) {

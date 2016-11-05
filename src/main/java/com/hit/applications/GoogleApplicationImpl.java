@@ -27,7 +27,7 @@ public class GoogleApplicationImpl extends AbstractApplication {
 			throw new NullPointerException("The driver object is not valid");
 		}
 		this.applicationRequest = applicationRequest;
-		logger.info("Action requested :" + applicationRequest.getAction());
+		logger.info("Action requested : " + applicationRequest.getAction());
 		switch (applicationRequest.getAction()) {
 		case "LOGIN":
 			return login(true);

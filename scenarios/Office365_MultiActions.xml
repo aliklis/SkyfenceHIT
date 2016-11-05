@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <request>
 	<application>office365</application>
-	<action>MULTIPLEACTIONS</action>
+	<action>MULTIPLE_ACTIONS</action>
 	<numOfRuns>1</numOfRuns>
 	<useTor>false</useTor>
 	<useIncognito>false</useIncognito>
