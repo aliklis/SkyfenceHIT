@@ -94,3 +94,21 @@
 [INFO] 21:34:26 Office365ApplicationImpl login - Trying to log in to office365
 [INFO] 21:34:40 Office365ApplicationImpl exportContacts - Trying to export contacts
 [INFO] 21:35:06 Main main - Main program finished successfully
+[INFO] 22:35:14 Main main - Main program is starting
+[INFO] 22:35:14 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 22:35:14 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Upload_File.xml
+[INFO] 22:35:14 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 22:35:14 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 22:35:17 ScenarioManager run - Is incognito:false
+[INFO] 22:35:17 ScenarioManager run - Number of runs:1
+[INFO] 22:35:17 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 22:35:17 Office365ApplicationImpl doAction - Action requested : UPLOAD_FILES
+[INFO] 22:35:17 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 22:35:29 Office365ApplicationImpl uploadFiles - Trying to upload files to OneDrive
+[INFO] 22:35:29 Office365ApplicationImpl uploadFiles - Pay attention that files that have no content will be rejected by OneDrive
+[INFO] 22:36:05 Main main - Main program finished successfully
+[INFO] 22:54:13 Main main - Main program is starting
+[INFO] 22:54:13 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 22:54:13 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Upload_File.xml
+[INFO] 22:54:13 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 22:54:13 DriverUtils getDriver - Trying to initialize a new webdriver
