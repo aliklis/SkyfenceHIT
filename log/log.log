@@ -1,0 +1,12 @@
+[INFO] 20:56:48 Main main - Main program is starting
+[INFO] 20:56:48 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 20:56:48 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Download_All.xml
+[INFO] 20:56:48 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 20:56:48 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 20:56:51 ScenarioManager run - Is incognito:false
+[INFO] 20:56:51 ScenarioManager run - Number of runs:1
+[INFO] 20:56:51 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 20:56:51 Office365ApplicationImpl doAction - Action requested : DOWNLOAD_ALL
+[INFO] 20:56:51 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 20:57:00 Office365ApplicationImpl downloadAll - Trying to download all the files from OneDrive
+[INFO] 20:57:56 Main main - Main program finished successfully

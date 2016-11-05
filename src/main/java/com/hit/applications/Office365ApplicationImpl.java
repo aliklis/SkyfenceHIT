@@ -258,6 +258,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				logger.info("Trying to download all the files from OneDrive");
 				// open OneDrive
 				goToOneDrive();
+				
 				// Get a list of all the files
 				List<WebElement> elementFiles = getFilesInOneDrive();
 				if (elementFiles == null | elementFiles.size() == 0) {
@@ -269,6 +270,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 
 					// click on download icon in top bar
 					openActionOneDriveMenu("Download");
+					DriverUtils.sleep(Integer.parseInt(GetProperties.getProp("downloadTimeSleep")));
 				}
 			} catch (Exception e) {
 				logger.error("Could not download all the files in OneDrive", e);
