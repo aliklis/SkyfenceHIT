@@ -112,3 +112,251 @@
 [INFO] 22:54:13 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Upload_File.xml
 [INFO] 22:54:13 Main getRequestList - Retrieved all scenario xml files successfully
 [INFO] 22:54:13 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 23:01:27 Main main - Main program is starting
+[INFO] 23:01:27 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 23:01:27 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 23:01:27 Main main - Main program finished successfully
+[INFO] 23:21:24 Main main - Main program is starting
+[INFO] 23:21:24 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 23:21:24 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Upload_File.xml
+[INFO] 23:21:24 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 23:21:24 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 23:21:27 ScenarioManager run - Is incognito:false
+[INFO] 23:21:27 ScenarioManager run - Number of runs:1
+[INFO] 23:21:27 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 23:21:27 Office365ApplicationImpl doAction - Action requested : UPLOAD_FILES
+[INFO] 23:21:27 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 23:21:40 Office365ApplicationImpl uploadFiles - Trying to upload files to OneDrive
+[INFO] 23:21:40 Office365ApplicationImpl uploadFiles - Pay attention that files that have no content will be rejected by OneDrive
+[INFO] 23:22:04 Main main - Main program finished
+[INFO] 23:23:45 Main main - Main program is starting
+[INFO] 23:23:45 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 23:23:45 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Login_Tor.xml
+[INFO] 23:23:46 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 23:23:46 ScenarioManager run - Using Tor to run this scenario
+[INFO] 23:23:46 TorBrowser Start - Trying to start Tor
+[INFO] 23:23:53 ScenarioManager run - Is incognito:false
+[INFO] 23:23:53 ScenarioManager run - Number of runs:1
+[INFO] 23:23:53 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 23:23:53 Office365ApplicationImpl doAction - Action requested : LOGIN
+[INFO] 23:23:53 Office365ApplicationImpl login - Trying to log in to office365
+[ERROR] 23:23:55 Office365ApplicationImpl login - Could not log in to office 365
+java.lang.NullPointerException
+	at com.hit.applications.Office365ApplicationImpl.login(Office365ApplicationImpl.java:111)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:51)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+[INFO] 23:23:59 TorBrowser Stop - Trying to stop Tor browser
+[INFO] 23:23:59 Main main - Main program finished
+[INFO] 23:24:58 Main main - Main program is starting
+[INFO] 23:24:58 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 23:24:58 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Login_Tor.xml
+[INFO] 23:24:59 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 23:24:59 ScenarioManager run - Using Tor to run this scenario
+[INFO] 23:24:59 TorBrowser Start - Trying to start Tor
+[ERROR] 23:25:10 DriverUtils getDriverWithTor - Failed to initialize a driver with Tor
+org.openqa.selenium.SessionNotCreatedException: session not created exception
+from chrome not reachable
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 5.38 seconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:249)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:131)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:144)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:170)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:138)
+	at com.hit.util.DriverUtils.getDriverWithTor(DriverUtils.java:99)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:39)
+	at main.Main.main(Main.java:41)
+[INFO] 23:25:10 ScenarioManager run - Is incognito:false
+[INFO] 23:25:10 ScenarioManager run - Number of runs:1
+[INFO] 23:25:10 Office365ApplicationImpl doAction - Application : Office365
+[ERROR] 23:25:10 Office365ApplicationImpl doAction - The driver object is not valid
+[ERROR] 23:25:10 ScenarioManager run - Scenario Manager failed to run this scenario
+[ERROR] 23:25:10 Main main - Main program finished with errors
+[INFO] 23:25:10 Main main - Main program finished
+[INFO] 23:25:16 Main main - Main program is starting
+[INFO] 23:25:16 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 23:25:16 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Login_Tor.xml
+[INFO] 23:25:16 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 23:25:16 ScenarioManager run - Using Tor to run this scenario
+[INFO] 23:25:16 TorBrowser Start - Trying to start Tor
+[ERROR] 23:25:27 DriverUtils getDriverWithTor - Failed to initialize a driver with Tor
+org.openqa.selenium.SessionNotCreatedException: session not created exception
+from chrome not reachable
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 5.40 seconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:249)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:131)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:144)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:170)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:138)
+	at com.hit.util.DriverUtils.getDriverWithTor(DriverUtils.java:99)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:39)
+	at main.Main.main(Main.java:41)
+[INFO] 23:25:27 ScenarioManager run - Is incognito:false
+[INFO] 23:25:27 ScenarioManager run - Number of runs:1
+[INFO] 23:25:27 Office365ApplicationImpl doAction - Application : Office365
+[ERROR] 23:25:27 Office365ApplicationImpl doAction - The driver object is not valid
+[ERROR] 23:25:27 ScenarioManager run - Scenario Manager failed to run this scenario
+[ERROR] 23:25:27 Main main - Main program finished with errors
+[INFO] 23:25:27 Main main - Main program finished
+[INFO] 23:25:38 Main main - Main program is starting
+[INFO] 23:25:38 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 23:25:38 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Login_Tor.xml
+[INFO] 23:25:38 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 23:25:38 ScenarioManager run - Using Tor to run this scenario
+[INFO] 23:25:38 TorBrowser Start - Trying to start Tor
+[ERROR] 23:25:38 DriverUtils getDriverWithTor - Failed to initialize a driver with Tor
+org.openqa.selenium.WebDriverException: Specified firefox binary location does not exist or is not a real file: \Tor Browser\Browser\firefox.exe
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: driver.version: unknown
+	at org.openqa.selenium.firefox.internal.Executable.<init>(Executable.java:59)
+	at org.openqa.selenium.firefox.FirefoxBinary.<init>(FirefoxBinary.java:60)
+	at com.hit.util.TorBrowser.Start(TorBrowser.java:26)
+	at com.hit.util.DriverUtils.getDriverWithTor(DriverUtils.java:86)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:39)
+	at main.Main.main(Main.java:41)
+[INFO] 23:25:38 ScenarioManager run - Is incognito:false
+[INFO] 23:25:38 ScenarioManager run - Number of runs:1
+[INFO] 23:25:38 Office365ApplicationImpl doAction - Application : Office365
+[ERROR] 23:25:38 Office365ApplicationImpl doAction - The driver object is not valid
+[ERROR] 23:25:38 ScenarioManager run - Scenario Manager failed to run this scenario
+[ERROR] 23:25:38 Main main - Main program finished with errors
+[INFO] 23:25:38 Main main - Main program finished
+[INFO] 23:25:45 Main main - Main program is starting
+[INFO] 23:25:45 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 23:25:45 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Login_Tor.xml
+[INFO] 23:25:45 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 23:25:45 ScenarioManager run - Using Tor to run this scenario
+[INFO] 23:25:45 TorBrowser Start - Trying to start Tor
+[ERROR] 23:25:45 DriverUtils getDriverWithTor - Failed to initialize a driver with Tor
+org.openqa.selenium.WebDriverException: Specified firefox binary location does not exist or is not a real file: \Tor Browser\Browser\firefox.exe
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: driver.version: unknown
+	at org.openqa.selenium.firefox.internal.Executable.<init>(Executable.java:59)
+	at org.openqa.selenium.firefox.FirefoxBinary.<init>(FirefoxBinary.java:60)
+	at com.hit.util.TorBrowser.Start(TorBrowser.java:26)
+	at com.hit.util.DriverUtils.getDriverWithTor(DriverUtils.java:86)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:39)
+	at main.Main.main(Main.java:41)
+[INFO] 23:25:45 ScenarioManager run - Is incognito:false
+[INFO] 23:25:45 ScenarioManager run - Number of runs:1
+[INFO] 23:25:45 Office365ApplicationImpl doAction - Application : Office365
+[ERROR] 23:25:45 Office365ApplicationImpl doAction - The driver object is not valid
+[ERROR] 23:25:45 ScenarioManager run - Scenario Manager failed to run this scenario
+[ERROR] 23:25:45 Main main - Main program finished with errors
+[INFO] 23:25:45 Main main - Main program finished
+[INFO] 23:27:53 Main main - Main program is starting
+[INFO] 23:27:53 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 23:27:53 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Login_Tor.xml
+[INFO] 23:27:53 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 23:27:53 ScenarioManager run - Using Tor to run this scenario
+[INFO] 23:27:53 TorBrowser Start - Trying to start Tor
+[ERROR] 23:28:04 DriverUtils getDriverWithTor - Failed to initialize a driver with Tor
+org.openqa.selenium.SessionNotCreatedException: session not created exception
+from chrome not reachable
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 5.41 seconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:249)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:131)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:144)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:170)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:138)
+	at com.hit.util.DriverUtils.getDriverWithTor(DriverUtils.java:99)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:39)
+	at main.Main.main(Main.java:41)
+[INFO] 23:28:04 ScenarioManager run - Is incognito:false
+[INFO] 23:28:04 ScenarioManager run - Number of runs:1
+[INFO] 23:28:04 Office365ApplicationImpl doAction - Application : Office365
+[ERROR] 23:28:04 Office365ApplicationImpl doAction - The driver object is not valid
+[ERROR] 23:28:04 ScenarioManager run - Scenario Manager failed to run this scenario
+[ERROR] 23:28:04 Main main - Main program finished with errors
+[INFO] 23:28:04 Main main - Main program finished
+[INFO] 23:28:08 Main main - Main program is starting
+[INFO] 23:28:08 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 23:28:08 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Login_Tor.xml
+[INFO] 23:28:08 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 23:28:08 ScenarioManager run - Using Tor to run this scenario
+[INFO] 23:28:08 TorBrowser Start - Trying to start Tor
+[INFO] 23:28:16 ScenarioManager run - Is incognito:false
+[INFO] 23:28:16 ScenarioManager run - Number of runs:1
+[INFO] 23:28:16 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 23:28:16 Office365ApplicationImpl doAction - Action requested : LOGIN
+[INFO] 23:28:16 Office365ApplicationImpl login - Trying to log in to office365
+[ERROR] 23:28:27 Office365ApplicationImpl login - Could not log in to office 365
+org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"name","selector":"login"}
+  (Session info: chrome=54.0.2840.71)
+  (Driver info: chromedriver=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.04 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'Tomer-PC', ip: '10.0.0.1', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.25.426923 (0390b88869384d6eb0d5d09729679f934aab9eed), userDataDir=C:\Users\Tomer\AppData\Local\Temp\scoped_dir7912_25015}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=54.0.2840.71, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: 137e9e1ea0251d1ee4db0104626bb5c4
+*** Element info: {Using=name, value=login}
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:363)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByName(RemoteWebDriver.java:461)
+	at org.openqa.selenium.By$ByName.findElement(By.java:303)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at com.hit.applications.Office365ApplicationImpl.login(Office365ApplicationImpl.java:110)
+	at com.hit.applications.Office365ApplicationImpl.doAction(Office365ApplicationImpl.java:51)
+	at com.hit.scenarios.ScenarioManager.run(ScenarioManager.java:73)
+	at main.Main.main(Main.java:41)
+[INFO] 23:28:31 TorBrowser Stop - Trying to stop Tor browser
+[INFO] 23:28:31 Main main - Main program finished
+[INFO] 23:29:28 Main main - Main program is starting
+[INFO] 23:29:28 Main getRequestList - Started retrieval of scenarios XML files
+[INFO] 23:29:28 Main getRequestList - Trying to retrieve scenario of XML filename Office365_Login_Tor.xml
+[INFO] 23:29:28 Main getRequestList - Retrieved all scenario xml files successfully
+[INFO] 23:29:28 DriverUtils getDriver - Trying to initialize a new webdriver
+[INFO] 23:29:31 ScenarioManager run - Is incognito:false
+[INFO] 23:29:31 ScenarioManager run - Number of runs:1
+[INFO] 23:29:31 Office365ApplicationImpl doAction - Application : Office365
+[INFO] 23:29:31 Office365ApplicationImpl doAction - Action requested : UPLOAD_FILES
+[INFO] 23:29:31 Office365ApplicationImpl login - Trying to log in to office365
+[INFO] 23:29:39 Office365ApplicationImpl uploadFiles - Trying to upload files to OneDrive
+[INFO] 23:29:39 Office365ApplicationImpl uploadFiles - Pay attention that files that have no content will be rejected by OneDrive
+[INFO] 23:30:01 Main main - Main program finished

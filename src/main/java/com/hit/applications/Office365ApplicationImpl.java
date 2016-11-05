@@ -951,8 +951,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				File[] directoryListing = dir.listFiles();
 				if (directoryListing != null) {
 					for (File child : directoryListing) {
-						String filename = child.getName();
-						fileNamesList.add(filesDir + filename);
+						String filename = child.getAbsolutePath();
+						fileNamesList.add(filename);
 					}
 				}
 			}

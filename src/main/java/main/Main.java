@@ -54,7 +54,7 @@ public class Main {
 		} catch(Exception e){ 
 			logger.error("Main program finished with errors");
 		}
-		logger.info("Main program finished successfully");
+		logger.info("Main program finished");
 	}
 
 	/***
