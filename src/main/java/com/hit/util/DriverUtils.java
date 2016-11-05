@@ -204,7 +204,6 @@ public class DriverUtils {
 			throw e;
 		}
 	}
-
 	public static WebElement findElementByXPathExpression(WebDriver driver, String xpath, int optionalTimeout) throws NoSuchElementException, TimeoutException {
 		int waitTimeOut;
 		if (optionalTimeout < 0)

@@ -14,7 +14,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -52,8 +51,8 @@ public class Office365ApplicationImpl extends AbstractApplication {
 			return login(true);
 		case "MULTIPLE_ACTIONS":
 			return MultipleActions();
-		case "UPLOAD_FILE":
-			return uploadFile();
+		case "UPLOAD_FILES":
+			return uploadFiles();
 		case "DOWNLOAD_FILE":
 			return downloadFile();
 		case "DOWNLOAD_RANDOM_FILE":
@@ -324,46 +323,28 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	 * 
 	 * @return
 	 */
-	private boolean uploadFile() {
+	private boolean uploadFiles() {
 		if (login(false)) {
 			try {
 				logger.info("Trying to upload files to OneDrive");
 				logger.info("Pay attention that files that have no content will be rejected by OneDrive");
+
 				// open OneDrive
 				goToOneDrive();
 
 				// get the directory path
-
 				String filesDir = GetProperties.getProp("uploadFilesDir");
+
 				// get list of all the file names
 				List<String> fileNamesList = getListFilesNames(filesDir);
 
 				// check if there are files in the folder
 				if (fileNamesList.size() > 0) {
-					WebElement a = null;
-
-					// Find the upload button
-					List<WebElement> elementList = driver.findElements(By.tagName("span"));
-					String myElement = null;
-					for (WebElement element : elementList) {
-						try {
-							myElement = element.getAttribute("class");
-						} catch (Exception e) {
-							continue;
-						}
-						if (myElement != null) {
-							if (myElement.contains("commandText")) {
-								if (element.getText().equals("Upload")) {
-									a = element;
-									break;
-								}
-							}
-						}
-					}
 					// Upload the files
 					for (int i = 0; i < fileNamesList.size(); i++) {
 						WebDriverWait wait = new WebDriverWait(driver, 10);
-						a.click();
+						openActionOneDriveMenu("Upload");
+						// a.click();
 						WebElement element = wait.until(ExpectedConditions
 								.elementToBeClickable(By.xpath("//input[@class='ContextualMenu-fileInput']")));
 						element.sendKeys(fileNamesList.get(i));
@@ -588,47 +569,21 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				// open oneDrive
 				goToOneDrive();
 
-				// Click On new button label on top navigation
-				List<WebElement> elementList = driver.findElements(By.tagName("span"));
-				String myElement = null;
-				Point coordinates = null;
-				for (WebElement element : elementList) {
-					try {
-						myElement = element.getAttribute("class");
-					} catch (Exception e) {
-						continue;
-					}
-					if (myElement != null) {
-						// check if the a tag is on word
-						if (myElement.contains("commandText")) {
-							if (element.getText().equals("New")) {
-								element.click();
-								// get coordinates of the element
-								coordinates = element.getLocation();
-								break;
-							}
-						}
-					}
-				}
-
-				// move mouse to the coordinates
-				Robot robot = new Robot();
-				robot.mouseMove(coordinates.getX(), coordinates.getY() + 120);
-				DriverUtils.sleep(50);
-				// choose folder
-				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "commandText", "Folder", -1,
-						1);
-				DriverUtils.sleep(1000);
-				// enter the name of the new folder
+				WebDriverWait wait = new WebDriverWait(driver, 10);
+				openActionOneDriveMenu("New");
+				WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By
+						.xpath("//span[contains(@class,'ContextualMenu-commandText') and contains(text(),'Folder')]")));
+				
+				element.click();
 				WebElement createFolderTextBox = driver.findElement(By.className("od-FolderBuilder-nameInput"));
 				SecureRandom random = new SecureRandom();
 				String folderName = new BigInteger(130, random).toString(32);
 				createFolderTextBox.sendKeys(folderName);
 				DriverUtils.sleep(300);
+				
 				// click on the create button
 				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Create",
 						-1, 1);
-
 			} catch (Exception e) {
 				logger.error("Could not create a folder in OneDrive", e);
 				return false;
@@ -754,7 +709,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	private boolean emptyRecycleBin() {
 		if (login(false)) {
 			try {
-
 				logger.info("Trying to empty OneDrive recycle bin");
 				// open oneDrive
 				goToOneDrive();
@@ -948,28 +902,30 @@ public class Office365ApplicationImpl extends AbstractApplication {
 				logger.info("Trying to change offline settings");
 				// open people
 				goToPeople();
-				DriverUtils.sleep(8000);
+				// wait for page to completely load
+				DriverUtils.sleep(Integer.parseInt(GetProperties.getProp("peoplePageLoad")));
 
 				// click on the setting button
-				driver.findElement(By.id("O365_MainLink_Settings")).click();
-				DriverUtils.sleep(2000);
+				DriverUtils.clickOnElementByID(driver, "O365_MainLink_Settings", -1);
 
 				// click on the offline setting button
-				driver.findElement(By.id("offlinesettings_People")).click();
-				DriverUtils.sleep(2000);
+				DriverUtils.clickOnElementByID(driver, "offlinesettings_People", -1);
 
-				// check the Turn on offline access checkbox
-				driver.findElement(By.xpath("//div[contains(@class,'_opc_N')]")).click();
-				driver.findElement(By.xpath("//div[@class='_opc_S']/div/button[@type='button']")).click();
-				DriverUtils.sleep(3000);
+				// check the turn on offline access check box
+				DriverUtils.clickOnElementByTagNameAndAttribute(driver, "div", "class", "_opc_N", null, -1, 1);
+				(DriverUtils.findElementByXPathExpression(driver, "//div[@class='_opc_S']/div/button[@type='button']",
+						-1)).click();
 
-				// get the elements i need to click
-				WebElement element = driver.findElement(By.xpath(
-						"//div[@class='conductorContent']/div[contains(@class,'_op_w3')]/div[@class='_op_x3']/div[@class='_opc_m']/div[@class='_opc_o']/button[@autoid='_opc_1']"));
-				WebElement element2 = driver.findElement(By.xpath(
-						"//div[@class='conductorContent']/div[contains(@class,'_op_w3')]/div[@class='_op_x3']/div[@class='_opc_m']/div[@class='_opc_o']/button[@autoid='_opc_2']"));
+				// get the elements to click on
+				WebElement element = DriverUtils.findElementByXPathExpression(driver,
+						"//div[@class='conductorContent']/div[contains(@class,'_op_w3')]/div[@class='_op_x3']/div[@class='_opc_m']/div[@class='_opc_o']/button[@autoid='_opc_1']",
+						-1);
+				WebElement element2 = DriverUtils.findElementByXPathExpression(driver,
+						"//div[@class='conductorContent']/div[contains(@class,'_op_w3')]/div[@class='_op_x3']/div[@class='_opc_m']/div[@class='_opc_o']/button[@autoid='_opc_2']",
+						-1);
 				// click YES
 				element.click();
+
 				// click:
 				// 1) NEXT
 				// 2) NEXT
@@ -978,7 +934,6 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					DriverUtils.sleep(300);
 					element2.click();
 				}
-
 			} catch (Exception e) {
 				logger.error("Could not change offline settings", e);
 				return false;
@@ -997,7 +952,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 	private void clickDelete() {
 		// click on delete icon in top bar
 		openActionOneDriveMenu("Delete");
-		
+
 		// click on delete button in dialog box
 		DriverUtils.clickOnElementByTagNameAndAttribute(driver, "span", "class", "ms-Button-label", "Delete", -1, 1);
 	}
