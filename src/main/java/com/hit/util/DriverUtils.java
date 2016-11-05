@@ -62,7 +62,7 @@ public class DriverUtils {
 
 			// configure 10 seconds timeout 'wait' for elements to load (while
 			// searching them on page)
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(Integer.parseInt(GetProperties.getProp("timeToWaitForElementsLoad")), TimeUnit.SECONDS);
 			return driver;
 		} catch (Exception e) {
 			logger.error("Failed to initialize a web driver", e);
@@ -97,7 +97,7 @@ public class DriverUtils {
 
 			cap.setCapability(ChromeOptions.CAPABILITY, options);
 			driver = new ChromeDriver(cap);
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(Integer.parseInt(GetProperties.getProp("timeToWaitForElementsLoad")), TimeUnit.SECONDS);
 
 			return driver;
 		} catch (Exception e) {
