@@ -279,8 +279,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 						WebElement element = wait.until(ExpectedConditions
 								.elementToBeClickable(By.xpath("//input[@class='ContextualMenu-fileInput']")));
 						element.sendKeys(fileNamesList.get(i));
-						// TODO constant that will be "file wait upload"
-						DriverUtils.sleep(2000);
+						DriverUtils.sleep(Integer.parseInt(GetProperties.getProp("uploadTimeSleep")));
 					}
 				} else {
 					logger.warn("No files were found in the folder " + filesDir);
@@ -423,6 +422,7 @@ public class Office365ApplicationImpl extends AbstractApplication {
 					fileNames.add(fileNameElement.getText());
 				}
 				for (String fileName : fileNames) {
+					DriverUtils.sleep(Integer.parseInt(GetProperties.getProp("renameTimeSleep")));
 					clickableElement = getFileElement(fileName);
 					clickableElement.click();
 					openActionOneDriveMenu("Rename");
